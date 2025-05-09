@@ -2,7 +2,7 @@ package Runner;
 
 import java.awt.EventQueue;
 
-import GUI.Login;
+import GUI.*;
 
 public class Main {
 	public static void main(String[] args) {

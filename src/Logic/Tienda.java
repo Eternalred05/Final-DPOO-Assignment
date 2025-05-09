@@ -15,6 +15,9 @@ public class Tienda {
 		setDireccion(direccion);
 		setTelefono(telefono);
 		setGerente(gerente);
+		trabajadores = new ArrayList<Trabajador>();
+		computadoras = new ArrayList<PC>();
+		componentes = new ArrayList<Componente>();
 	}
 
 	public String getNombre() {
@@ -56,15 +59,19 @@ public class Tienda {
 
 	public void setTelefono(String telefono) {
 		if(!telefono.isEmpty()){
-			boolean letter = false;
-			for (char c : telefono.toCharArray()) {
-				if (!Character.isDigit(c))
-					letter = true;
+			if(telefono.length() == 8){
+				boolean letter = false;
+				for (char c : telefono.toCharArray()) {
+					if (!Character.isDigit(c))
+						letter = true;
+				}
+				if(!letter)
+					this.telefono = telefono;
+				else
+					throw new IllegalArgumentException("No puede contener letras el teléfono.");
 			}
-			if(!letter)
-				this.telefono = telefono;
 			else
-				throw new IllegalArgumentException("No puede contener letras el teléfono.");
+				throw new IllegalArgumentException("El teléfono debe tener 8 dígitos.");
 		}
 		else
 			throw new IllegalArgumentException("El teléfono de la tienda está vacío.");

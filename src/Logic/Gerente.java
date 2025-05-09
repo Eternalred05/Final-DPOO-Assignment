@@ -64,7 +64,13 @@ public class Gerente {
 	}
 
 	public void setFecha(int anio, int mes, int dia) {
-		LocalDate fecha = LocalDate.of(anio, mes, dia);
+		LocalDate fecha; 
+		try{
+			fecha = LocalDate.of(anio, mes, dia);
+		}
+		catch (DateTimeException e){
+			throw new DateTimeException("La fecha es incorrecta");
+		}
 		if (anio < 1940) 
 			throw new DateTimeException("No debe ser tan viejo el Gerente. Cambie el año");
 		else if(fecha.isAfter(LocalDate.now()))

@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.time.DateTimeException;
+import javax.swing.SwingConstants;
 
 public class Login extends JFrame {
 
@@ -81,6 +82,7 @@ public class Login extends JFrame {
 	private JTextField getNombreGerente() {
 		if (NombreGerente == null) {
 			NombreGerente = new JTextField();
+			NombreGerente.setHorizontalAlignment(SwingConstants.CENTER);
 			NombreGerente.setBounds(10, 36, 223, 20);
 			NombreGerente.setColumns(10);
 		}
@@ -89,6 +91,7 @@ public class Login extends JFrame {
 	private JTextField getApellidosGerente() {
 		if (ApellidosGerente == null) {
 			ApellidosGerente = new JTextField();
+			ApellidosGerente.setHorizontalAlignment(SwingConstants.CENTER);
 			ApellidosGerente.setBounds(10, 94, 223, 20);
 			ApellidosGerente.setColumns(10);
 		}
@@ -111,6 +114,7 @@ public class Login extends JFrame {
 	private JTextField getTextDia() {
 		if (textDia == null) {
 			textDia = new JTextField();
+			textDia.setHorizontalAlignment(SwingConstants.CENTER);
 			textDia.setBounds(50, 176, 37, 20);
 			textDia.setColumns(10);
 		}
@@ -119,6 +123,7 @@ public class Login extends JFrame {
 	private JTextField getTextAnio() {
 		if (textAnio == null) {
 			textAnio = new JTextField();
+			textAnio.setHorizontalAlignment(SwingConstants.CENTER);
 			textAnio.setColumns(10);
 			textAnio.setBounds(144, 176, 37, 20);
 		}
@@ -127,6 +132,7 @@ public class Login extends JFrame {
 	private JTextField getTextMes() {
 		if (textMes == null) {
 			textMes = new JTextField();
+			textMes.setHorizontalAlignment(SwingConstants.CENTER);
 			textMes.setColumns(10);
 			textMes.setBounds(97, 176, 37, 20);
 		}
@@ -171,6 +177,7 @@ public class Login extends JFrame {
 	private JTextField getTiendaName() {
 		if (TiendaName == null) {
 			TiendaName = new JTextField();
+			TiendaName.setHorizontalAlignment(SwingConstants.CENTER);
 			TiendaName.setColumns(10);
 			TiendaName.setBounds(253, 36, 223, 20);
 		}
@@ -186,6 +193,7 @@ public class Login extends JFrame {
 	private JTextField getTiendaPhone() {
 		if (TiendaPhone == null) {
 			TiendaPhone = new JTextField();
+			TiendaPhone.setHorizontalAlignment(SwingConstants.CENTER);
 			TiendaPhone.setColumns(10);
 			TiendaPhone.setBounds(253, 94, 223, 20);
 		}
@@ -194,6 +202,7 @@ public class Login extends JFrame {
 	private JTextField getTiendaAddress() {
 		if (TiendaAddress == null) {
 			TiendaAddress = new JTextField();
+			TiendaAddress.setHorizontalAlignment(SwingConstants.CENTER);
 			TiendaAddress.setColumns(10);
 			TiendaAddress.setBounds(253, 158, 223, 20);
 		}
@@ -216,6 +225,7 @@ public class Login extends JFrame {
 	private JTextField getTiendaID() {
 		if (TiendaID == null) {
 			TiendaID = new JTextField();
+			TiendaID.setHorizontalAlignment(SwingConstants.CENTER);
 			TiendaID.setColumns(10);
 			TiendaID.setBounds(253, 217, 223, 20);
 		}
@@ -231,7 +241,7 @@ public class Login extends JFrame {
 						EventQueue.invokeLater(new Runnable() {
 							public void run() {
 								try {
-									Test frame = new Test(tienda);
+									MenuTienda frame = new MenuTienda(tienda);
 									frame.setVisible(true);
 									dispose();
 								} catch (Exception e) {
