@@ -9,7 +9,7 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
+					IngresoDatos frame = new IngresoDatos();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
