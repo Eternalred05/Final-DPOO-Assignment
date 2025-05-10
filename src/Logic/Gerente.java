@@ -30,10 +30,10 @@ public class Gerente {
 			if(!digit)
 				this.nombre = nombre;
 			else
-				throw new IllegalArgumentException("No puede contener números.");
+				throw new IllegalArgumentException("El nombre no debe contener números.");
 		}
 		else
-			throw new IllegalArgumentException("El nombre del Gerente está vacío.");
+			throw new IllegalArgumentException("El nombre está vacío.");
 
 	}
 
@@ -44,7 +44,7 @@ public class Gerente {
 	public void setApellidos(String apellidos) {
 		boolean digit = false;
 		if(!apellidos.isEmpty() && apellidos != null){
-			apellidos = Normalizer.normalize(nombre, Form.NFC);
+			apellidos = Normalizer.normalize(apellidos, Form.NFC);
 			for (char c : apellidos.toCharArray()) {
 				if (!Character.isLetter(c) && !Character.isSpaceChar(c))
 					digit = true;
@@ -52,10 +52,10 @@ public class Gerente {
 			if(!digit)
 				this.apellidos = apellidos;
 			else
-				throw new IllegalArgumentException("Los Apellidos no pueden contener números.");
+				throw new IllegalArgumentException("Los apellidos no deben contener números.");
 		}
 		else
-			throw new IllegalArgumentException("Los Apellidos del Gerente están vacíos.");
+			throw new IllegalArgumentException("Los apellidos están vacíos.");
 
 	}
 
@@ -72,7 +72,7 @@ public class Gerente {
 			throw new DateTimeException("La fecha es incorrecta");
 		}
 		if (anio < 1940) 
-			throw new DateTimeException("No debe ser tan viejo el Gerente. Cambie el año");
+			throw new DateTimeException("No debe ser tan viejo. Cambie el año");
 		else if(fecha.isAfter(LocalDate.now()))
 			throw new DateTimeException("La fecha no puede exceder a la fecha actual");
 
