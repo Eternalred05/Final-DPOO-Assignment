@@ -85,15 +85,20 @@ public class Tienda {
 		if(gerente != null)
 			this.gerente = gerente;
 		else
-			throw new IllegalArgumentException("No puede ser null el gerente.");
+			throw new IllegalArgumentException("No puede estar vacío el gerente.");
 	}
 
-	public void addTrabajador(Trabajador t) {
-		if(t != null)
-			trabajadores.add(t);
-		else
-			throw new IllegalArgumentException("No puede ser null el trabajador.");
+	public void addTrabajador(String nombre, String apellidos, String id, int numeroTrabajador,double salario, String nivelEscolar, String cargo) {
+		Trabajador t = new Trabajador (nombre,apellidos,id,numeroTrabajador,salario,nivelEscolar,cargo);		
+		for(Trabajador a : trabajadores){
+			if(a.getNombre().toLowerCase().equals(t.getNombre().toLowerCase()) && a.getApellidos().toLowerCase().equals(t.getApellidos().toLowerCase()))
+				throw new IllegalArgumentException("Ya se ingreso este trabajador con este nombre.");
+			if(a.getId().equals(t.getId()))
+				throw new IllegalArgumentException("Ya se ingreso un trabajador con este id.");
+		}
+		trabajadores.add(t);
 	}
+
 	public void addPC(PC p) {
 		if(p != null)
 			computadoras.add(p);

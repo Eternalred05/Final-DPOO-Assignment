@@ -23,13 +23,13 @@ public class Trabajador {
 		if(!nombre.isEmpty()){
 			nombre = Normalizer.normalize(nombre, Form.NFC);
 			for (char c : nombre.toCharArray()) {
-				if (!Character.isLetter(c))
+				if (!Character.isLetter(c) && !Character.isSpaceChar(c))
 					digit = true;
 			}
 			if(!digit)
 				this.nombre = nombre;
 			else
-				throw new IllegalArgumentException("No puede contener números.");
+				throw new IllegalArgumentException("El nombre no puede contener números.");
 		}
 		else
 			throw new IllegalArgumentException("El nombre del trabajador está vacío.");
@@ -42,14 +42,19 @@ public class Trabajador {
 
 	public void setApellidos(String apellidos) {
 		boolean digit = false;
-		for (char c : apellidos.toCharArray()) {
-			if (!Character.isLetter(c))
-				digit = true;
+		if(!apellidos.isEmpty() && apellidos != null){
+			apellidos = Normalizer.normalize(apellidos, Form.NFC);
+			for (char c : apellidos.toCharArray()) {
+				if (!Character.isLetter(c) && !Character.isSpaceChar(c))
+					digit = true;
+			}
+			if(!digit)
+				this.apellidos = apellidos;
+			else
+				throw new IllegalArgumentException("Los apellidos no deben contener números.");
 		}
-		if(!digit)
-			this.apellidos = apellidos;
 		else
-			throw new IllegalArgumentException("No puede contener números.");
+			throw new IllegalArgumentException("Los apellidos están vacíos.");
 	}
 
 	public String getId() {
@@ -85,10 +90,10 @@ public class Trabajador {
 	}
 
 	public void setSalario(double salario) {
-		if(salario>0)
+		if(salario>0 && salario <=15000)
 			this.salario = salario;
 		else
-			throw new IllegalArgumentException ("El salario debe ser mayor que 0");
+			throw new IllegalArgumentException ("El salario debe ser mayor que 0 y menor o igual que 15000");
 	}
 
 	public String getNivelEscolar() {
@@ -96,7 +101,10 @@ public class Trabajador {
 	}
 
 	public void setNivelEscolar(String nivelEscolar) {
-		this.nivelEscolar = nivelEscolar;
+		if(!nivelEscolar.isEmpty())
+			this.nivelEscolar = nivelEscolar;
+		else
+			throw new IllegalArgumentException("El nivel escolar del trabajador está vacío.");
 	}
 
 	public String getCargo() {
@@ -104,8 +112,16 @@ public class Trabajador {
 	}
 
 	public void setCargo(String cargo) {
-		this.cargo = cargo;
+		if(!cargo.isEmpty())
+			this.cargo = cargo;
+		else
+			throw new IllegalArgumentException("El cargo del trabajador está vacío.");
 	}
+
+	public int getNumeroTrabajador() {
+		return numeroTrabajador;
+	}
+
 	public Trabajador(String nombre, String apellidos, String id, int numeroTrabajador,
 			double salario, String nivelEscolar, String cargo) {
 		setNombre(nombre);
@@ -114,7 +130,7 @@ public class Trabajador {
 		this.numeroTrabajador = numeroTrabajador;
 		setSalario(salario);
 		setNivelEscolar(nivelEscolar);
-		this.cargo = cargo;
+		setCargo(cargo);
 	}
 }
 

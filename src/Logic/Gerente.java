@@ -71,7 +71,7 @@ public class Gerente {
 		catch (DateTimeException e){
 			throw new DateTimeException("La fecha es incorrecta");
 		}
-		if (anio < 1940) 
+		if (anio < 1980) 
 			throw new DateTimeException("No debe ser tan viejo. Cambie el año");
 		else if(fecha.isAfter(LocalDate.now()))
 			throw new DateTimeException("La fecha no puede exceder a la fecha actual");

@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 
 import java.awt.Color;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -28,14 +29,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.time.DateTimeException;
 
+import javax.swing.JComboBox;
+
 public class IngresoDatos extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField NombreGerente;
 	private JTextField ApellidosGerente;
-	private JTextField textDia;
-	private JTextField textMes;
-	private JTextField textAnio;
 	private boolean ingresoGerente;
 	private boolean ingresoTienda;
 	private Gerente gerente;
@@ -44,6 +44,9 @@ public class IngresoDatos extends JFrame {
 	private JTextField TiendaPhone;
 	private JTextField TiendaAddress;
 	private JTextField TiendaName;
+
+	@SuppressWarnings("rawtypes")
+	private DefaultComboBoxModel defaultComboBoxModel;
 
 	public IngresoDatos() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(IngresoDatos.class.getResource("/com/sun/java/swing/plaf/motif/icons/DesktopIcon.gif")));
@@ -98,18 +101,62 @@ public class IngresoDatos extends JFrame {
 
 		JLabel labelDia = new JLabel("Dia");
 		labelDia.setFont(new Font("Arial Black", Font.PLAIN, 25));
-		labelDia.setBounds(232, 377, 63, 50);
+		labelDia.setBounds(168, 377, 63, 50);
 		panelGerente.add(labelDia);
 
 		JLabel labelMes = new JLabel("Mes");
 		labelMes.setFont(new Font("Arial Black", Font.PLAIN, 25));
-		labelMes.setBounds(331, 380, 70, 44);
+		labelMes.setBounds(320, 380, 70, 44);
 		panelGerente.add(labelMes);
 
 		JLabel labelAnio = new JLabel("A\u00F1o");
 		labelAnio.setFont(new Font("Arial Black", Font.PLAIN, 25));
-		labelAnio.setBounds(437, 380, 70, 44);
+		labelAnio.setBounds(514, 380, 70, 44);
 		panelGerente.add(labelAnio);
+
+
+		final JComboBox comboBoxDias = new JComboBox();
+		comboBoxDias.setFont(new Font("Arial Black", Font.PLAIN, 20));
+		comboBoxDias.setBounds(168, 421, 59, 30);
+		Object num[] = new Object[31];
+		for(int i=0;i<num.length;i++)
+			num[i]=i+1;
+		defaultComboBoxModel = new DefaultComboBoxModel(num);
+		comboBoxDias.setModel(defaultComboBoxModel);
+		panelGerente.add(comboBoxDias);
+
+		final JComboBox comboBoxMes = new JComboBox();
+		comboBoxMes.setFont(new Font("Arial Black", Font.PLAIN, 20));
+		comboBoxMes.setBounds(255, 421, 202, 30);
+		Object meses[] = new Object[12];
+		meses[0] = "Enero";
+		meses[1] = "Febrero";
+		meses[2] = "Marzo";
+		meses[3] = "Abril";
+		meses[4] = "Mayo";
+		meses[5] = "Junio";
+		meses[6] = "Julio";
+		meses[7] = "Agosto";
+		meses[8] = "Septiembre";
+		meses[9] = "Octubre";
+		meses[10] = "Noviembre";
+		meses[11] = "Diciembre";
+		defaultComboBoxModel = new DefaultComboBoxModel(meses);
+		comboBoxMes.setModel(defaultComboBoxModel);
+
+		panelGerente.add(comboBoxMes);
+
+		final JComboBox comboBoxAnio = new JComboBox();
+		comboBoxAnio.setFont(new Font("Arial Black", Font.PLAIN, 20));
+		comboBoxAnio.setBounds(501, 421, 86, 30);
+		num = new Object[46];
+		for(int i = 0;i<num.length;i++)
+			num[i]= i+1980;
+		defaultComboBoxModel = new DefaultComboBoxModel(num);
+		comboBoxAnio.setModel(defaultComboBoxModel);
+		panelGerente.add(comboBoxAnio);
+
+
 
 		JButton buttonIngresarGerente = new JButton("Ingresar Gerente");
 		buttonIngresarGerente.addActionListener(new ActionListener() {
@@ -118,9 +165,9 @@ public class IngresoDatos extends JFrame {
 				String apellidos;
 				int anio,mes,dia;
 				try{
-					anio = Integer.parseInt(textAnio.getText());
-					mes = Integer.parseInt(textMes.getText());
-					dia = Integer.parseInt(textDia.getText());
+					anio = (int)comboBoxAnio.getSelectedItem();
+					mes = (int)comboBoxMes.getSelectedIndex()+1;
+					dia = (int)comboBoxDias.getSelectedItem();
 					nombre = NombreGerente.getText();
 					apellidos = ApellidosGerente.getText();
 					gerente = new Gerente (nombre, apellidos, anio, mes, dia);
@@ -131,7 +178,7 @@ public class IngresoDatos extends JFrame {
 					JOptionPane.showMessageDialog(null,e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
 				}
 				catch (NumberFormatException e){
-					JOptionPane.showMessageDialog(null,"La fecha está vacía","Error",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,"Valores incorrectos en la fecha","Error",JOptionPane.ERROR_MESSAGE);
 				}
 				catch (IllegalArgumentException e){
 					JOptionPane.showMessageDialog(null,e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
@@ -142,33 +189,12 @@ public class IngresoDatos extends JFrame {
 		buttonIngresarGerente.setBounds(240, 490, 249, 44);
 		panelGerente.add(buttonIngresarGerente);
 
-		textDia = new JTextField();
-		textDia.setFont(new Font("Arial Black", Font.PLAIN, 20));
-		textDia.setHorizontalAlignment(SwingConstants.CENTER);
-		textDia.setColumns(10);
-		textDia.setBounds(215, 420, 86, 25);
-		panelGerente.add(textDia);
-
-		textMes = new JTextField();
-		textMes.setFont(new Font("Arial Black", Font.PLAIN, 20));
-		textMes.setHorizontalAlignment(SwingConstants.CENTER);
-		textMes.setColumns(10);
-		textMes.setBounds(311, 420, 90, 25);
-		panelGerente.add(textMes);
-
-		textAnio = new JTextField();
-		textAnio.setFont(new Font("Arial Black", Font.PLAIN, 20));
-		textAnio.setHorizontalAlignment(SwingConstants.CENTER);
-		textAnio.setColumns(10);
-		textAnio.setBounds(419, 420, 88, 25);
-		panelGerente.add(textAnio);
-
 		JLabel lblBienvenidoALa = new JLabel("Bienvenido a la Aplicacion, Ingrese sus datos");
 		lblBienvenidoALa.setFont(new Font("Algerian", Font.PLAIN, 25));
 		lblBienvenidoALa.setBounds(69, 47, 612, 50);
 		panelGerente.add(lblBienvenidoALa);
 
-		JButton btnContinuarGerente = new JButton("Continuar");
+		final JButton btnContinuarGerente = new JButton("Continuar");
 		btnContinuarGerente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(ingresoGerente){
@@ -188,9 +214,31 @@ public class IngresoDatos extends JFrame {
 		lblComoGerente.setFont(new Font("Algerian", Font.PLAIN, 25));
 		lblComoGerente.setBounds(275, 89, 199, 50);
 		panelGerente.add(lblComoGerente);
+
+		JButton btnInicializargerente = new JButton("Inicializar Gerente");
+		btnInicializargerente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(!ingresoGerente){
+					gerente = new Gerente("Alexandro", "Valdés Piñeda", 2005,9,15);
+					JOptionPane.showMessageDialog(null,"Los datos del Gerente han sido inicializados y añadidos satisfactoriamente","Ingreso Exitoso",JOptionPane.INFORMATION_MESSAGE);
+					NombreGerente.setText("Alexandro");
+					ApellidosGerente.setText("Valdés Piñeda"); 
+					comboBoxDias.setSelectedIndex(14);
+					comboBoxMes.setSelectedIndex(8);
+					comboBoxAnio.setSelectedIndex(25);
+					ingresoGerente = true;
+					btnContinuarGerente.doClick();
+				}
+				else
+					JOptionPane.showMessageDialog(null,"Ya se ha ingresado un Gerente, no es necesario inicializar.","Advertencia",JOptionPane.INFORMATION_MESSAGE);	
+			}
+		});
+		btnInicializargerente.setFont(new Font("Arial Black", Font.PLAIN, 21));
+		btnInicializargerente.setBounds(10, 569, 249, 44);
+		panelGerente.add(btnInicializargerente);
+
 		panel.add(panelTienda, "Tienda");
 		panelTienda.setLayout(null);
-
 		JLabel lblIngreseLosDatos = new JLabel("Ingrese los datos de la Tienda");
 		lblIngreseLosDatos.setFont(new Font("Algerian", Font.PLAIN, 25));
 		lblIngreseLosDatos.setBounds(176, 11, 429, 85);
@@ -270,7 +318,7 @@ public class IngresoDatos extends JFrame {
 		lblName.setBounds(245, 86, 257, 40);
 		panelTienda.add(lblName);
 
-		JButton buttonContinuarTienda = new JButton("Continuar");
+		final JButton buttonContinuarTienda = new JButton("Continuar");
 		buttonContinuarTienda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(ingresoTienda) {
@@ -305,5 +353,20 @@ public class IngresoDatos extends JFrame {
 		});
 		btnRegresar.setBounds(10, 11, 89, 23);
 		panelTienda.add(btnRegresar);
+
+		JButton btnInicializarTienda = new JButton("Inicializar Tienda");
+		btnInicializarTienda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(!ingresoTienda){
+					tienda = new Tienda("GameStop777","GAME05","Avenida 33A Calle 156, Playa","72627762",gerente);
+					ingresoTienda = true;
+					JOptionPane.showMessageDialog(null,"Los datos de la tienda se han inicializado satisfactoriamente","Ingreso Exitoso",JOptionPane.INFORMATION_MESSAGE);
+					buttonContinuarTienda.doClick();
+				}
+			}
+		});
+		btnInicializarTienda.setFont(new Font("Arial Black", Font.PLAIN, 21));
+		btnInicializarTienda.setBounds(10, 569, 249, 44);
+		panelTienda.add(btnInicializarTienda);
 	}
 }
