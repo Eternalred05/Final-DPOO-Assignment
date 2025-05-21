@@ -1,7 +1,6 @@
 package GUI;
 
 import Logic.*;
-import Utils.TrabajadorTableModel;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -39,6 +38,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JScrollBar;
+import javax.swing.table.DefaultTableModel;
 
 public class MenuTienda extends JFrame {
 
@@ -52,7 +52,6 @@ public class MenuTienda extends JFrame {
 	@SuppressWarnings("rawtypes")
 	private DefaultComboBoxModel defaultComboBoxModel;
 	private JTextField salarioTrabajador;
-	private TrabajadorTableModel tableModelTrabajador;
 	private JTable tableTrabajador;
 	private boolean inicializarTrabajadores = false;
 
@@ -185,10 +184,10 @@ public class MenuTienda extends JFrame {
 		niveles[1]= "Primario";
 		niveles[2]= "Secundario";
 		niveles[3]="Preuniversitario";
-		niveles[4]="TÈcnico Medio";
+		niveles[4]="T√©cnico Medio";
 		niveles[5]="Obrero Calificado";
 		niveles[6]="Universitario";
-		cargos[7]="TÈcnico profesional";
+		cargos[7]="T√©cnico profesional";
 
 		defaultComboBoxModel = new DefaultComboBoxModel(niveles);
 		comboBoxEscolar.setModel(defaultComboBoxModel);
@@ -244,7 +243,9 @@ public class MenuTienda extends JFrame {
 				try{
 					salario = Double.parseDouble(salarioTrabajador.getText());
 					tiendaPC.addTrabajador(nombre,apellidos,id,counterTrabajador,salario,escolaridad,cargo);
-					((TrabajadorTableModel)tableTrabajador.getModel()).adicionar(String.valueOf(counterTrabajador),nombre,apellidos,cargo,escolaridad,id,String.valueOf(salario));
+					Object trabajador [] = {String.valueOf(counterTrabajador),nombre,apellidos,cargo,id,escolaridad,String.valueOf(salario)};
+					DefaultTableModel modelo = (DefaultTableModel) tableTrabajador.getModel();
+					modelo.addRow(trabajador);
 					JOptionPane.showMessageDialog(null,"Los datos del trabajador han sido ingresados satisfactoriamente a la Tienda","Ingreso Exitoso",JOptionPane.INFORMATION_MESSAGE);
 					counterTrabajador++;
 					numIDT.setText(Integer.toString(counterTrabajador));
@@ -266,17 +267,32 @@ public class MenuTienda extends JFrame {
 		btnInicializar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(!inicializarTrabajadores){
-					tiendaPC.addTrabajador("Gloria","Santos Rosado","06030867876", counterTrabajador++,5000,"Preuniversitario","Especialista en productos");
-					tiendaPC.addTrabajador("Jorge Luis","ValdÈs PiÒeda","97070758088", counterTrabajador++,15000,"Universitario","Subgerente");
-					tiendaPC.addTrabajador("Javier","Soto Villanueva","05090160882", counterTrabajador++,7000,"Universitario","Asesor de Ventas");
-					tiendaPC.addTrabajador("Ronal","S·lazar Hern·ndez","05101568066", counterTrabajador++,6500,"Universitario","Especialista en Software");
-					tiendaPC.addTrabajador("Aylin","V·zquez Alvarez","06061367412", counterTrabajador++,4000,"Obrero Calificado","Encargado de inventario");
-					for(Trabajador t : tiendaPC.getTrabajadores())
-						((TrabajadorTableModel)tableTrabajador.getModel()).adicionar(String.valueOf(t.getNumeroTrabajador()),t.getNombre(),t.getApellidos(),t.getCargo(),t.getNivelEscolar(),t.getId(),String.valueOf(t.getSalario()));
-					JOptionPane.showMessageDialog(null,"Se han aÒadido 5 datos de trabajadores a la tienda correctamente.","InicializaciÛn Exitosa",JOptionPane.INFORMATION_MESSAGE);
-					numIDT.setText(Integer.toString(counterTrabajador));
+
+					String[][] trabajadores = {
+							{"Gloria", "Santos Rosado", "06030867876", "5000", "Preuniversitario", "Especialista en productos"},
+							{"Jorge Luis", "Vald√©s Pi√±eda", "97070758088", "15000", "Universitario", "Subgerente"},
+							{"Javier", "Soto Villanueva", "05090160882", "7000", "Universitario", "Asesor de Ventas"},
+							{"Ronal", "S√°lazar Hern√°ndez", "05101568066", "6500", "Universitario", "Especialista en Software"},
+							{"Aylin", "V√°zquez Alvarez", "06061367412", "4000", "Obrero Calificado", "Encargado de inventario"}
+					};
+
+					for (String[] datos : trabajadores) {
+						try {
+
+							tiendaPC.addTrabajador(datos[0], datos[1], datos[2], counterTrabajador,Integer.parseInt(datos[3]), datos[4], datos[5]);
+							Object trabajador [] = {String.valueOf(counterTrabajador),datos[0],datos[1],datos[5],datos[2],datos[4],datos[3]};
+							DefaultTableModel modelo = (DefaultTableModel) tableTrabajador.getModel();
+							modelo.addRow(trabajador);
+							counterTrabajador++;
+							numIDT.setText(Integer.toString(counterTrabajador));
+
+						} catch (IllegalArgumentException e) {
+							JOptionPane.showMessageDialog(null,"El trabajador llamado: "+ datos[0]+" "+ datos[1]+" ya se habia ingresado, se proceder√° a ingresar el proximo que no se haya a√±adido previamente.","Trabajador Ingresado previamente",JOptionPane.ERROR_MESSAGE);
+						}
+					}
 					inicializarTrabajadores = true;
-				}
+					JOptionPane.showMessageDialog(null,"Se han inicializado los datos de prueba correctamente.","Datos Inicializados correctamente",JOptionPane.INFORMATION_MESSAGE);	
+				} 
 				else
 					JOptionPane.showMessageDialog(null,"Ya se inicializaron los datos de los trabajadores.","Ya se inicializaron estos datos",JOptionPane.ERROR_MESSAGE);
 			}
@@ -291,13 +307,38 @@ public class MenuTienda extends JFrame {
 		panelListaTrabajadores.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 54, 756, 370);
+		scrollPane.setBounds(0, 95, 756, 370);
 		panelListaTrabajadores.add(scrollPane);
 
 		tableTrabajador = new JTable();
-		tableModelTrabajador = new TrabajadorTableModel();
-		tableTrabajador.setModel(tableModelTrabajador);
-		tableTrabajador.setDefaultEditor(Object.class, null); // desactiva que las celdas se editen
+
+		tableTrabajador.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"N\u00FAmero", "Nombre", "Apellidos", "Cargo", "Carnet", "Nivel Escolar", "Salario"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		tableTrabajador.getColumnModel().getColumn(0).setResizable(false);
+		tableTrabajador.getColumnModel().getColumn(0).setPreferredWidth(47);
+		tableTrabajador.getColumnModel().getColumn(1).setResizable(false);
+		tableTrabajador.getColumnModel().getColumn(2).setResizable(false);
+		tableTrabajador.getColumnModel().getColumn(2).setPreferredWidth(85);
+		tableTrabajador.getColumnModel().getColumn(3).setResizable(false);
+		tableTrabajador.getColumnModel().getColumn(3).setPreferredWidth(125);
+		tableTrabajador.getColumnModel().getColumn(4).setResizable(false);
+		tableTrabajador.getColumnModel().getColumn(4).setPreferredWidth(70);
+		tableTrabajador.getColumnModel().getColumn(5).setResizable(false);
+		tableTrabajador.getColumnModel().getColumn(5).setPreferredWidth(84);
+		tableTrabajador.getColumnModel().getColumn(6).setResizable(false);
+		tableTrabajador.getColumnModel().getColumn(6).setPreferredWidth(61);
 		scrollPane.setViewportView(tableTrabajador);
 
 		JMenuItem mntmAadirTrabajador = new JMenuItem("A\u00F1adir Trabajador");
@@ -368,7 +409,7 @@ public class MenuTienda extends JFrame {
 		JMenuItem mntmInformacionDeLos = new JMenuItem("Informacion de los Desarrolladores");
 		mntmInformacionDeLos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"Desarrollado por Alexandro ValdÈs PiÒeda y Gloria Santos Rosado, Grupo 12 Facultad de IngenierÌa Inform·tica","Info Desarrollo",JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null,"Desarrollado por Alexandro Vald√©s Pi√±eda y Gloria Santos Rosado, Grupo 12 Facultad de Ingenier√≠a Inform√°tica","Info Desarrollo",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		mnInformacin.add(mntmInformacionDeLos);
