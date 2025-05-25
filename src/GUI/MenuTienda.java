@@ -341,10 +341,10 @@ public class MenuTienda extends JFrame {
 		niveles[1]= "Primario";
 		niveles[2]= "Secundario";
 		niveles[3]="Preuniversitario";
-		niveles[4]="Técnico Medio";
+		niveles[4]="TÃ©cnico Medio";
 		niveles[5]="Obrero Calificado";
 		niveles[6]="Universitario";
-		niveles[7]="Técnico profesional";
+		niveles[7]="TÃ©cnico profesional";
 
 		defaultComboBoxModel = new DefaultComboBoxModel(niveles);
 		comboBoxEscolar.setModel(defaultComboBoxModel);
@@ -427,10 +427,10 @@ public class MenuTienda extends JFrame {
 
 					String[][] trabajadores = {
 							{"Gloria", "Santos Rosado", "06030867876", "5000", "Preuniversitario", "Especialista en productos"},
-							{"Jorge Luis", "Valdés Piñeda", "97070758088", "15000", "Universitario", "Subgerente"},
+							{"Jorge Luis", "ValdÃ©s PiÃ±eda", "97070758088", "15000", "Universitario", "Subgerente"},
 							{"Javier", "Soto Villanueva", "05090160882", "7000", "Universitario", "Asesor de Ventas"},
-							{"Ronal", "Sálazar Hernández", "05101568066", "6500", "Universitario", "Especialista en Software"},
-							{"Aylin", "Vázquez Alvarez", "06061367412", "4000", "Obrero Calificado", "Encargado de inventario"}
+							{"Ronal", "SÃ¡lazar HernÃ¡ndez", "05101568066", "6500", "Universitario", "Especialista en Software"},
+							{"Aylin", "VÃ¡zquez Alvarez", "06061367412", "4000", "Obrero Calificado", "Encargado de inventario"}
 					};
 
 					for (String[] datos : trabajadores) {
@@ -444,7 +444,7 @@ public class MenuTienda extends JFrame {
 							numIDT.setText(Integer.toString(counterTrabajador));
 
 						} catch (IllegalArgumentException e) {
-							JOptionPane.showMessageDialog(null,"El trabajador llamado: "+ datos[0]+" "+ datos[1]+" ya se habia ingresado, se procederá a ingresar el proximo que no se haya añadido previamente.","Trabajador Ingresado previamente",JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null,"El trabajador llamado: "+ datos[0]+" "+ datos[1]+" ya se habia ingresado, se procederÃ¡ a ingresar el proximo que no se haya aÃ±adido previamente.","Trabajador Ingresado previamente",JOptionPane.ERROR_MESSAGE);
 						}
 					}
 					inicializarTrabajadores = true;
@@ -636,7 +636,7 @@ public class MenuTienda extends JFrame {
 							Object ramInfo [] = {ram.getClass().getSimpleName(),datos[2],datos[1],ram.calcularPrecio(),datos[0]};
 							modelo.addRow(ramInfo);
 						} catch (IllegalArgumentException e) {
-							JOptionPane.showMessageDialog(null,"La ram con el número de serie: "+ datos[1]+" ya se habia ingresado, se procederá a ingresar la próxima que no se haya añadido previamente.","RAM Ingresada previamente",JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null,"La ram con el nÃºmero de serie: "+ datos[1]+" ya se habia ingresado, se procederÃ¡ a ingresar la prÃ³xima que no se haya aÃ±adido previamente.","RAM Ingresada previamente",JOptionPane.ERROR_MESSAGE);
 						}
 					}
 					inicializarRAMS = true;
@@ -1051,7 +1051,7 @@ public class MenuTienda extends JFrame {
 					panelCPU.setVisible(false);
 				}
 				else
-					JOptionPane.showMessageDialog(null,"No hay ningún trabajador agregado a la tienda.","No se ha ingresado ningún trabajador",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"No hay ningÃºn trabajador agregado a la tienda.","No se ha ingresado ningÃºn trabajador",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		mnNewMenu.add(mntmMostrarListado);
@@ -1070,7 +1070,7 @@ public class MenuTienda extends JFrame {
 					panelCPU.setVisible(false);
 				}
 				else
-					JOptionPane.showMessageDialog(null,"No hay ningún componente agregado a la tienda.","No se ha ingresado ningún componente",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"No hay ningÃºn componente agregado a la tienda.","No se ha ingresado ningÃºn componente",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		mnNewMenu.add(mntmMostrarListadoDe);
@@ -1113,7 +1113,7 @@ public class MenuTienda extends JFrame {
 		JMenuItem mntmInformacionDeLos = new JMenuItem("Informacion de los Desarrolladores");
 		mntmInformacionDeLos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"Desarrollado por Alexandro Valdés Piñeda y Gloria Santos Rosado, Grupo 12 Facultad de Ingeniería Informática","Info Desarrollo",JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null,"Desarrollado por Alexandro ValdÃ©s PiÃ±eda y Gloria Santos Rosado, Grupo 12 Facultad de IngenierÃ­a InformÃ¡tica","Info Desarrollo",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		mnInformacin.add(mntmInformacionDeLos);
