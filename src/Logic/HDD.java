@@ -1,6 +1,5 @@
 package Logic;
 public class HDD extends Componente {
-	private String marca;
 	private String modelo;
 	private double capacidad; // se expresa la cantidad en Gigabytes y con un minimo de 128gb y maximo 4096gb(4TB) siendo el maximo comercial actual
 	private String tipoConexion; 
@@ -13,15 +12,14 @@ public class HDD extends Componente {
 		if(capacidad >= 128 && capacidad <= 4096 )
 			this.capacidad = capacidad;
 		else
-			throw new IllegalArgumentException("La capacidad no se encuentra en los limites dados");
+			throw new IllegalArgumentException("La capacidad no se encuentra en los límites dados");
 	}
 
 	public HDD(int cantidadDisponible, String numeroSerie, String marca, String modelo,double capacidad, String tipoConexion,double precioBase) {
-		super(cantidadDisponible, numeroSerie,precioBase);
-		this.marca = marca;
-		this.modelo = modelo;
+		super(cantidadDisponible, numeroSerie,precioBase,marca);
+		setModelo(modelo);
 		setCapacidad(capacidad);
-		this.tipoConexion = tipoConexion;
+		setTipoConexion(tipoConexion);
 	}
 
 	public String getMarca() {
@@ -31,7 +29,7 @@ public class HDD extends Componente {
 		if(marca!= null && !marca.isEmpty())
 			this.marca = marca;
 		else
-			throw new IllegalArgumentException("No puede estar vacia la marca");
+			throw new IllegalArgumentException("No puede estar vacía la marca");
 	}
 	public String getModelo() {
 		return modelo;
@@ -40,7 +38,7 @@ public class HDD extends Componente {
 		if(modelo!= null && !modelo.isEmpty())
 			this.modelo = modelo;
 		else
-			throw new IllegalArgumentException("No puede estar vacia el modelo");
+			throw new IllegalArgumentException("No puede estar vacío el modelo");
 	}
 
 	public String getTipoConexion() {
@@ -48,8 +46,12 @@ public class HDD extends Componente {
 	}
 
 	public void setTipoConexion(String tipoConexion) {
-		this.tipoConexion = tipoConexion;
+		if(tipoConexion!= null && !tipoConexion.isEmpty())
+			this.tipoConexion = tipoConexion;
+		else
+			throw new IllegalArgumentException("No puede estar vacío el tipo de conexión");
 	}
+
 
 	@Override
 	public double calcularPrecio() {
