@@ -21,7 +21,7 @@ public class Motherboard extends Componente {
 		setModelo(modelo);
 		setTipoConector(tipoConector);
 		setTipoMemoriaRAM(tipoMemoriaRAM);
-		this.conexionesDiscos = conexionesDiscos;
+		setConexionesDiscos(conexionesDiscos);
 	}
 
 	public String getModelo() {
@@ -40,7 +40,7 @@ public class Motherboard extends Componente {
 		if(tipoConector != null && !tipoConector.isEmpty())
 			this.tipoConector = tipoConector;
 		else
-			throw new IllegalArgumentException("No puede estar vacío el tipo de conector");
+			throw new IllegalArgumentException("No puede estar vacio el tipo de conector");
 	}
 
 	public ArrayList<String> getConexionesDiscos() {
@@ -48,7 +48,10 @@ public class Motherboard extends Componente {
 	}
 
 	public void setConexionesDiscos(ArrayList<String> conexionesDiscos) {
-		this.conexionesDiscos = conexionesDiscos;
+		if(conexionesDiscos != null && conexionesDiscos.size()!=0)
+			this.conexionesDiscos = conexionesDiscos;
+		else
+			throw new IllegalArgumentException("Ingrese al menos una conexión de disco que soporta el Motherboard");	
 	}
 
 	@Override
@@ -58,3 +61,4 @@ public class Motherboard extends Componente {
 		return precioBase + aporteConector + aporteMemoria;
 	}
 }
+
