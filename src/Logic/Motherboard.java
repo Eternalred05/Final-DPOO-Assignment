@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Motherboard extends Componente {
 	private String modelo;
-	private String tipoConector;
+	private String tipoSocket;
 	private String tipoMemoriaRAM;
 	private ArrayList<String> conexionesDiscos;
 
@@ -21,7 +21,7 @@ public class Motherboard extends Componente {
 		setModelo(modelo);
 		setTipoConector(tipoConector);
 		setTipoMemoriaRAM(tipoMemoriaRAM);
-		this.conexionesDiscos = conexionesDiscos;
+		setConexionesDiscos(conexionesDiscos);
 	}
 
 	public String getModelo() {
@@ -34,13 +34,13 @@ public class Motherboard extends Componente {
 			throw new IllegalArgumentException("No puede estar vacío el modelo");
 	}
 	public String getTipoConector() {
-		return tipoConector;
+		return tipoSocket;
 	}
-	public void setTipoConector(String tipoConector) {
-		if(tipoConector != null && !tipoConector.isEmpty())
-			this.tipoConector = tipoConector;
+	public void setTipoConector(String tipoSocket) {
+		if(tipoSocket != null && !tipoSocket.isEmpty())
+			this.tipoSocket= tipoSocket;
 		else
-			throw new IllegalArgumentException("No puede estar vacío el tipo de conector");
+			throw new IllegalArgumentException("No puede estar vacio el tipo de socket");
 	}
 
 	public ArrayList<String> getConexionesDiscos() {
@@ -48,13 +48,17 @@ public class Motherboard extends Componente {
 	}
 
 	public void setConexionesDiscos(ArrayList<String> conexionesDiscos) {
-		this.conexionesDiscos = conexionesDiscos;
+		if(conexionesDiscos != null && conexionesDiscos.size()!=0)
+			this.conexionesDiscos = conexionesDiscos;
+		else
+			throw new IllegalArgumentException("Ingrese al menos una conexión de disco que soporta el Motherboard");	
 	}
 
 	@Override
 	public double calcularPrecio() {
-		double aporteConector = "LGA".equals(tipoConector) ? 40 : "PGA".equals(tipoConector) ? 30 : "BGA".equals(tipoConector) ? 20 : 10 ;
+		double aporteSocket = "LGA".equals(tipoSocket) ? 40 : "PGA".equals(tipoSocket) ? 30 : "BGA".equals(tipoSocket) ? 20 : 10 ;
 		double aporteMemoria = "DDR5".equalsIgnoreCase(tipoMemoriaRAM) ? 60 : "DDR4".equalsIgnoreCase(tipoMemoriaRAM) ? 45 : "DDR3".equalsIgnoreCase(tipoMemoriaRAM) ? 30 :"DDR2".equalsIgnoreCase(tipoMemoriaRAM) ? 20 : 15;
-		return precioBase + aporteConector + aporteMemoria;
+		return precioBase + aporteSocket + aporteMemoria;
 	}
 }
+

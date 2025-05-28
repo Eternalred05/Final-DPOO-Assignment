@@ -36,6 +36,7 @@ import javax.swing.JComboBox;
 import javax.swing.border.LineBorder;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
@@ -70,10 +71,12 @@ public class MenuTienda extends JFrame {
 	private boolean inicializarRAMS = false;
 	private boolean inicializarHDD = false;
 	private boolean inicializarCPU = false;
+	private boolean inicializarMother = false;
 	//Jdialogs
 	InfoTienda dialogInfoTienda;
 	reporteTrabajador dialogreporteTrabajador;
 	reporteComponentes dialogReporteComponentes;
+	reportesRAM dialogReportesRAM;
 	// contadores
 	private int counterTrabajador = 0;
 
@@ -133,7 +136,7 @@ public class MenuTienda extends JFrame {
 		lblTipoDeMemoria.setBounds(20, 90, 129, 34);
 		panel_4.add(lblTipoDeMemoria);
 
-		JComboBox comboBoxSocketMother = new JComboBox();
+		final JComboBox comboBoxSocketMother = new JComboBox();
 		comboBoxSocketMother.setModel(new DefaultComboBoxModel(new String[] {"", "LGA", "PGA", "BGA"}));
 		comboBoxSocketMother.setFont(new Font("Arial Black", Font.PLAIN, 17));
 		comboBoxSocketMother.setBounds(269, 94, 114, 27);
@@ -149,20 +152,20 @@ public class MenuTienda extends JFrame {
 		label_9.setBounds(20, 230, 196, 49);
 		panel_4.add(label_9);
 
-		JSpinner spinnerPrecioBaseMotherboard = new JSpinner();
+		final JSpinner spinnerPrecioBaseMotherboard = new JSpinner();
 		spinnerPrecioBaseMotherboard.setModel(new SpinnerNumberModel(0.0, 0.0, 350.0, 1.0));
 		spinnerPrecioBaseMotherboard.setFont(new Font("Arial Black", Font.PLAIN, 17));
 		spinnerPrecioBaseMotherboard.setBounds(269, 204, 114, 27);
 		panel_4.add(spinnerPrecioBaseMotherboard);
 
-		JTextFieldLimitado marcaMotherboard = new JTextFieldLimitado();
+		final JTextFieldLimitado marcaMotherboard = new JTextFieldLimitado();
 		marcaMotherboard.setLimit(15);
 		marcaMotherboard.setHorizontalAlignment(SwingConstants.CENTER);
 		marcaMotherboard.setFont(new Font("Arial Black", Font.PLAIN, 17));
 		marcaMotherboard.setBounds(269, 15, 114, 27);
 		panel_4.add(marcaMotherboard);
 
-		JSpinner spinnerUnitsMotherboard = new JSpinner();
+		final JSpinner spinnerUnitsMotherboard = new JSpinner();
 		spinnerUnitsMotherboard.setModel(new SpinnerNumberModel(1, 1, 100, 1));
 		spinnerUnitsMotherboard.setFont(new Font("Arial Black", Font.PLAIN, 17));
 		spinnerUnitsMotherboard.setBounds(269, 241, 116, 27);
@@ -174,7 +177,7 @@ public class MenuTienda extends JFrame {
 		panel_5.setBounds(519, 299, 173, 49);
 		panel_4.add(panel_5);
 
-		JLabel labelPrecioMother = new JLabel("0.0000$");
+		final JLabel labelPrecioMother = new JLabel("0.0000$");
 		labelPrecioMother.setHorizontalAlignment(SwingConstants.CENTER);
 		labelPrecioMother.setFont(new Font("Arial Black", Font.PLAIN, 20));
 		labelPrecioMother.setBounds(10, 11, 153, 27);
@@ -190,7 +193,7 @@ public class MenuTienda extends JFrame {
 		label_12.setBounds(20, 166, 162, 34);
 		panel_4.add(label_12);
 
-		JTextFieldLimitado idMotherboard = new JTextFieldLimitado();
+		final JTextFieldLimitado idMotherboard = new JTextFieldLimitado();
 		idMotherboard.setLimit(10);
 		idMotherboard.setHorizontalAlignment(SwingConstants.CENTER);
 		idMotherboard.setFont(new Font("Arial Black", Font.PLAIN, 17));
@@ -202,7 +205,7 @@ public class MenuTienda extends JFrame {
 		lblModelo.setBounds(20, 51, 81, 34);
 		panel_4.add(lblModelo);
 
-		JTextFieldLimitado modeloMotherboard = new JTextFieldLimitado();
+		final JTextFieldLimitado modeloMotherboard = new JTextFieldLimitado();
 		modeloMotherboard.setLimit(10);
 		modeloMotherboard.setHorizontalAlignment(SwingConstants.CENTER);
 		modeloMotherboard.setFont(new Font("Arial Black", Font.PLAIN, 17));
@@ -214,7 +217,7 @@ public class MenuTienda extends JFrame {
 		lblTiposDeRams.setBounds(20, 126, 242, 34);
 		panel_4.add(lblTiposDeRams);
 
-		JComboBox comboBoxRAMMother = new JComboBox();
+		final JComboBox comboBoxRAMMother = new JComboBox();
 		comboBoxRAMMother.setModel(new DefaultComboBoxModel(new String[] {"", "DDR", "DDR2", "DDR3", "DDR4", "DDR5"}));
 		comboBoxRAMMother.setFont(new Font("Arial Black", Font.PLAIN, 17));
 		comboBoxRAMMother.setBounds(269, 130, 114, 27);
@@ -231,27 +234,61 @@ public class MenuTienda extends JFrame {
 		panel_6.add(lblConexionesDeLos);
 		lblConexionesDeLos.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
-		JCheckBox chckbxSata = new JCheckBox("SATA");
+		final JCheckBox chckbxSata = new JCheckBox("SATA");
 		chckbxSata.setBounds(12, 76, 114, 23);
 		panel_6.add(chckbxSata);
 		chckbxSata.setFont(new Font("Arial Black", Font.PLAIN, 20));
 
-		JCheckBox chckbxSata_2 = new JCheckBox("SATA-2");
+		final JCheckBox chckbxSata_2 = new JCheckBox("SATA-2");
 		chckbxSata_2.setBounds(12, 109, 114, 23);
 		panel_6.add(chckbxSata_2);
 		chckbxSata_2.setFont(new Font("Arial Black", Font.PLAIN, 20));
 
-		JCheckBox chckbxSata_3 = new JCheckBox("SATA-3");
+		final JCheckBox chckbxSata_3 = new JCheckBox("SATA-3");
 		chckbxSata_3.setBounds(171, 76, 114, 23);
 		panel_6.add(chckbxSata_3);
 		chckbxSata_3.setFont(new Font("Arial Black", Font.PLAIN, 20));
 
-		JCheckBox chckbxIde = new JCheckBox("IDE");
+		final JCheckBox chckbxIde = new JCheckBox("IDE");
 		chckbxIde.setBounds(171, 109, 87, 23);
 		panel_6.add(chckbxIde);
 		chckbxIde.setFont(new Font("Arial Black", Font.PLAIN, 20));
 
 		JButton buttonInicializarMother = new JButton("Inicializar");
+		buttonInicializarMother.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(!inicializarMother){
+					// int cantidadDisponible, String numeroSerie, String marca, String modelo,String tipoConector, String tipoMemoriaRAM, ArrayList<String> conexionesDiscos,double precioBase  //
+					ArrayList<String> conexiones = new ArrayList<String>();
+					conexiones.add("SATA");
+					conexiones.add("SATA-2");
+					conexiones.add("SATA-3");
+					String[][] motherboards = {
+							{"5", "MBX-1234", "ASUS", "ROG STRIX B550-F", "LGA", "DDR4", "179.99"},
+							{"3", "MBY-5678", "Gigabyte", "AORUS X570 Master", "BGA", "DDR4", "349.99"},
+							{"7", "MBZ-9101", "MSI", "MAG B660M Mortar WiFi", "LGA", "DDR5", "199.99"},
+							{"2", "MBW-1121", "ASRock", "Z790 Taichi", "LGA", "DDR5", "499.99"},
+							{"4", "MBT-3141", "EVGA", "Z690 CLASSIFIED", "LGA", "DDR4", "449.99"}
+					};
+
+					for (String[] datos : motherboards) {
+						try {
+							tiendaPC.addMotherboard(Integer.parseInt(datos[0]),datos[1],datos[2],datos[3],datos[4],datos[5],conexiones,Double.parseDouble(datos[6]));
+							Motherboard mother = new Motherboard(Integer.parseInt(datos[0]),datos[1],datos[2],datos[3],datos[4],datos[5],conexiones,Double.parseDouble(datos[6]));
+							modelo = (DefaultTableModel)tableComponentes.getModel();
+							Object mInfo [] = {mother.getClass().getSimpleName(),datos[2],datos[1],mother.calcularPrecio(),datos[0]};
+							modelo.addRow(mInfo);
+						} catch (IllegalArgumentException e) {
+							JOptionPane.showMessageDialog(null,"El motherboard con el número de serie: "+ datos[1]+" ya se habia ingresado, se procederá a ingresar el próximo que no se haya añadido previamente.","CPU Ingresada previamente",JOptionPane.ERROR_MESSAGE);
+						}
+					}
+					inicializarMother = true;
+					JOptionPane.showMessageDialog(null,"Se han inicializado los datos de prueba correctamente.","Datos Inicializados correctamente",JOptionPane.INFORMATION_MESSAGE);	
+				} 
+				else
+					JOptionPane.showMessageDialog(null,"Ya se inicializaron los datos de las Motherboards previamente.","Ya se inicializaron estos datos",JOptionPane.ERROR_MESSAGE);
+			}
+		});
 		buttonInicializarMother.setFont(new Font("Arial Black", Font.PLAIN, 21));
 		buttonInicializarMother.setBounds(10, 415, 172, 39);
 		panelMotherboard.add(buttonInicializarMother);
@@ -259,6 +296,39 @@ public class MenuTienda extends JFrame {
 		JButton buttonIngresarMother = new JButton("A\u00F1adir ");
 		buttonIngresarMother.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				ArrayList<String> conexiones;
+				if(chckbxSata.isSelected()||chckbxSata_2.isSelected() ||chckbxSata_3.isSelected() || chckbxIde.isSelected() ){
+					conexiones = new ArrayList<String>();
+					if(chckbxSata.isSelected())
+						conexiones.add("SATA");
+					if(chckbxSata_2.isSelected())
+						conexiones.add("SATA-2");
+					if(chckbxSata_3.isSelected())
+						conexiones.add("SATA-3");
+					if(chckbxIde.isSelected())
+						conexiones.add("IDE");
+					String marca = marcaMotherboard.getText();
+					String tipoSocket = (String)comboBoxSocketMother.getSelectedItem();
+					String modeloSocket = modeloMotherboard.getText();
+					String id = idMotherboard.getText();
+					int cantidad = (int)spinnerUnitsMotherboard.getValue();
+					double precioBase = (double)spinnerPrecioBaseMotherboard.getValue();
+					String tipoMemoriaRAM = (String)comboBoxRAMMother.getSelectedItem();
+					try{
+						tiendaPC.addMotherboard(cantidad,id, marca, modeloSocket,tipoSocket, tipoMemoriaRAM,conexiones,precioBase);
+						Motherboard m = new Motherboard(cantidad,id, marca, modeloSocket,tipoSocket, tipoMemoriaRAM,conexiones,precioBase);
+						labelPrecioMother.setText(String.valueOf(m.calcularPrecio())+"$");
+						modelo = (DefaultTableModel)tableComponentes.getModel();
+						Object motherInfo [] = {m.getClass().getSimpleName(),marca,id,m.calcularPrecio(),cantidad};
+						modelo.addRow(motherInfo);
+						JOptionPane.showMessageDialog(null,"Los datos de esta Motherboard han sido ingresados satisfactoriamente a la Tienda.Se ha actualizado el precio de la Motherboard.","Ingreso Exitoso",JOptionPane.INFORMATION_MESSAGE);
+					}
+					catch (IllegalArgumentException e){
+						JOptionPane.showMessageDialog(null,e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);	
+					}
+				}
+				else
+					JOptionPane.showMessageDialog(null,"Seleccione al menos una conexión para los discos.","Error",JOptionPane.ERROR_MESSAGE);	
 			}
 		});
 		buttonIngresarMother.setFont(new Font("Arial Black", Font.PLAIN, 21));
@@ -517,7 +587,7 @@ public class MenuTienda extends JFrame {
 		tableTrabajador.getColumnModel().getColumn(6).setResizable(false);
 		tableTrabajador.getColumnModel().getColumn(6).setPreferredWidth(61);
 		scrollPane.setViewportView(tableTrabajador);
-		
+
 		JLabel lblListadoDeTrabajadores = new JLabel("Listado de Trabajadores");
 		lblListadoDeTrabajadores.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
 		lblListadoDeTrabajadores.setBounds(265, 6, 256, 38);
@@ -809,7 +879,7 @@ public class MenuTienda extends JFrame {
 
 		final JSpinner spinnerPrecioBaseCPU = new JSpinner();
 		spinnerPrecioBaseCPU.setBounds(267, 249, 81, 27);
-		spinnerPrecioBaseCPU.setModel(new SpinnerNumberModel(0.0, 0.0, 100.0, 1.0));
+		spinnerPrecioBaseCPU.setModel(new SpinnerNumberModel(0.0, 0.0, 450.0, 1.0));
 		spinnerPrecioBaseCPU.setFont(new Font("Arial Black", Font.PLAIN, 17));
 		panel_7.add(spinnerPrecioBaseCPU);
 
@@ -856,7 +926,6 @@ public class MenuTienda extends JFrame {
 		buttonInicializarCPU.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(!inicializarCPU){
-					/* int cantidadDisponible, String numeroSerie, String marca, String modelo, String socket, double velocidad, double precioBase)*/
 					String[][] cpus = {
 							{"5", "Intel-G4400", "Intel", "Core i5-1135G7", "LGA", "4.2","150"},
 							{"3", "AMD-Ryzen5600X", "AMD", "Ryzen 5 5600X", "PGA", "4.6", "230"},
@@ -1284,6 +1353,24 @@ public class MenuTienda extends JFrame {
 		mnReportes.add(mntmReporteDeComputadoras);
 
 		JMenuItem mntmReporteDeTarjetas = new JMenuItem("Reporte de tarjetas RAM seg\u00FAn su velocidad y tipo de Memoria.");
+		mntmReporteDeTarjetas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(tiendaPC.buscarRAMS()!= 0){
+					if (dialogReportesRAM == null || !dialogReportesRAM.isShowing()) {
+						try {
+							dialogReportesRAM = new reportesRAM(tiendaPC);
+							dialogReportesRAM.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+							dialogReportesRAM.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+					else
+						JOptionPane.showMessageDialog(null,"Ya tiene abierta esta ventana.","Error",JOptionPane.ERROR_MESSAGE);	
+				} else
+					JOptionPane.showMessageDialog(null,"No hay ninguna memoria RAM agregada a la tienda.","No se ha ingresado ninguna memoria ram",JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		mnReportes.add(mntmReporteDeTarjetas);
 
 		JMenu mnInformacin = new JMenu("Informaci\u00F3n Adicional");
@@ -1332,4 +1419,5 @@ public class MenuTienda extends JFrame {
 		});
 
 	}
+
 }
