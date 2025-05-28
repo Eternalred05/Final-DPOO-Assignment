@@ -71,10 +71,12 @@ public class MenuTienda extends JFrame {
 	private boolean inicializarRAMS = false;
 	private boolean inicializarHDD = false;
 	private boolean inicializarCPU = false;
+	private boolean inicializarMother = false;
 	//Jdialogs
 	InfoTienda dialogInfoTienda;
 	reporteTrabajador dialogreporteTrabajador;
 	reporteComponentes dialogReporteComponentes;
+	reportesRAM dialogReportesRAM;
 	// contadores
 	private int counterTrabajador = 0;
 
@@ -253,6 +255,40 @@ public class MenuTienda extends JFrame {
 		chckbxIde.setFont(new Font("Arial Black", Font.PLAIN, 20));
 
 		JButton buttonInicializarMother = new JButton("Inicializar");
+		buttonInicializarMother.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(!inicializarMother){
+					// int cantidadDisponible, String numeroSerie, String marca, String modelo,String tipoConector, String tipoMemoriaRAM, ArrayList<String> conexionesDiscos,double precioBase  //
+					ArrayList<String> conexiones = new ArrayList<String>();
+					conexiones.add("SATA");
+					conexiones.add("SATA-2");
+					conexiones.add("SATA-3");
+					String[][] motherboards = {
+							{"5", "MBX-1234", "ASUS", "ROG STRIX B550-F", "LGA", "DDR4", "179.99"},
+							{"3", "MBY-5678", "Gigabyte", "AORUS X570 Master", "BGA", "DDR4", "349.99"},
+							{"7", "MBZ-9101", "MSI", "MAG B660M Mortar WiFi", "LGA", "DDR5", "199.99"},
+							{"2", "MBW-1121", "ASRock", "Z790 Taichi", "LGA", "DDR5", "499.99"},
+							{"4", "MBT-3141", "EVGA", "Z690 CLASSIFIED", "LGA", "DDR4", "449.99"}
+					};
+
+					for (String[] datos : motherboards) {
+						try {
+							tiendaPC.addMotherboard(Integer.parseInt(datos[0]),datos[1],datos[2],datos[3],datos[4],datos[5],conexiones,Double.parseDouble(datos[6]));
+							Motherboard mother = new Motherboard(Integer.parseInt(datos[0]),datos[1],datos[2],datos[3],datos[4],datos[5],conexiones,Double.parseDouble(datos[6]));
+							modelo = (DefaultTableModel)tableComponentes.getModel();
+							Object mInfo [] = {mother.getClass().getSimpleName(),datos[2],datos[1],mother.calcularPrecio(),datos[0]};
+							modelo.addRow(mInfo);
+						} catch (IllegalArgumentException e) {
+							JOptionPane.showMessageDialog(null,"El motherboard con el número de serie: "+ datos[1]+" ya se habia ingresado, se procederá a ingresar el próximo que no se haya añadido previamente.","CPU Ingresada previamente",JOptionPane.ERROR_MESSAGE);
+						}
+					}
+					inicializarMother = true;
+					JOptionPane.showMessageDialog(null,"Se han inicializado los datos de prueba correctamente.","Datos Inicializados correctamente",JOptionPane.INFORMATION_MESSAGE);	
+				} 
+				else
+					JOptionPane.showMessageDialog(null,"Ya se inicializaron los datos de las Motherboards previamente.","Ya se inicializaron estos datos",JOptionPane.ERROR_MESSAGE);
+			}
+		});
 		buttonInicializarMother.setFont(new Font("Arial Black", Font.PLAIN, 21));
 		buttonInicializarMother.setBounds(10, 415, 172, 39);
 		panelMotherboard.add(buttonInicializarMother);
@@ -890,7 +926,6 @@ public class MenuTienda extends JFrame {
 		buttonInicializarCPU.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(!inicializarCPU){
-					/* int cantidadDisponible, String numeroSerie, String marca, String modelo, String socket, double velocidad, double precioBase)*/
 					String[][] cpus = {
 							{"5", "Intel-G4400", "Intel", "Core i5-1135G7", "LGA", "4.2","150"},
 							{"3", "AMD-Ryzen5600X", "AMD", "Ryzen 5 5600X", "PGA", "4.6", "230"},
@@ -1318,6 +1353,24 @@ public class MenuTienda extends JFrame {
 		mnReportes.add(mntmReporteDeComputadoras);
 
 		JMenuItem mntmReporteDeTarjetas = new JMenuItem("Reporte de tarjetas RAM seg\u00FAn su velocidad y tipo de Memoria.");
+		mntmReporteDeTarjetas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(tiendaPC.buscarRAMS()!= 0){
+					if (dialogReportesRAM == null || !dialogReportesRAM.isShowing()) {
+						try {
+							dialogReportesRAM = new reportesRAM(tiendaPC);
+							dialogReportesRAM.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+							dialogReportesRAM.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+					else
+						JOptionPane.showMessageDialog(null,"Ya tiene abierta esta ventana.","Error",JOptionPane.ERROR_MESSAGE);	
+				} else
+					JOptionPane.showMessageDialog(null,"No hay ninguna memoria RAM agregada a la tienda.","No se ha ingresado ninguna memoria ram",JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		mnReportes.add(mntmReporteDeTarjetas);
 
 		JMenu mnInformacin = new JMenu("Informaci\u00F3n Adicional");
@@ -1366,4 +1419,5 @@ public class MenuTienda extends JFrame {
 		});
 
 	}
+
 }
