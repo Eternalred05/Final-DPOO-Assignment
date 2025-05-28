@@ -185,13 +185,22 @@ public class Tienda {
 		return listado;
 	}
 
-	public ArrayList<Componente> ramsPorVelocidadMemoria(String tipo, double memoria){ // RAMS con memorias con tamaño mayores que uno dado
+	public ArrayList<Componente> ramsPorTipoyMemoria(String tipo, double memoria){ // RAMS con memorias con tamaño mayores que uno dado
 		ArrayList<Componente> listado = new ArrayList<>();
 		for(Componente c : componentes)
 			if(c instanceof RAM)
 				if(((RAM) c).getMemoria() >= memoria && ((RAM)c).getTipo().equals(tipo))
 					listado.add(c);
 		return listado;
+	}
+	public int buscarRAMS(){ // funcion para el reporte de las RAMS 
+		int cantidad = 0;
+		for(Componente c : componentes)
+			if(c instanceof RAM)
+				cantidad++;
+		return cantidad;
+
+
 	}
 
 }
