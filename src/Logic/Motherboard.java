@@ -31,7 +31,7 @@ public class Motherboard extends Componente {
 		if(modelo!= null && !modelo.isEmpty())
 			this.modelo = modelo;
 		else
-			throw new IllegalArgumentException("No puede estar vacia el modelo");
+			throw new IllegalArgumentException("No puede estar vacío el modelo");
 	}
 	public String getTipoConector() {
 		return tipoConector;
@@ -40,7 +40,7 @@ public class Motherboard extends Componente {
 		if(tipoConector != null && !tipoConector.isEmpty())
 			this.tipoConector = tipoConector;
 		else
-			throw new IllegalArgumentException("No puede estar vacio el tipo de conector");
+			throw new IllegalArgumentException("No puede estar vacío el tipo de conector");
 	}
 
 	public ArrayList<String> getConexionesDiscos() {
