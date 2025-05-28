@@ -29,10 +29,10 @@ public class Trabajador {
 			if(!digit)
 				this.nombre = nombre;
 			else
-				throw new IllegalArgumentException("El nombre no puede contener números.");
+				throw new IllegalArgumentException("El nombre no puede contener nÃºmeros.");
 		}
 		else
-			throw new IllegalArgumentException("El nombre del trabajador está vacío.");
+			throw new IllegalArgumentException("El nombre del trabajador estÃ¡ vacÃ­o.");
 
 	}
 
@@ -51,10 +51,10 @@ public class Trabajador {
 			if(!digit)
 				this.apellidos = apellidos;
 			else
-				throw new IllegalArgumentException("Los apellidos no deben contener números.");
+				throw new IllegalArgumentException("Los apellidos no deben contener nÃºmeros.");
 		}
 		else
-			throw new IllegalArgumentException("Los apellidos están vacíos.");
+			throw new IllegalArgumentException("Los apellidos estÃ¡n vacÃ­os.");
 	}
 
 	public String getId() {
@@ -71,6 +71,7 @@ public class Trabajador {
 			int mes = (cadena[2] - '0') * 10 + (cadena[3] - '0');
 			int dia = (cadena[4] - '0') * 10 + (cadena[5] - '0');
 			try {
+				@SuppressWarnings("unused")
 				LocalDate fechaCarnet = LocalDate.of(anio, mes, dia);
 			}
 			catch (DateTimeException e){
@@ -80,7 +81,7 @@ public class Trabajador {
 			this.id = id;
 		} 
 
-		else throw new IllegalArgumentException("El tamaño del carnet debe ser de 11 digitos");
+		else throw new IllegalArgumentException("El tamaÃ±o del carnet debe ser de 11 digitos");
 
 
 	}
@@ -90,10 +91,10 @@ public class Trabajador {
 	}
 
 	public void setSalario(double salario) {
-		if(salario>0 && salario <=15000)
+		if(salario>2000 && salario <=15000)
 			this.salario = salario;
 		else
-			throw new IllegalArgumentException ("El salario debe ser mayor que 0 y menor o igual que 15000");
+			throw new IllegalArgumentException ("El salario debe ser mayor que 2000 y menor o igual que 15000");
 	}
 
 	public String getNivelEscolar() {
@@ -104,7 +105,7 @@ public class Trabajador {
 		if(!nivelEscolar.isEmpty())
 			this.nivelEscolar = nivelEscolar;
 		else
-			throw new IllegalArgumentException("El nivel escolar del trabajador está vacío.");
+			throw new IllegalArgumentException("El nivel escolar del trabajador estÃ¡ vacÃ­o.");
 	}
 
 	public String getCargo() {
@@ -115,7 +116,7 @@ public class Trabajador {
 		if(!cargo.isEmpty())
 			this.cargo = cargo;
 		else
-			throw new IllegalArgumentException("El cargo del trabajador está vacío.");
+			throw new IllegalArgumentException("El cargo del trabajador estÃ¡ vacÃ­o.");
 	}
 
 	public int getNumeroTrabajador() {
