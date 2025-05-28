@@ -2,7 +2,6 @@ package Logic;
 import java.util.ArrayList;
 
 public class Motherboard extends Componente {
-	private String marca;
 	private String modelo;
 	private String tipoConector;
 	private String tipoMemoriaRAM;
@@ -17,26 +16,14 @@ public class Motherboard extends Componente {
 		else 
 			throw new IllegalArgumentException("Ese tipo de RAM no se encuentra disponible");
 	}
-	public Motherboard(int cantidadDisponible, String numeroSerie, String marca, String modelo,
-			String tipoConector, String tipoMemoriaRAM, ArrayList<String> conexionesDiscos,double precioBase) {
-		super(cantidadDisponible, numeroSerie,precioBase);
-		setMarca(marca);
+	public Motherboard(int cantidadDisponible, String numeroSerie, String marca, String modelo,String tipoConector, String tipoMemoriaRAM, ArrayList<String> conexionesDiscos,double precioBase) {
+		super(cantidadDisponible, numeroSerie,precioBase,marca);
 		setModelo(modelo);
 		setTipoConector(tipoConector);
 		setTipoMemoriaRAM(tipoMemoriaRAM);
 		this.conexionesDiscos = conexionesDiscos;
 	}
 
-
-	public String getMarca() {
-		return marca;
-	}
-	public void setMarca(String marca) {
-		if(marca!= null && !marca.isEmpty())
-			this.marca = marca;
-		else
-			throw new IllegalArgumentException("No puede estar vacia la marca");
-	}
 	public String getModelo() {
 		return modelo;
 	}
@@ -71,4 +58,3 @@ public class Motherboard extends Componente {
 		return precioBase + aporteConector + aporteMemoria;
 	}
 }
-
