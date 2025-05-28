@@ -1,25 +1,23 @@
 package Logic;
 public class CPU extends Componente {
-	private String marca;
 	private String modelo;
 	private String socket;
-	private double velocidad; // se expresar� en Ghz y se usar� de un rango de 1Ghz hasta 4.8Ghz como en la gran cantidad de ordenadores modernos
+	private double velocidad; // se expresará en Ghz y se usará de un rango de 1Ghz hasta 5.0Ghz como en la gran cantidad de ordenadores modernos
 
 	public double getVelocidad() {
 		return velocidad;
 	}
 	public void setVelocidad(double velocidad) {
-		if(velocidad >=1 && velocidad <= 4.8)
+		if(velocidad >=1 && velocidad <= 5.0)
 			this.velocidad = velocidad;
 		else 
 			throw new IllegalArgumentException("La velocidad no se encuentra en los limites dados");
 	}
-	public CPU(int cantidadDisponible, String numeroSerie, String marca, String modelo,
-			String socket, double velocidad, double precioBase) {
-		super(cantidadDisponible, numeroSerie, precioBase);
+	public CPU(int cantidadDisponible, String numeroSerie, String marca, String modelo, String socket, double velocidad, double precioBase) {
+		super(cantidadDisponible, numeroSerie, precioBase,marca);
 		setMarca(marca);
 		setModelo(modelo);
-		this.socket = socket;
+		setSocket(socket);
 		setVelocidad(velocidad);
 	}
 	public String getMarca() {
@@ -38,7 +36,7 @@ public class CPU extends Componente {
 		if(modelo!= null && !modelo.isEmpty())
 			this.modelo = modelo;
 		else
-			throw new IllegalArgumentException("No puede estar vacia el modelo");
+			throw new IllegalArgumentException("No puede estar vacío el modelo");
 	}
 
 	public String getSocket() {
@@ -48,7 +46,7 @@ public class CPU extends Componente {
 		if(socket!= null && !socket.isEmpty())
 			this.socket = socket;
 		else
-			throw new IllegalArgumentException("No puede estar vacia el modelo");
+			throw new IllegalArgumentException("No puede estar vacío el socket");
 	}
 	@Override
 	public double calcularPrecio() {
