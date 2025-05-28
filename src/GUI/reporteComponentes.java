@@ -50,7 +50,7 @@ public class reporteComponentes extends JDialog {
 		contentPanel.setLayout(null);
 
 		JLabel lblMarcasDisponibles = new JLabel("Marcas Disponibles");
-		lblMarcasDisponibles.setFont(new Font("Arial Black", Font.PLAIN, 23));
+		lblMarcasDisponibles.setFont(new Font("Sans Serif Collection", Font.PLAIN, 23));
 		lblMarcasDisponibles.setBounds(10, 29, 289, 34);
 		contentPanel.add(lblMarcasDisponibles);
 
@@ -67,19 +67,19 @@ public class reporteComponentes extends JDialog {
 
 		modeloCbox = new DefaultComboBoxModel(marcasO);
 		final JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		comboBox.setFont(new Font("Sans Serif Collection", Font.PLAIN, 13));
 		comboBox.setBounds(20, 74, 221, 27);
 		comboBox.setModel(modeloCbox);
 		contentPanel.add(comboBox);
 
 		JLabel lblPrecio = new JLabel("Precio");
-		lblPrecio.setFont(new Font("Arial Black", Font.PLAIN, 23));
+		lblPrecio.setFont(new Font("Sans Serif Collection", Font.PLAIN, 23));
 		lblPrecio.setBounds(334, 29, 105, 34);
 		contentPanel.add(lblPrecio);
 
 		final JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(new Double(0), new Double(0), null, new Double(1)));
-		spinner.setFont(new Font("Arial Black", Font.PLAIN, 13));
+		spinner.setFont(new Font("Sans Serif Collection", Font.PLAIN, 13));
 		spinner.setBounds(334, 73, 87, 20);
 		contentPanel.add(spinner);
 
@@ -100,13 +100,13 @@ public class reporteComponentes extends JDialog {
 						Object componente [] = {c.getClass().getSimpleName(),marca,c.getNumeroSerie(),String.valueOf(c.calcularPrecio()),String.valueOf(c.getCantidadDisponible())};
 						modelo.addRow(componente);
 					}
-					JOptionPane.showMessageDialog(null,"Filtro Actualizado.", "Error", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"Filtro Actualizado.", "Filtrado Exitoso", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else
 					JOptionPane.showMessageDialog(null,"No deje campos vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		});
-		button.setFont(new Font("Arial Black", Font.PLAIN, 21));
+		button.setFont(new Font("Sans Serif Collection", Font.PLAIN, 23));
 		button.setBounds(497, 42, 151, 52);
 		contentPanel.add(button);
 

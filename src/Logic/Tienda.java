@@ -28,7 +28,7 @@ public class Tienda {
 		if(!nombre.isEmpty())
 			this.nombre = nombre;
 		else
-			throw new IllegalArgumentException("El nombre de la tienda est√° vac√≠o.");
+			throw new IllegalArgumentException("El nombre de la tienda est· vacÌo.");
 	}
 
 	public String getId() {
@@ -39,7 +39,7 @@ public class Tienda {
 		if(!id.isEmpty())
 			this.id = id;
 		else
-			throw new IllegalArgumentException("El ID de la tienda est√° vac√≠o.");
+			throw new IllegalArgumentException("El ID de la tienda est· vacÌo.");
 	}
 
 	public String getDireccion() {
@@ -50,7 +50,7 @@ public class Tienda {
 		if(!direccion.isEmpty())
 			this.direccion = direccion;
 		else
-			throw new IllegalArgumentException("La direcci√≥n de la tienda est√° vac√≠a.");
+			throw new IllegalArgumentException("La direcciÛn de la tienda est· vacÌa.");
 	}
 
 	public String getTelefono() {
@@ -68,13 +68,13 @@ public class Tienda {
 				if(!letter)
 					this.telefono = telefono;
 				else
-					throw new IllegalArgumentException("No puede contener letras el tel√©fono.");
+					throw new IllegalArgumentException("No puede contener letras el telÈfono.");
 			}
 			else
-				throw new IllegalArgumentException("El tel√©fono debe tener 8 d√≠gitos.");
+				throw new IllegalArgumentException("El telÈfono debe tener 8 dÌgitos.");
 		}
 		else
-			throw new IllegalArgumentException("El tel√©fono de la tienda est√° vac√≠o.");
+			throw new IllegalArgumentException("El telÈfono de la tienda est· vacÌo.");
 	}
 
 	public Gerente getGerente() {
@@ -85,7 +85,7 @@ public class Tienda {
 		if(gerente != null)
 			this.gerente = gerente;
 		else
-			throw new IllegalArgumentException("No puede estar vac√≠o el gerente.");
+			throw new IllegalArgumentException("No puede estar vacÌo el gerente.");
 	}
 
 	public void addTrabajador(String nombre, String apellidos, String id, int numeroTrabajador,double salario, String nivelEscolar, String cargo) {
@@ -111,7 +111,7 @@ public class Tienda {
 		for(Componente c : componentes){
 			if(c instanceof RAM){
 				if(c.getNumeroSerie().toLowerCase().equals(ram.numeroSerie.toLowerCase()))
-					throw new IllegalArgumentException("Ya se ingres√≥ una RAM con este ID.");
+					throw new IllegalArgumentException("Ya se ingresÛ una RAM con este ID.");
 
 			}
 		}
@@ -122,7 +122,7 @@ public class Tienda {
 		for(Componente c : componentes){
 			if(c instanceof Motherboard){
 				if(c.getNumeroSerie().toLowerCase().equals(m.numeroSerie.toLowerCase()))
-					throw new IllegalArgumentException("Ya se ingres√≥ una Motherboard con este ID.");
+					throw new IllegalArgumentException("Ya se ingresÛ una Motherboard con este ID.");
 			}
 		}
 		componentes.add(m);
@@ -133,7 +133,7 @@ public class Tienda {
 		for(Componente c : componentes){
 			if(c instanceof CPU){
 				if(c.getNumeroSerie().toLowerCase().equals(cpu.numeroSerie.toLowerCase()))
-					throw new IllegalArgumentException("Ya se ingres√≥ un procesador con este ID.");
+					throw new IllegalArgumentException("Ya se ingresÛ un procesador con este ID.");
 			}
 		}
 		componentes.add(cpu);
@@ -143,7 +143,7 @@ public class Tienda {
 		for(Componente c : componentes){
 			if(c instanceof HDD){
 				if(c.getNumeroSerie().toLowerCase().equals(hdd.numeroSerie.toLowerCase()))
-					throw new IllegalArgumentException("Ya se ingres√≥ un Disco Duro con este ID.");
+					throw new IllegalArgumentException("Ya se ingresÛ un Disco Duro con este ID.");
 			}
 		}
 		componentes.add(hdd);
@@ -185,7 +185,7 @@ public class Tienda {
 		return listado;
 	}
 
-	public ArrayList<Componente> ramsPorTipoyMemoria(String tipo, double memoria){ // RAMS con memorias con tama√±o mayores que uno dado
+	public ArrayList<Componente> ramsPorTipoyMemoria(String tipo, double memoria){ // RAMS con memorias con tamaÒo mayores que uno dado
 		ArrayList<Componente> listado = new ArrayList<>();
 		for(Componente c : componentes)
 			if(c instanceof RAM)

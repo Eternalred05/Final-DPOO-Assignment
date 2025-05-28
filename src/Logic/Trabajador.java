@@ -29,10 +29,10 @@ public class Trabajador {
 			if(!digit)
 				this.nombre = nombre;
 			else
-				throw new IllegalArgumentException("El nombre no puede contener n√∫meros.");
+				throw new IllegalArgumentException("El nombre no puede contener n˙meros.");
 		}
 		else
-			throw new IllegalArgumentException("El nombre del trabajador est√° vac√≠o.");
+			throw new IllegalArgumentException("El nombre del trabajador est· vacÌo.");
 
 	}
 
@@ -51,10 +51,10 @@ public class Trabajador {
 			if(!digit)
 				this.apellidos = apellidos;
 			else
-				throw new IllegalArgumentException("Los apellidos no deben contener n√∫meros.");
+				throw new IllegalArgumentException("Los apellidos no deben contener n˙meros.");
 		}
 		else
-			throw new IllegalArgumentException("Los apellidos est√°n vac√≠os.");
+			throw new IllegalArgumentException("Los apellidos est·n vacÌos.");
 	}
 
 	public String getId() {
@@ -81,7 +81,7 @@ public class Trabajador {
 			this.id = id;
 		} 
 
-		else throw new IllegalArgumentException("El tama√±o del carnet debe ser de 11 digitos");
+		else throw new IllegalArgumentException("El tamaÒo del carnet debe ser de 11 digitos");
 
 
 	}
@@ -105,7 +105,7 @@ public class Trabajador {
 		if(!nivelEscolar.isEmpty())
 			this.nivelEscolar = nivelEscolar;
 		else
-			throw new IllegalArgumentException("El nivel escolar del trabajador est√° vac√≠o.");
+			throw new IllegalArgumentException("El nivel escolar del trabajador est· vacÌo.");
 	}
 
 	public String getCargo() {
@@ -116,7 +116,7 @@ public class Trabajador {
 		if(!cargo.isEmpty())
 			this.cargo = cargo;
 		else
-			throw new IllegalArgumentException("El cargo del trabajador est√° vac√≠o.");
+			throw new IllegalArgumentException("El cargo del trabajador est· vacÌo.");
 	}
 
 	public int getNumeroTrabajador() {

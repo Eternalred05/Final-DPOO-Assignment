@@ -22,12 +22,15 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 import java.awt.Window.Type;
 import java.awt.Dialog.ModalExclusionType;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class InfoTienda extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
 	public InfoTienda(Tienda tienda) {
+		setResizable(false);
 		setType(Type.POPUP);
 		setForeground(Color.BLUE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(InfoTienda.class.getResource("/javax/swing/plaf/metal/icons/Inform.gif")));
@@ -116,25 +119,25 @@ public class InfoTienda extends JDialog {
 		labelFecha.setFont(new Font("Arial Black", Font.PLAIN, 18));
 		labelFecha.setBounds(335, 257, 138, 26);
 		panel.add(labelFecha);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panel_1.setBackground(Color.LIGHT_GRAY);
 		panel_1.setBounds(10, 228, 598, 66);
 		panel.add(panel_1);
-		
+
 		JLabel lblInformacimDelGerente = new JLabel("Informaci\u00F3n sobre el Gerente:");
 		lblInformacimDelGerente.setForeground(new Color(255, 255, 255));
 		lblInformacimDelGerente.setFont(new Font("Arial Black", Font.PLAIN, 18));
 		lblInformacimDelGerente.setBounds(136, 206, 321, 26);
 		panel.add(lblInformacimDelGerente);
-		
+
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panel_2.setBackground(Color.LIGHT_GRAY);
 		panel_2.setBounds(10, 57, 598, 119);
 		panel.add(panel_2);
-		
+
 		JLabel lblInformacinSobreLa = new JLabel("Informaci\u00F3n sobre la Tienda:");
 		lblInformacinSobreLa.setForeground(new Color(255, 255, 255));
 		lblInformacinSobreLa.setFont(new Font("Arial Black", Font.PLAIN, 18));

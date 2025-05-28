@@ -1,8 +1,7 @@
 package Logic;
 
 public class RAM extends Componente {
-	private String marca;
-	private double memoria; // se expresa en Gb la memoria con un maximo por modulo de 128gb y minimo 0.5gb(aproximadaente 512mb)
+	private double memoria; // se expresa en Gb la memoria con un maximo por modulo de 128gb y minimo 1gb
 	private String tipo;
 
 
@@ -10,14 +9,13 @@ public class RAM extends Componente {
 		return memoria;
 	}
 	public void setMemoria(double memoria) {
-		if(memoria >= 0.5 && memoria <= 128)
+		if(memoria >= 1 && memoria <= 128)
 			this.memoria = memoria;
 		else
-			throw new IllegalArgumentException("La memoria no se encuentra en los limites dados");
+			throw new IllegalArgumentException("La memoria no se encuentra de 0.5gb a 128gb");
 	}
-	public RAM(int cantidadDisponible, String numeroSerie, String marca, double memoria , String tipo, double precioBase) {
-		super(cantidadDisponible, numeroSerie,precioBase);
-		this.marca = marca;
+	public RAM(int cantidadDisponible, String id, String marca, double memoria , String tipo, double precioBase) {
+		super(cantidadDisponible, id, precioBase,marca);
 		setTipo(tipo);
 		setMemoria(memoria);
 	}
@@ -30,15 +28,7 @@ public class RAM extends Componente {
 		else
 			throw new IllegalArgumentException("No se ingresó un tipo de RAM comercial válida");
 	}
-	public String getMarca() {
-		return marca;
-	}
-	public void setMarca(String marca) {
-		if(marca!= null && !marca.isEmpty())
-			this.marca = marca;
-		else
-			throw new IllegalArgumentException("No puede estar vacia la marca");
-	}
+	
 	@Override
 	public double calcularPrecio() {
 		double aporteMemoria = memoria * 10; 

@@ -138,7 +138,7 @@ public class reporteTrabajador extends JDialog {
 						Object trabajador [] = {t.getNumeroTrabajador(),t.getNombre(),t.getApellidos(),cargo,t.getId(),nivel,String.valueOf(t.getSalario())};
 						modelo.addRow(trabajador);
 					}
-					JOptionPane.showMessageDialog(null,"Filtro Actualizado.", "Error", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"Filtro Actualizado.", "Filtrado Exitoso", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else
 					JOptionPane.showMessageDialog(null,"No deje campos vacíos.", "Error", JOptionPane.ERROR_MESSAGE);

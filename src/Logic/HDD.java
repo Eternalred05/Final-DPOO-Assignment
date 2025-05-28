@@ -12,7 +12,7 @@ public class HDD extends Componente {
 		if(capacidad >= 128 && capacidad <= 4096 )
 			this.capacidad = capacidad;
 		else
-			throw new IllegalArgumentException("La capacidad no se encuentra en los lÃ­mites dados");
+			throw new IllegalArgumentException("La capacidad no se encuentra en los límites dados");
 	}
 
 	public HDD(int cantidadDisponible, String numeroSerie, String marca, String modelo,double capacidad, String tipoConexion,double precioBase) {
@@ -29,7 +29,7 @@ public class HDD extends Componente {
 		if(marca!= null && !marca.isEmpty())
 			this.marca = marca;
 		else
-			throw new IllegalArgumentException("No puede estar vacÃ­a la marca");
+			throw new IllegalArgumentException("No puede estar vacía la marca");
 	}
 	public String getModelo() {
 		return modelo;
@@ -38,7 +38,7 @@ public class HDD extends Componente {
 		if(modelo!= null && !modelo.isEmpty())
 			this.modelo = modelo;
 		else
-			throw new IllegalArgumentException("No puede estar vacÃ­o el modelo");
+			throw new IllegalArgumentException("No puede estar vacío el modelo");
 	}
 
 	public String getTipoConexion() {
@@ -49,7 +49,7 @@ public class HDD extends Componente {
 		if(tipoConexion!= null && !tipoConexion.isEmpty())
 			this.tipoConexion = tipoConexion;
 		else
-			throw new IllegalArgumentException("No puede estar vacÃ­o el tipo de conexiÃ³n");
+			throw new IllegalArgumentException("No puede estar vacío el tipo de conexión");
 	}
 
 

@@ -3,13 +3,15 @@ public abstract class Componente {
 	protected int cantidadDisponible;
 	protected String numeroSerie;
 	protected double precioBase;
+	protected String marca;
 
-	public Componente(int cantidadDisponible, String numeroSerie, double precioBase) {
+	public Componente(int cantidadDisponible, String numeroSerie, double precioBase, String marca) {
 		setCantidadDisponible(cantidadDisponible);
 		setNumeroSerie(numeroSerie);
 		setPrecioBase(precioBase);
+		setMarca(marca);
 	}
-	
+
 	public void setPrecioBase(double precioBase){
 		if(precioBase > 0)
 			this.precioBase = precioBase;
@@ -20,11 +22,11 @@ public abstract class Componente {
 	public double getPrecioBase() {
 		return precioBase;
 	}
-	
+
 	public String getNumeroSerie() {
 		return numeroSerie;
 	}
-	
+
 	public void setNumeroSerie(String numeroSerie) {
 		if(numeroSerie != null && !numeroSerie.isEmpty())
 			this.numeroSerie = numeroSerie;
@@ -40,6 +42,15 @@ public abstract class Componente {
 			this.cantidadDisponible = cantidadDisponible;
 		else
 			throw new IllegalArgumentException("La cantidad disponible debe ser mayor a 0");
+	}
+	public String getMarca() {
+		return marca;
+	}
+	public void setMarca(String marca) {
+		if(marca!= null && !marca.isEmpty())
+			this.marca = marca;
+		else
+			throw new IllegalArgumentException("No puede estar vacia la marca");
 	}
 
 	public abstract double calcularPrecio();

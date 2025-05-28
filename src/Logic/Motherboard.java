@@ -31,7 +31,7 @@ public class Motherboard extends Componente {
 		if(modelo!= null && !modelo.isEmpty())
 			this.modelo = modelo;
 		else
-			throw new IllegalArgumentException("No puede estar vacÃ­o el modelo");
+			throw new IllegalArgumentException("No puede estar vacío el modelo");
 	}
 	public String getTipoConector() {
 		return tipoSocket;
@@ -51,7 +51,7 @@ public class Motherboard extends Componente {
 		if(conexionesDiscos != null && conexionesDiscos.size()!=0)
 			this.conexionesDiscos = conexionesDiscos;
 		else
-			throw new IllegalArgumentException("Ingrese al menos una conexiÃ³n de disco que soporta el Motherboard");	
+			throw new IllegalArgumentException("Ingrese al menos una conexión de disco que soporta el Motherboard");	
 	}
 
 	@Override

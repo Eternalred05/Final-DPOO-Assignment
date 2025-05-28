@@ -207,10 +207,10 @@ public class IngresoDatos extends JFrame {
 		btnInicializargerente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(!ingresoGerente){
-					gerente = new Gerente("Alexandro", "ValdÃ©s PiÃ±eda", 2005,9,15);
-					JOptionPane.showMessageDialog(null,"Los datos del Gerente han sido inicializados y aÃ±adidos satisfactoriamente","Ingreso Exitoso",JOptionPane.INFORMATION_MESSAGE);
+					gerente = new Gerente("Alexandro", "Valdés Piñeda", 2005,9,15);
+					JOptionPane.showMessageDialog(null,"Los datos del Gerente han sido inicializados y añadidos satisfactoriamente","Ingreso Exitoso",JOptionPane.INFORMATION_MESSAGE);
 					NombreGerente.setText("Alexandro");
-					ApellidosGerente.setText("ValdÃ©s PiÃ±eda"); 
+					ApellidosGerente.setText("Valdés Piñeda"); 
 					comboBoxDias.setSelectedIndex(14);
 					comboBoxMes.setSelectedIndex(8);
 					comboBoxAnio.setSelectedIndex(25);
