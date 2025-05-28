@@ -125,7 +125,7 @@ public class reportesRAM extends JDialog {
 					JOptionPane.showMessageDialog(null,"Filtro Actualizado.", "Filtrado Exitoso", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else
-					JOptionPane.showMessageDialog(null,"No deje campos vacÌos.", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,"No deje campos vac√≠os.", "Error", JOptionPane.ERROR_MESSAGE);
 
 			}
 		});
@@ -136,11 +136,11 @@ public class reportesRAM extends JDialog {
 		JButton button_1 = new JButton("?");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"Este reporte buscar· memorias ram con un tipo de memoria especÌfico y una cantidad de memoria en gigabytes mayor a la que se especifica.", "InformaciÛn del reporte", JOptionPane.INFORMATION_MESSAGE);	
+				JOptionPane.showMessageDialog(null,"Este reporte buscar√° memorias ram con un tipo de memoria espec√≠fico y una cantidad de memoria en gigabytes mayor a la que se especifica.", "Informaci√≥n del reporte", JOptionPane.INFORMATION_MESSAGE);	
 			}
 		});
 		button_1.setFont(new Font("Sans Serif Collection", Font.PLAIN, 20));
-		button_1.setBounds(629, 9, 41, 41);
+		button_1.setBounds(623, 9, 47, 41);
 		contentPanel.add(button_1);
 	}
 }
