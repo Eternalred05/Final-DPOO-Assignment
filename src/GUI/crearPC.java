@@ -309,22 +309,25 @@ public class crearPC extends JDialog {
 		tableCPU = new JTable();
 		tableCPU.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableCPU.setModel(new DefaultTableModel(
-				new Object[][] {
-				},
-				new String[] {
-						"ID", "Marca", "Modelo", "Socket", "Velocidad", "Precio", "Disponibles"
-				}
-				) {
+			new Object[][] {
+			},
+			new String[] {
+				"ID", "Marca", "Modelo", "Socket", "Velocidad", "Precio", "Disponibles"
+			}
+		) {
 			boolean[] columnEditables = new boolean[] {
-					false, false, false, false, false, false, false
+				false, false, false, false, false, false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
 		});
 		tableCPU.getColumnModel().getColumn(0).setResizable(false);
+		tableCPU.getColumnModel().getColumn(0).setPreferredWidth(90);
 		tableCPU.getColumnModel().getColumn(1).setResizable(false);
+		tableCPU.getColumnModel().getColumn(1).setPreferredWidth(80);
 		tableCPU.getColumnModel().getColumn(2).setResizable(false);
+		tableCPU.getColumnModel().getColumn(2).setPreferredWidth(100);
 		tableCPU.getColumnModel().getColumn(3).setResizable(false);
 		tableCPU.getColumnModel().getColumn(4).setResizable(false);
 		tableCPU.getColumnModel().getColumn(5).setResizable(false);
@@ -372,11 +375,15 @@ public class crearPC extends JDialog {
 						Object info [] = {c.getNumeroSerie(),c.getMarca(),((CPU)c).getModelo(),((CPU)c).getSocket(),((CPU)c).getVelocidad(),c.calcularPrecio(),c.getCantidadDisponible()};
 						modeloCPU.addRow(info);
 					}
-					panelMother.setVisible(false);
-					panelCPU.setVisible(true);
+					if(tableCPU.getRowCount() != 0){
+						panelMother.setVisible(false);
+						panelCPU.setVisible(true);
+					}
+					else
+						JOptionPane.showMessageDialog(null,"No hay stock de procesadores compatibles con su Motherboard","Sin disponibilidad",JOptionPane.ERROR_MESSAGE);	
 				}
 				else
-					JOptionPane.showMessageDialog(null,"Seleccione solo una Motherboard","Selecci髇 incorrecta",JOptionPane.ERROR_MESSAGE);	
+					JOptionPane.showMessageDialog(null,"Seleccione solo una Motherboard","Selecci贸n incorrecta",JOptionPane.ERROR_MESSAGE);	
 			}
 		});
 		btnEscoger.setBounds(557, 483, 103, 32);
@@ -397,11 +404,15 @@ public class crearPC extends JDialog {
 						Object info [] = {c.getNumeroSerie(),c.getMarca(),((RAM)c).getMemoria(),((RAM)c).getTipo(), c.calcularPrecio(),c.getCantidadDisponible()};
 						modeloRAM.addRow(info);
 					}
-					panelRAM.setVisible(true);
-					panelCPU.setVisible(false);
+					if(tableRAM.getRowCount()!=0){
+						panelRAM.setVisible(true);
+						panelCPU.setVisible(false);
+					}
+					else
+						JOptionPane.showMessageDialog(null,"No hay stock de memorias ram compatibles con su Motherboard","Sin disponibilidad",JOptionPane.ERROR_MESSAGE);	
 				}
 				else
-					JOptionPane.showMessageDialog(null,"Seleccione solo una CPU","Selecci髇 incorrecta",JOptionPane.ERROR_MESSAGE);	
+					JOptionPane.showMessageDialog(null,"Seleccione solo una CPU","Selecci贸n incorrecta",JOptionPane.ERROR_MESSAGE);	
 			}	
 		});
 		button.setBounds(557, 483, 103, 32);
@@ -437,11 +448,11 @@ public class crearPC extends JDialog {
 							JOptionPane.showMessageDialog(null, "No hay stock disponible para escoger esa ram","Error", JOptionPane.ERROR_MESSAGE);
 
 					}else
-						JOptionPane.showMessageDialog(null,"La pc solo puede tener 4 RAMS","Selecci髇 incorrecta",JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,"La pc solo puede tener 4 RAMS","Selecci贸n incorrecta",JOptionPane.ERROR_MESSAGE);
 				}
 
 				else
-					JOptionPane.showMessageDialog(null,"Seleccione solo una RAM a la vez","Selecci髇 incorrecta",JOptionPane.ERROR_MESSAGE);	
+					JOptionPane.showMessageDialog(null,"Seleccione solo una RAM a la vez","Selecci贸n incorrecta",JOptionPane.ERROR_MESSAGE);	
 			}
 		});
 		button_1.setBounds(10, 483, 103, 32);
@@ -457,11 +468,15 @@ public class crearPC extends JDialog {
 						Object info [] = {c.getNumeroSerie(),c.getMarca(),((HDD)c).getModelo(),((HDD)c).getCapacidad(),((HDD)c).getTipoConexion(), c.calcularPrecio(),c.getCantidadDisponible()};
 						modeloHDD.addRow(info);
 					}
-					panelRAM.setVisible(false);			
-					panelHDD.setVisible(true);
+					if(tableHDD.getRowCount()!=0){
+						panelRAM.setVisible(false);			
+						panelHDD.setVisible(true);
+					}
+					else
+						JOptionPane.showMessageDialog(null,"No hay stock de discos duros compatibles con su Motherboard","Sin disponibilidad",JOptionPane.ERROR_MESSAGE);	
 				}
 				else
-					JOptionPane.showMessageDialog(null,"Seleccione al menos una RAM de la lista","Selecci髇 incorrecta",JOptionPane.ERROR_MESSAGE);	
+					JOptionPane.showMessageDialog(null,"Seleccione al menos una RAM de la lista","Selecci贸n incorrecta",JOptionPane.ERROR_MESSAGE);	
 			}
 		});
 		btnContinuar.setBounds(557, 483, 103, 32);
@@ -498,11 +513,11 @@ public class crearPC extends JDialog {
 							JOptionPane.showMessageDialog(null, "No hay stock disponible para escoger ese disco duro","Error", JOptionPane.ERROR_MESSAGE);
 
 					}else
-						JOptionPane.showMessageDialog(null,"La pc solo puede tener 4 discos duros","Selecci髇 incorrecta",JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,"La pc solo puede tener 4 discos duros","Selecci贸n incorrecta",JOptionPane.ERROR_MESSAGE);
 				}
 
 				else
-					JOptionPane.showMessageDialog(null,"Seleccione solo un disco a la vez","Selecci髇 incorrecta",JOptionPane.ERROR_MESSAGE);	
+					JOptionPane.showMessageDialog(null,"Seleccione solo un disco a la vez","Selecci贸n incorrecta",JOptionPane.ERROR_MESSAGE);	
 			}
 		});
 		button_2.setBounds(10, 466, 103, 32);
@@ -531,7 +546,7 @@ public class crearPC extends JDialog {
 						modelo.addRow(info2);
 					}
 				} else
-					JOptionPane.showMessageDialog(null,"Seleccione al menos un disco de la lista","Selecci髇 incorrecta",JOptionPane.ERROR_MESSAGE);	
+					JOptionPane.showMessageDialog(null,"Seleccione al menos un disco de la lista","Selecci贸n incorrecta",JOptionPane.ERROR_MESSAGE);	
 
 			}
 		});
@@ -562,7 +577,8 @@ public class crearPC extends JDialog {
 					pc.setHddsPC(h);
 					pc.addRamsPC(r);
 					tienda.actualizarComponentes(pc);
-					JOptionPane.showMessageDialog(null,"La creaci髇 de la PC fue exitosa, el costo de esta es de "+ pc.calcularPrecioTotal()+" $." ,"Ingreso Correcto",JOptionPane.INFORMATION_MESSAGE);
+					tienda.eliminarComponentesFueraStock();
+					JOptionPane.showMessageDialog(null,"La creaci贸n de la PC fue exitosa, el costo de esta es de "+ pc.calcularPrecioTotal()+" $." ,"Ingreso Correcto",JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 				}
 				catch(IllegalArgumentException e){
