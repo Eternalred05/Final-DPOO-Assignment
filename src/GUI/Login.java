@@ -79,12 +79,12 @@ public class Login extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				if(!user.getText().isEmpty() && !password.getText().isEmpty()){
 					for(Trabajador t : tienda.getTrabajadores())
-						if(t.getNombre().equals(user.getText()) && t.getId().equals(password.getText())){
+						if(t.getNombre().equals(user.getText().trim()) && t.getId().equals(password.getText())){
 							correcto = true;
 							usuario = t.getNombre();
 						}
 					if(correcto){
-						JOptionPane.showMessageDialog(null, "Las credenciales ingresadas son correctas.","Información Correcta",JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Las credenciales ingresadas son correctas.","InformaciÃ³n Correcta",JOptionPane.INFORMATION_MESSAGE);
 						EventQueue.invokeLater(new Runnable() {
 							public void run() {
 								try {
@@ -99,11 +99,11 @@ public class Login extends JDialog {
 
 					}
 					else 
-						JOptionPane.showMessageDialog(null, "Credenciales incorrectas.","Información incorrecta",JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Credenciales incorrectas.","InformaciÃ³n incorrecta",JOptionPane.ERROR_MESSAGE);
 
 				}
 				else
-					JOptionPane.showMessageDialog(null, "No deje campos vacíos.","Información no ingresada",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "No deje campos vacÃ­os.","InformaciÃ³n no ingresada",JOptionPane.ERROR_MESSAGE);
 
 
 
