@@ -37,7 +37,8 @@ public class reportesRAM extends JDialog {
 	@SuppressWarnings("rawtypes")
 	private DefaultTableModel modelo;
 
-	public reportesRAM(Tienda tiendaPC) {
+	public reportesRAM(Tienda tiendaPC, MenuTienda parent) {
+		super(parent,true);
 		setTitle("Reportes de RAM por su Velocidad y tipo de Memoria");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(reporteComponentes.class.getResource("/com/sun/java/swing/plaf/windows/icons/ListView.gif")));
 		tienda = tiendaPC;
@@ -78,6 +79,7 @@ public class reportesRAM extends JDialog {
 		table.getColumnModel().getColumn(4).setResizable(false);
 		table.getColumnModel().getColumn(4).setPreferredWidth(57);
 		table.getColumnModel().getColumn(5).setResizable(false);
+		table.getTableHeader().setReorderingAllowed(false);
 		scrollPane.setViewportView(table);
 
 		final JComboBox comboBox = new JComboBox();
@@ -122,7 +124,10 @@ public class reportesRAM extends JDialog {
 						Object ramsO [] = {c.getCantidadDisponible(),c.getNumeroSerie(),c.getMarca(),((RAM)c).getMemoria(),((RAM)c).getTipo(),c.calcularPrecio()};
 						modelo.addRow(ramsO);
 					}
-					JOptionPane.showMessageDialog(null,"Filtro Actualizado.", "Filtrado Exitoso", JOptionPane.INFORMATION_MESSAGE);
+					if(rams.size()!=0)
+						JOptionPane.showMessageDialog(null,"Filtro Actualizado.", "Filtrado Exitoso", JOptionPane.INFORMATION_MESSAGE);
+					else
+						JOptionPane.showMessageDialog(null,"No se encontró ninguna coincidencia.", "Sin coincidencias", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else
 					JOptionPane.showMessageDialog(null,"No deje campos vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -140,7 +145,7 @@ public class reportesRAM extends JDialog {
 			}
 		});
 		button_1.setFont(new Font("Sans Serif Collection", Font.PLAIN, 20));
-		button_1.setBounds(629, 9, 41, 41);
+		button_1.setBounds(623, 9, 47, 41);
 		contentPanel.add(button_1);
 	}
 }

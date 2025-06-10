@@ -11,6 +11,8 @@ public class PC {
 		setId(id);
 		setMotherboardPC(motherboardPC);
 		setCpuPC(cpuPC);
+		ramsPC = new ArrayList<>();
+		hddsPC = new ArrayList<>();
 	}
 
 
@@ -19,7 +21,10 @@ public class PC {
 	}
 
 	public void setId(String id) {
-		this.id = id;
+		if(!id.isEmpty())
+			this.id = id;
+		else
+			throw new IllegalArgumentException ("El id no puede estar vacío");
 	}
 
 
@@ -67,10 +72,27 @@ public class PC {
 	public void setHddsPC(ArrayList<HDD> hddsPC) {
 		this.hddsPC = hddsPC;
 	}
+	public double almacenamientoTotal(){
+		double total = 0;
+		for (HDD hdd : hddsPC)
+			total+=hdd.getCapacidad();
+		return total;
+	}
+
+	public double memoriaTotal(){
+		double total = 0;
+		for (RAM ram : ramsPC)
+			total+=ram.getMemoria();
+		return total;
+	}
 
 	public double calcularPrecioTotal() {
 		double total = 0;
 		total += motherboardPC.calcularPrecio()+ cpuPC.calcularPrecio();
+		for(RAM ram : ramsPC)
+			total+= ram.calcularPrecio();
+		for(HDD hdd : hddsPC)
+			total+=hdd.calcularPrecio();
 		return total;
 	}
 }

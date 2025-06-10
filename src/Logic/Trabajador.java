@@ -70,6 +70,7 @@ public class Trabajador {
 			int anio = (cadena[0] - '0') * 10 + (cadena[1] - '0');
 			int mes = (cadena[2] - '0') * 10 + (cadena[3] - '0');
 			int dia = (cadena[4] - '0') * 10 + (cadena[5] - '0');
+			int siglo = Character.getNumericValue(id.charAt(7));
 			try {
 				@SuppressWarnings("unused")
 				LocalDate fechaCarnet = LocalDate.of(anio, mes, dia);
@@ -77,7 +78,6 @@ public class Trabajador {
 			catch (DateTimeException e){
 				throw new IllegalArgumentException ("La fecha del carnet es incorrecta");
 			}
-
 			this.id = id;
 		} 
 

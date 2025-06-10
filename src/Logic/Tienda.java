@@ -91,10 +91,8 @@ public class Tienda {
 	public void addTrabajador(String nombre, String apellidos, String id, int numeroTrabajador,double salario, String nivelEscolar, String cargo) {
 		Trabajador t = new Trabajador (nombre,apellidos,id,numeroTrabajador,salario,nivelEscolar,cargo);		
 		for(Trabajador a : trabajadores){
-			if(a.getNombre().toLowerCase().equals(t.getNombre().toLowerCase()) && a.getApellidos().toLowerCase().equals(t.getApellidos().toLowerCase()))
-				throw new IllegalArgumentException("Ya se ingreso este trabajador con este nombre.");
 			if(a.getId().equals(t.getId()))
-				throw new IllegalArgumentException("Ya se ingreso un trabajador con este id.");
+				throw new IllegalArgumentException("Ya se ingresó un trabajador con este id.");
 		}
 		trabajadores.add(t);
 	}
@@ -149,6 +147,16 @@ public class Tienda {
 		componentes.add(hdd);
 	}
 
+	public void addPC(String id,Motherboard m,CPU c, ArrayList<RAM> r, ArrayList<HDD> h){
+		PC pc = new PC(id, m, c);
+		pc.setHddsPC(h);
+		pc.addRamsPC(r);
+		for(PC p : computadoras)
+			if(p.getId().equalsIgnoreCase(id))
+				throw new IllegalArgumentException("Ya se ingresó una computadora con este ID.");
+		computadoras.add(pc);
+	}
+
 	public ArrayList<Trabajador> getTrabajadores() {
 		return trabajadores;
 	}
@@ -193,15 +201,216 @@ public class Tienda {
 					listado.add(c);
 		return listado;
 	}
+
 	public int buscarRAMS(){ // funcion para el reporte de las RAMS 
 		int cantidad = 0;
 		for(Componente c : componentes)
 			if(c instanceof RAM)
 				cantidad++;
 		return cantidad;
-
+	}
+	// funcion para buscar componentes
+	public int buscarMotherboards(){ // funcion para el reporte de las RAMS 
+		int cantidad = 0;
+		for(Componente c : componentes)
+			if(c instanceof Motherboard)
+				cantidad++;
+		return cantidad;
+	}
+	public int buscarCPUS(){ // funcion para el reporte de las RAMS 
+		int cantidad = 0;
+		for(Componente c : componentes)
+			if(c instanceof CPU)
+				cantidad++;
+		return cantidad;
+	}
+	public int buscarHDDS(){ // funcion para el reporte de las RAMS 
+		int cantidad = 0;
+		for(Componente c : componentes)
+			if(c instanceof HDD)
+				cantidad++;
+		return cantidad;
 
 	}
+	// nuevos para crear PC
+	public ArrayList<Componente> listaMotherBoards() {
+		ArrayList<Componente> motherboards = new ArrayList<>();
+		for (Componente c : componentes)
+			if(c instanceof Motherboard)
+				motherboards.add(c);
+		return motherboards;
+	}
+	public ArrayList<Componente> listaCPUcompatMotherboard(String socket) {
+		ArrayList<Componente> cpus = new ArrayList<>();
+		for (Componente c : componentes)
+			if(c instanceof CPU && ((CPU)c).getSocket().equals(socket))
+				cpus.add(c);
+		return cpus;
+	}
+	public Motherboard encontrarMotherBoardPorID(String ID){
+		int posicion = -1;
+		for(int i=0; i<componentes.size() && posicion == -1;i++)
+			if(componentes.get(i) instanceof Motherboard && componentes.get(i).getNumeroSerie().equals(ID))
+				posicion = i;
+		return (Motherboard)componentes.get(posicion);
+	}
 
+	public CPU CPUPorID(String id){
+		int posicion = -1;
+		for(int i=0; i<componentes.size() && posicion == -1;i++)
+			if(componentes.get(i) instanceof CPU && componentes.get(i).getNumeroSerie().equals(id))
+				posicion = i;
+		return (CPU)componentes.get(posicion);
+	}
+	public RAM RAMPorID(String id){
+		int posicion = -1;
+		for(int i=0; i<componentes.size() && posicion == -1;i++)
+			if(componentes.get(i) instanceof RAM && componentes.get(i).getNumeroSerie().equals(id))
+				posicion = i;
+		return (RAM)componentes.get(posicion);
+	}
+	public ArrayList<Componente> listaHDDcompatMotherboard(ArrayList<String> conexiones) {
+		ArrayList<Componente> hdds = new ArrayList<>();
+		for (Componente c : componentes)
+			if(c instanceof HDD && conexiones.contains(((HDD)c).getTipoConexion()))
+				hdds.add(c);
+		return hdds;
+	}
+
+	public ArrayList<Componente> listaRAMcompatMotherboard(String tipoMem) {
+		ArrayList<Componente> rams = new ArrayList<>();
+		for (Componente c : componentes)
+			if(c instanceof RAM && ((RAM)c).getTipo().equals(tipoMem))
+				rams.add(c);
+		return rams;
+	}
+	public HDD HDDPorID(String id){
+		int posicion = -1;
+		for(int i=0; i<componentes.size() && posicion == -1;i++)
+			if(componentes.get(i) instanceof HDD && componentes.get(i).getNumeroSerie().equals(id))
+				posicion = i;
+		return (HDD)componentes.get(posicion);
+	}
+	// Buscar posiciones de los objetos
+
+	public int posTrabajadorPorID(String ID){
+		int posicion = -1;
+		for(int i=0; i<trabajadores.size() && posicion == -1;i++)
+			if(trabajadores.get(i).getId().equals(ID))
+				posicion = i;
+		return posicion;
+	}
+
+	public int posMotherboardPorID(String ID){
+		int posicion = -1;
+		for(int i=0; i<componentes.size() && posicion == -1;i++)
+			if(componentes.get(i) instanceof Motherboard && componentes.get(i).getNumeroSerie().equals(ID))
+				posicion = i;
+		return posicion;
+	}
+
+	public int posRAMPorID(String ID){
+		int posicion = -1;
+		for(int i=0; i<componentes.size() && posicion == -1;i++)
+			if(componentes.get(i) instanceof RAM && componentes.get(i).getNumeroSerie().equals(ID))
+				posicion = i;
+		return posicion;
+	}
+
+	public int posCPUPorID(String ID){
+		int posicion = -1;
+		for(int i=0; i<componentes.size() && posicion == -1;i++)
+			if(componentes.get(i) instanceof CPU && componentes.get(i).getNumeroSerie().equals(ID))
+				posicion = i;
+		return posicion;
+	}
+
+	public int posHDDPorID(String ID){
+		int posicion = -1;
+		for(int i=0; i<componentes.size() && posicion == -1;i++)
+			if(componentes.get(i) instanceof HDD && componentes.get(i).getNumeroSerie().equals(ID))
+				posicion = i;
+		return posicion;
+	}
+
+	public int posPCPorID(String ID){
+		int posicion = -1;
+		for(int i=0; i<computadoras.size() && posicion == -1;i++)
+			if(computadoras.get(i).getId().equals(ID))
+				posicion = i;
+		return posicion;
+	}
+
+	public void actualizarComponentes(PC pc){
+		String id;
+		int pos;
+		int cant;
+		id = pc.getMotherboardPC().getNumeroSerie();
+		pos = posMotherboardPorID(id);
+		cant = componentes.get(pos).getCantidadDisponible();
+		componentes.get(pos).setCantidadDisponible(cant-1);
+		//CPU
+		id = pc.getCpuPC().getNumeroSerie();
+		pos = posCPUPorID(id);
+		cant = componentes.get(pos).getCantidadDisponible();
+		componentes.get(pos).setCantidadDisponible(cant-1);
+		// RAMS
+		for(RAM r : pc.getRamsPC()){
+			id = r.getNumeroSerie();
+			pos = posRAMPorID(id);
+			cant = componentes.get(pos).getCantidadDisponible();
+			componentes.get(pos).setCantidadDisponible(cant-1);
+		}
+
+		for(HDD h : pc.getHddsPC()){
+			id = h.getNumeroSerie();
+			pos = posHDDPorID(id);
+			cant = componentes.get(pos).getCantidadDisponible();
+			componentes.get(pos).setCantidadDisponible(cant-1);
+		}
+	}
+
+
+	// Inicializar datos
+	public static Tienda inicializarTienda(){
+		Gerente gerente = new Gerente("Alexandro", "Valdés Piñeda", 2005,9,15);	
+		return new Tienda("GameStop777","GAME05","Avenida 33A Calle 156, Playa","72627762",gerente);
+	}
+
+	public void inicializarTrabajadores(){
+		addTrabajador("Alexandro", "Valdés Piñeda","05091568088",0, 15000, "Universitario", "Gerente");
+		addTrabajador("Gloria", "Santos Rosado","06030867876",1, 5000, "Universitario", "Especialista en productos");
+		addTrabajador("Jorge Luis", "Valdés Piñeda", "97070758088", 2 ,15000, "Universitario", "Especialista en Software");
+		addTrabajador("Javier", "Soto Villanueva", "05090160882",3,7000, "Universitario", "Asesor de Ventas");
+		addTrabajador("Ronal", "Sálazar Hernández", "05101568066",4,6500, "Universitario", "Especialista en Software");
+		addTrabajador("Aylin", "Vázquez Alvarez", "06061367412",5,4000, "Obrero Calificado", "Encargado de inventario");
+		addTrabajador("Rodolfo", "Remesar Martín","72081843200", 6, 9900,"Universitario", "Especialista en Software");
+	}
+	public void inicializarComponentes(){
+		ArrayList<String> conexiones = new ArrayList<String>();
+		conexiones.add("SATA");
+		conexiones.add("SATA-2");
+		conexiones.add("SATA-3");
+		addMotherboard(5, "MBX-1234", "ASUS", "ROG STRIX B550-F", "LGA", "DDR4", conexiones, 179.99);
+		addMotherboard(3, "MBY-5678", "Gigabyte", "AORUS X570 Master", "BGA", "DDR4", conexiones, 349.99);
+		addMotherboard(7, "MBZ-9101", "MSI", "MAG B660M Mortar WiFi", "LGA", "DDR5", conexiones, 199.99);
+		addMotherboard(2, "MBW-1121", "ASRock", "Z790 Taichi", "LGA", "DDR5",conexiones, 499.99);
+		addMotherboard(4, "MBT-3141", "EVGA", "Z690 CLASSIFIED", "LGA", "DDR4", conexiones,449.99);
+		addCPU(5, "Intel-G4400", "Intel", "Core i5-1135G7", "LGA", 4.2,150);
+		addCPU(3, "AMD-Ryzen5600X", "AMD", "Ryzen 5 5600X", "PGA", 4.6, 230);
+		addCPU(7, "Intel-i7-9700K", "Intel", "Core i7-9700K", "LGA", 4.9, 350);
+		addCPU(2, "Threadripper3990X", "AMD", "Threadripper 3990X", "BGA", 4.3, 1500);
+		addCPU(4, "Intel-XeonE5-2680", "Intel", "Xeon E5-2680 v4", "LGA", 3.3, 500);
+		addRAM(5, "SM5-16G", "Samsung", 16, "DDR5", 60);
+		addRAM(7, "HX4-32G", "Hynyx", 32, "DDR4", 45);
+		addRAM(10, "TS5-64GB", "Toshiba", 64, "DDR5", 80);
+		addRAM(20, "RZB-128G", "Razor Blade", 128, "DDR5", 120);
+		addRAM(15, "MCN-8EB", "Micron", 8, "DDR2", 10);
+		addHDD(5, "SM5-512G", "Samsung", "SM512HDD", 512, "SATA-3",50);
+		addHDD(7, "SM7-256G", "Samsung", "SM245HDD", 256, "SATA-2",45);
+		addHDD(12, "TS-128G", "Toshiba", "TS128HDD", 128, "SATA",30);
+		addHDD(15, "HX5-4TB", "Hynyx", "HX4TBHDD", 4096, "SATA-3",120);
+		addHDD(10, "WD-1TB", "Western Digital", "WD1024HDD", 1024, "SATA-3",90);
+	}
 }
 

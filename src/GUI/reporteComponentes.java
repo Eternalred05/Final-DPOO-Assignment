@@ -38,7 +38,8 @@ public class reporteComponentes extends JDialog {
 	@SuppressWarnings("rawtypes")
 	private DefaultComboBoxModel modeloCbox;
 
-	public reporteComponentes(Tienda tiendaPC) {
+	public reporteComponentes(Tienda tiendaPC, MenuTienda parent) {
+		super(parent,true);
 		tienda = tiendaPC;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(reporteComponentes.class.getResource("/com/sun/java/swing/plaf/windows/icons/ListView.gif")));
 		setTitle("Reporte de Componentes por Marca y  Precio");
@@ -51,7 +52,7 @@ public class reporteComponentes extends JDialog {
 
 		JLabel lblMarcasDisponibles = new JLabel("Marcas Disponibles");
 		lblMarcasDisponibles.setFont(new Font("Sans Serif Collection", Font.PLAIN, 23));
-		lblMarcasDisponibles.setBounds(10, 29, 289, 34);
+		lblMarcasDisponibles.setBounds(20, 11, 289, 34);
 		contentPanel.add(lblMarcasDisponibles);
 
 		Object[] marcasO;
@@ -68,19 +69,19 @@ public class reporteComponentes extends JDialog {
 		modeloCbox = new DefaultComboBoxModel(marcasO);
 		final JComboBox comboBox = new JComboBox();
 		comboBox.setFont(new Font("Sans Serif Collection", Font.PLAIN, 13));
-		comboBox.setBounds(20, 74, 221, 27);
+		comboBox.setBounds(20, 46, 221, 27);
 		comboBox.setModel(modeloCbox);
 		contentPanel.add(comboBox);
 
 		JLabel lblPrecio = new JLabel("Precio");
 		lblPrecio.setFont(new Font("Sans Serif Collection", Font.PLAIN, 23));
-		lblPrecio.setBounds(334, 29, 105, 34);
+		lblPrecio.setBounds(440, 11, 105, 34);
 		contentPanel.add(lblPrecio);
 
 		final JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(new Double(0), new Double(0), null, new Double(1)));
+		spinner.setModel(new SpinnerNumberModel(new Double(1), new Double(1), null, new Double(1)));
 		spinner.setFont(new Font("Sans Serif Collection", Font.PLAIN, 13));
-		spinner.setBounds(334, 73, 87, 20);
+		spinner.setBounds(432, 49, 87, 20);
 		contentPanel.add(spinner);
 
 		JButton button = new JButton("Filtrar");
@@ -100,18 +101,21 @@ public class reporteComponentes extends JDialog {
 						Object componente [] = {c.getClass().getSimpleName(),marca,c.getNumeroSerie(),String.valueOf(c.calcularPrecio()),String.valueOf(c.getCantidadDisponible())};
 						modelo.addRow(componente);
 					}
-					JOptionPane.showMessageDialog(null,"Filtro Actualizado.", "Filtrado Exitoso", JOptionPane.INFORMATION_MESSAGE);
+					if(componentes.size() != 0)
+						JOptionPane.showMessageDialog(null,"Filtro Actualizado.", "Filtrado Exitoso", JOptionPane.INFORMATION_MESSAGE);
+					else
+						JOptionPane.showMessageDialog(null,"No se encontró ninguna coincidencia.", "Sin coincidencias", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else
 					JOptionPane.showMessageDialog(null,"No deje campos vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		});
 		button.setFont(new Font("Sans Serif Collection", Font.PLAIN, 23));
-		button.setBounds(497, 42, 151, 52);
+		button.setBounds(519, 480, 151, 52);
 		contentPanel.add(button);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 136, 660, 389);
+		scrollPane.setBounds(10, 80, 660, 389);
 		contentPanel.add(scrollPane);
 
 		tableComponentes = new JTable();
@@ -139,6 +143,17 @@ public class reporteComponentes extends JDialog {
 		tableComponentes.getColumnModel().getColumn(3).setPreferredWidth(55);
 		tableComponentes.getColumnModel().getColumn(4).setResizable(false);
 		tableComponentes.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		tableComponentes.getTableHeader().setReorderingAllowed(false);
 		scrollPane.setViewportView(tableComponentes);
+
+		JButton button_1 = new JButton("?");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null,"Este reporte buscará componentes con una marca especifica con un precio menor al especifícado.", "Información del reporte", JOptionPane.INFORMATION_MESSAGE);	
+			}
+		});
+		button_1.setFont(new Font("Sans Serif Collection", Font.PLAIN, 20));
+		button_1.setBounds(623, 11, 47, 41);
+		contentPanel.add(button_1);
 	}
 }

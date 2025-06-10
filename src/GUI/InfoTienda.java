@@ -29,7 +29,8 @@ public class InfoTienda extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
-	public InfoTienda(Tienda tienda) {
+	public InfoTienda(Tienda tienda, MenuTienda parent) {
+		super(parent,true);
 		setResizable(false);
 		setType(Type.POPUP);
 		setForeground(Color.BLUE);

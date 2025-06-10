@@ -22,15 +22,6 @@ public class HDD extends Componente {
 		setTipoConexion(tipoConexion);
 	}
 
-	public String getMarca() {
-		return marca;
-	}
-	public void setMarca(String marca) {
-		if(marca!= null && !marca.isEmpty())
-			this.marca = marca;
-		else
-			throw new IllegalArgumentException("No puede estar vacía la marca");
-	}
 	public String getModelo() {
 		return modelo;
 	}

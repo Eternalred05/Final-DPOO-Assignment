@@ -52,6 +52,8 @@ import Componentes.JTextFieldLimitado;
 
 import javax.swing.JCheckBox;
 import javax.swing.JProgressBar;
+import javax.swing.ImageIcon;
+import javax.swing.ListSelectionModel;
 
 public class MenuTienda extends JFrame {
 
@@ -66,12 +68,6 @@ public class MenuTienda extends JFrame {
 	// tablas de listados
 	private JTable tableTrabajador;
 	private JTable tableComponentes;
-	// booleanos de inicializacion
-	private boolean inicializarTrabajadores = false;
-	private boolean inicializarRAMS = false;
-	private boolean inicializarHDD = false;
-	private boolean inicializarCPU = false;
-	private boolean inicializarMother = false;
 	//Jdialogs
 	InfoTienda dialogInfoTienda;
 	reporteTrabajador dialogreporteTrabajador;
@@ -79,29 +75,32 @@ public class MenuTienda extends JFrame {
 	reportesRAM dialogReportesRAM;
 	// contadores
 	private int counterTrabajador = 0;
+	private JTable tablePC;
 
-	public MenuTienda(Tienda tienda) {
+	public MenuTienda(Tienda tienda, String usuario) {
+		JOptionPane.showMessageDialog(null,"Bienvenido a la app de gestión de la tienda, "+ usuario ,"Bienvenido",JOptionPane.INFORMATION_MESSAGE);
+
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuTienda.class.getResource("/javax/swing/plaf/metal/icons/ocean/menu.gif")));
 		setTitle("Men\u00FA Tienda");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 775, 529);
-		GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		setMaximizedBounds(env.getMaximumWindowBounds());
+		setBounds(100, 100, 1280, 720);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		// igualar tienda ingresada como parametro
 		tiendaPC = tienda;
+		counterTrabajador = tiendaPC.getTrabajadores().size();
 
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 766, 21);
+		menuBar.setBounds(0, 0, 1264, 21);
 		contentPane.add(menuBar);
 
 		JMenu mnGerencia = new JMenu("Gerencia");
 		menuBar.add(mnGerencia);
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 21, 766, 476);
+		panel.setBounds(0, 21, 1280, 720);
 		contentPane.add(panel);
 		panel.setLayout(new CardLayout(0, 0));
 
@@ -110,10 +109,14 @@ public class MenuTienda extends JFrame {
 		panel.add(panelInicio, "panelInicio");
 		panelInicio.setLayout(null);
 
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setIcon(new ImageIcon(MenuTienda.class.getResource("/Resources/1stScreen.jpg")));
+		lblNewLabel_3.setBounds(0, 0, 1280, 673);
+		panelInicio.add(lblNewLabel_3);
+
 		final JPanel paneIngresarTrabajador = new JPanel();
 		paneIngresarTrabajador.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.add(paneIngresarTrabajador, "paneIngresarTrabajador");
-		paneIngresarTrabajador.setLayout(null);
 
 		final JPanel panelMotherboard = new JPanel();
 		panelMotherboard.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -123,7 +126,7 @@ public class MenuTienda extends JFrame {
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
 		panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_4.setBounds(10, 47, 733, 359);
+		panel_4.setBounds(267, 126, 733, 407);
 		panelMotherboard.add(panel_4);
 
 		JLabel label_3 = new JLabel("Marca");
@@ -254,45 +257,6 @@ public class MenuTienda extends JFrame {
 		panel_6.add(chckbxIde);
 		chckbxIde.setFont(new Font("Arial Black", Font.PLAIN, 20));
 
-		JButton buttonInicializarMother = new JButton("Inicializar");
-		buttonInicializarMother.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(!inicializarMother){
-					// int cantidadDisponible, String numeroSerie, String marca, String modelo,String tipoConector, String tipoMemoriaRAM, ArrayList<String> conexionesDiscos,double precioBase  //
-					ArrayList<String> conexiones = new ArrayList<String>();
-					conexiones.add("SATA");
-					conexiones.add("SATA-2");
-					conexiones.add("SATA-3");
-					String[][] motherboards = {
-							{"5", "MBX-1234", "ASUS", "ROG STRIX B550-F", "LGA", "DDR4", "179.99"},
-							{"3", "MBY-5678", "Gigabyte", "AORUS X570 Master", "BGA", "DDR4", "349.99"},
-							{"7", "MBZ-9101", "MSI", "MAG B660M Mortar WiFi", "LGA", "DDR5", "199.99"},
-							{"2", "MBW-1121", "ASRock", "Z790 Taichi", "LGA", "DDR5", "499.99"},
-							{"4", "MBT-3141", "EVGA", "Z690 CLASSIFIED", "LGA", "DDR4", "449.99"}
-					};
-
-					for (String[] datos : motherboards) {
-						try {
-							tiendaPC.addMotherboard(Integer.parseInt(datos[0]),datos[1],datos[2],datos[3],datos[4],datos[5],conexiones,Double.parseDouble(datos[6]));
-							Motherboard mother = new Motherboard(Integer.parseInt(datos[0]),datos[1],datos[2],datos[3],datos[4],datos[5],conexiones,Double.parseDouble(datos[6]));
-							modelo = (DefaultTableModel)tableComponentes.getModel();
-							Object mInfo [] = {mother.getClass().getSimpleName(),datos[2],datos[1],mother.calcularPrecio(),datos[0]};
-							modelo.addRow(mInfo);
-						} catch (IllegalArgumentException e) {
-							JOptionPane.showMessageDialog(null,"El motherboard con el número de serie: "+ datos[1]+" ya se habia ingresado, se procederá a ingresar el próximo que no se haya añadido previamente.","CPU Ingresada previamente",JOptionPane.ERROR_MESSAGE);
-						}
-					}
-					inicializarMother = true;
-					JOptionPane.showMessageDialog(null,"Se han inicializado los datos de prueba correctamente.","Datos Inicializados correctamente",JOptionPane.INFORMATION_MESSAGE);	
-				} 
-				else
-					JOptionPane.showMessageDialog(null,"Ya se inicializaron los datos de las Motherboards previamente.","Ya se inicializaron estos datos",JOptionPane.ERROR_MESSAGE);
-			}
-		});
-		buttonInicializarMother.setFont(new Font("Arial Black", Font.PLAIN, 21));
-		buttonInicializarMother.setBounds(10, 415, 172, 39);
-		panelMotherboard.add(buttonInicializarMother);
-
 		JButton buttonIngresarMother = new JButton("A\u00F1adir ");
 		buttonIngresarMother.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -318,9 +282,6 @@ public class MenuTienda extends JFrame {
 						tiendaPC.addMotherboard(cantidad,id, marca, modeloSocket,tipoSocket, tipoMemoriaRAM,conexiones,precioBase);
 						Motherboard m = new Motherboard(cantidad,id, marca, modeloSocket,tipoSocket, tipoMemoriaRAM,conexiones,precioBase);
 						labelPrecioMother.setText(String.valueOf(m.calcularPrecio())+"$");
-						modelo = (DefaultTableModel)tableComponentes.getModel();
-						Object motherInfo [] = {m.getClass().getSimpleName(),marca,id,m.calcularPrecio(),cantidad};
-						modelo.addRow(motherInfo);
 						JOptionPane.showMessageDialog(null,"Los datos de esta Motherboard han sido ingresados satisfactoriamente a la Tienda.Se ha actualizado el precio de la Motherboard.","Ingreso Exitoso",JOptionPane.INFORMATION_MESSAGE);
 					}
 					catch (IllegalArgumentException e){
@@ -332,64 +293,24 @@ public class MenuTienda extends JFrame {
 			}
 		});
 		buttonIngresarMother.setFont(new Font("Arial Black", Font.PLAIN, 21));
-		buttonIngresarMother.setBounds(612, 415, 129, 39);
+		buttonIngresarMother.setBounds(1127, 619, 129, 39);
 		panelMotherboard.add(buttonIngresarMother);
 
 		JLabel lblNewLabel = new JLabel("Del modelo de Mother Board que desea a\u00F1adir ingrese:");
 		lblNewLabel.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 18));
-		lblNewLabel.setBounds(100, 13, 541, 31);
+		lblNewLabel.setBounds(398, 11, 541, 31);
 		panelMotherboard.add(lblNewLabel);
-
-		JPanel panel_1 = new JPanel(); // panel para los datos a ingresar
-		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panel_1.setBounds(30, 49, 378, 184);
-		paneIngresarTrabajador.add(panel_1);
-		panel_1.setLayout(null);
-
-		final JTextFieldLimitado idTrabajador = new JTextFieldLimitado();
-		idTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
-		idTrabajador.setLimit(11);
-		idTrabajador.setFont(new Font("Arial Black", Font.PLAIN, 15));
-		idTrabajador.setBounds(154, 111, 212, 20);
-		panel_1.add(idTrabajador);
-
-		final JTextFieldLimitado apellidosTrabajador = new JTextFieldLimitado();
-		apellidosTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
-		apellidosTrabajador.setLimit(25);
-		apellidosTrabajador.setFont(new Font("Arial Black", Font.PLAIN, 15));
-		apellidosTrabajador.setBounds(154, 69, 212, 20);
-		panel_1.add(apellidosTrabajador);
-
-		final JTextFieldLimitado nombreTrabajador = new JTextFieldLimitado();
-		nombreTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
-		nombreTrabajador.setLimit(25);
-		nombreTrabajador.setFont(new Font("Arial Black", Font.PLAIN, 15));
-		nombreTrabajador.setBounds(154, 22, 212, 20);
-		panel_1.add(nombreTrabajador);
-
-		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(12, 13, 103, 34);
-		panel_1.add(lblNombre);
-		lblNombre.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
-
-		JLabel lblApellidos = new JLabel("Apellidos");
-		lblApellidos.setBounds(12, 60, 126, 34);
-		panel_1.add(lblApellidos);
-		lblApellidos.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
-
-		JLabel lblIdentificador = new JLabel("Identificador");
-		lblIdentificador.setBounds(12, 102, 164, 34);
-		panel_1.add(lblIdentificador);
-		lblIdentificador.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
+		paneIngresarTrabajador.setLayout(null);
 
 		JLabel lblNumeroDeId = new JLabel("Numero de ID actual");
-		lblNumeroDeId.setBounds(479, 60, 227, 25);
+		lblNumeroDeId.setForeground(Color.BLACK);
+		lblNumeroDeId.setBounds(1014, 49, 227, 25);
 		paneIngresarTrabajador.add(lblNumeroDeId);
 		lblNumeroDeId.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
 
 		JPanel numId = new JPanel();
+		numId.setBounds(1125, 85, 35, 34);
 		numId.setBackground(Color.WHITE);
-		numId.setBounds(577, 98, 35, 34);
 		paneIngresarTrabajador.add(numId);
 		numId.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		numId.setLayout(null);
@@ -399,24 +320,49 @@ public class MenuTienda extends JFrame {
 		numId.add(numIDT);
 		numIDT.setFont(new Font("Arial Black", Font.PLAIN, 15));
 		numIDT.setHorizontalAlignment(SwingConstants.CENTER);
+		final JTextFieldLimitado nombreTrabajador = new JTextFieldLimitado();
+		nombreTrabajador.setLimit(25);
+		nombreTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
+		nombreTrabajador.setFont(new Font("Arial Black", Font.PLAIN, 15));
+		nombreTrabajador.setBounds(622, 154, 235, 20);
+		paneIngresarTrabajador.add(nombreTrabajador);
 
-		JLabel lblNewLabel_1 = new JLabel("Ingrese los datos de un trabajador:");
-		lblNewLabel_1.setFont(new Font("Sitka Text", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(210, 13, 402, 23);
-		paneIngresarTrabajador.add(lblNewLabel_1);
+		JLabel label_1 = new JLabel("Nombre");
+		label_1.setForeground(Color.BLACK);
+		label_1.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
+		label_1.setBounds(480, 145, 103, 34);
+		paneIngresarTrabajador.add(label_1);
 
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(343, 262, 382, 137);
-		paneIngresarTrabajador.add(panel_2);
-		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panel_2.setLayout(null);
+		JLabel label_14 = new JLabel("Apellidos");
+		label_14.setForeground(Color.BLACK);
+		label_14.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
+		label_14.setBounds(480, 192, 126, 34);
+		paneIngresarTrabajador.add(label_14);
 
+		final JTextFieldLimitado apellidosTrabajador = new JTextFieldLimitado();
+		apellidosTrabajador.setLimit(25);
+		apellidosTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
+		apellidosTrabajador.setFont(new Font("Arial Black", Font.PLAIN, 15));
+		apellidosTrabajador.setBounds(622, 201, 235, 20);
+		paneIngresarTrabajador.add(apellidosTrabajador);
 
-		// ComboBox relacionado con los cargos de la tienda
+		final JTextFieldLimitado idTrabajador = new JTextFieldLimitado();
+		idTrabajador.setLimit(11);
+		idTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
+		idTrabajador.setFont(new Font("Arial Black", Font.PLAIN, 15));
+		idTrabajador.setBounds(622, 243, 235, 20);
+		paneIngresarTrabajador.add(idTrabajador);
+
+		JLabel label_15 = new JLabel("Identificador");
+		label_15.setForeground(Color.BLACK);
+		label_15.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
+		label_15.setBounds(480, 234, 164, 34);
+		paneIngresarTrabajador.add(label_15);
 
 		final JComboBox comboBoxCargo = new JComboBox();
+		comboBoxCargo.setForeground(Color.BLACK);
 		comboBoxCargo.setFont(new Font("Arial Black", Font.PLAIN, 11));
-		comboBoxCargo.setBounds(189, 13, 151, 20);
+		comboBoxCargo.setBounds(622, 316, 235, 20);
 		Object[] cargos = new Object[8];
 		cargos[0]="";
 		cargos[1]= "Gestor de Ventas";
@@ -429,18 +375,24 @@ public class MenuTienda extends JFrame {
 
 		defaultComboBoxModel = new DefaultComboBoxModel(cargos);
 		comboBoxCargo.setModel(defaultComboBoxModel);
-		panel_2.add(comboBoxCargo);
+		paneIngresarTrabajador.add(comboBoxCargo);
 
-		JLabel lblCargo_1 = new JLabel("Cargo");
-		lblCargo_1.setBounds(12, 3, 87, 34);
-		panel_2.add(lblCargo_1);
-		lblCargo_1.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
+		JLabel label_21 = new JLabel("Cargo");
+		label_21.setForeground(Color.BLACK);
+		label_21.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
+		label_21.setBounds(480, 306, 87, 34);
+		paneIngresarTrabajador.add(label_21);
 
-		// Combo Box relacionado con los niveles escolares
+		JLabel label_25 = new JLabel("Nivel \r\nEscolar");
+		label_25.setForeground(Color.BLACK);
+		label_25.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
+		label_25.setBounds(478, 351, 151, 34);
+		paneIngresarTrabajador.add(label_25);
 
 		final JComboBox comboBoxEscolar = new JComboBox();
+		comboBoxEscolar.setForeground(Color.BLACK);
 		comboBoxEscolar.setFont(new Font("Arial Black", Font.PLAIN, 11));
-		comboBoxEscolar.setBounds(189, 52, 151, 20);
+		comboBoxEscolar.setBounds(622, 361, 235, 20);
 
 		Object[] niveles = new Object[8];
 		niveles[0]="";
@@ -454,30 +406,35 @@ public class MenuTienda extends JFrame {
 
 		defaultComboBoxModel = new DefaultComboBoxModel(niveles);
 		comboBoxEscolar.setModel(defaultComboBoxModel);
-		panel_2.add(comboBoxEscolar);
 
-		JLabel lblNivelEscolar = new JLabel("Nivel \r\nEscolar");
-		lblNivelEscolar.setBounds(12, 42, 151, 34);
-		panel_2.add(lblNivelEscolar);
-		lblNivelEscolar.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
-
-		JLabel lblSalario = new JLabel("Salario");
-		lblSalario.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
-		lblSalario.setBounds(12, 90, 105, 34);
-		panel_2.add(lblSalario);
+		paneIngresarTrabajador.add(comboBoxEscolar);
 
 		final JTextFieldLimitado salarioTrabajador = new JTextFieldLimitado();
-		salarioTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
+		salarioTrabajador.setForeground(Color.BLACK);
 		salarioTrabajador.setLimit(10);
+		salarioTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
 		salarioTrabajador.setFont(new Font("Arial Black", Font.PLAIN, 15));
-		salarioTrabajador.setBounds(189, 99, 151, 20);
-		panel_2.add(salarioTrabajador);
+		salarioTrabajador.setBounds(622, 402, 235, 20);
+		paneIngresarTrabajador.add(salarioTrabajador);
 
+		JLabel label_26 = new JLabel("Salario");
+		label_26.setForeground(Color.BLACK);
+		label_26.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
+		label_26.setBounds(480, 393, 105, 34);
+		paneIngresarTrabajador.add(label_26);
+
+		JLabel lblNewLabel_1 = new JLabel("Ingrese los datos de un trabajador:");
+		lblNewLabel_1.setForeground(Color.BLACK);
+		lblNewLabel_1.setBounds(493, 11, 402, 23);
+		lblNewLabel_1.setFont(new Font("Sitka Text", Font.PLAIN, 20));
+
+		paneIngresarTrabajador.add(lblNewLabel_1);
 
 
 		// Botones del Panel del Trabajador
 
 		JButton btnNewButton = new JButton("Ingresar");
+		btnNewButton.setBounds(1125, 622, 129, 34);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String nombre = nombreTrabajador.getText();
@@ -506,46 +463,13 @@ public class MenuTienda extends JFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("Arial Black", Font.PLAIN, 21));
-		btnNewButton.setBounds(589, 412, 129, 34);
 		paneIngresarTrabajador.add(btnNewButton);
 
-		JButton btnInicializar = new JButton("Inicializar");
-		btnInicializar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(!inicializarTrabajadores){
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		panel_1.setBounds(264, 98, 827, 431);
+		paneIngresarTrabajador.add(panel_1);
 
-					String[][] trabajadores = {
-							{"Gloria", "Santos Rosado", "06030867876", "5000", "Preuniversitario", "Especialista en productos"},
-							{"Jorge Luis", "Valdés Piñeda", "97070758088", "15000", "Universitario", "Especialista en Software"},
-							{"Javier", "Soto Villanueva", "05090160882", "7000", "Universitario", "Asesor de Ventas"},
-							{"Ronal", "Sálazar Hernández", "05101568066", "6500", "Universitario", "Especialista en Software"},
-							{"Aylin", "Vázquez Alvarez", "06061367412", "4000", "Obrero Calificado", "Encargado de inventario"}
-					};
-
-					for (String[] datos : trabajadores) {
-						try {
-
-							tiendaPC.addTrabajador(datos[0], datos[1], datos[2], counterTrabajador,Integer.parseInt(datos[3]), datos[4], datos[5]);
-							Object trabajador [] = {String.valueOf(counterTrabajador),datos[0],datos[1],datos[5],datos[2],datos[4],datos[3]};
-							modelo = (DefaultTableModel) tableTrabajador.getModel();
-							modelo.addRow(trabajador);
-							counterTrabajador++;
-							numIDT.setText(Integer.toString(counterTrabajador));
-
-						} catch (IllegalArgumentException e) {
-							JOptionPane.showMessageDialog(null,"El trabajador llamado: "+ datos[0]+" "+ datos[1]+" ya se habia ingresado, se procederá a ingresar el proximo que no se haya añadido previamente.","Trabajador Ingresado previamente",JOptionPane.ERROR_MESSAGE);
-						}
-					}
-					inicializarTrabajadores = true;
-					JOptionPane.showMessageDialog(null,"Se han inicializado los datos de prueba correctamente.","Datos Inicializados correctamente",JOptionPane.INFORMATION_MESSAGE);	
-				} 
-				else
-					JOptionPane.showMessageDialog(null,"Ya se inicializaron los datos de los trabajadores.","Ya se inicializaron estos datos",JOptionPane.ERROR_MESSAGE);
-			}
-		});
-		btnInicializar.setFont(new Font("Arial Black", Font.PLAIN, 21));
-		btnInicializar.setBounds(47, 412, 172, 34);
-		paneIngresarTrabajador.add(btnInicializar);
 
 
 		final JPanel panelListaTrabajadores = new JPanel();
@@ -553,10 +477,11 @@ public class MenuTienda extends JFrame {
 		panelListaTrabajadores.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 55, 756, 370);
+		scrollPane.setBounds(10, 55, 1240, 513);
 		panelListaTrabajadores.add(scrollPane);
 
 		tableTrabajador = new JTable();
+		tableTrabajador.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 12));
 
 		tableTrabajador.setModel(new DefaultTableModel(
@@ -586,12 +511,23 @@ public class MenuTienda extends JFrame {
 		tableTrabajador.getColumnModel().getColumn(5).setPreferredWidth(84);
 		tableTrabajador.getColumnModel().getColumn(6).setResizable(false);
 		tableTrabajador.getColumnModel().getColumn(6).setPreferredWidth(61);
+		tableTrabajador.getTableHeader().setReorderingAllowed(false);
 		scrollPane.setViewportView(tableTrabajador);
 
 		JLabel lblListadoDeTrabajadores = new JLabel("Listado de Trabajadores");
 		lblListadoDeTrabajadores.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
-		lblListadoDeTrabajadores.setBounds(265, 6, 256, 38);
+		lblListadoDeTrabajadores.setBounds(465, 6, 256, 38);
 		panelListaTrabajadores.add(lblListadoDeTrabajadores);
+
+		JButton btnEditar = new JButton("Editar");
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null,"Aún en desarrollo.","WIP",JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+
+		btnEditar.setBounds(10, 608, 89, 23);
+		panelListaTrabajadores.add(btnEditar);
 
 		// Componentes de las RAM
 		final JPanel panelRAM = new JPanel();
@@ -600,7 +536,7 @@ public class MenuTienda extends JFrame {
 		panelRAM.setLayout(null);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(35, 48, 690, 317);
+		panel_3.setBounds(387, 151, 690, 317);
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_3.setLayout(null);
 		panelRAM.add(panel_3);
@@ -703,43 +639,8 @@ public class MenuTienda extends JFrame {
 		lblGb.setBounds(349, 64, 51, 34);
 		panel_3.add(lblGb);
 
-		JButton button_1 = new JButton("Inicializar");
-		button_1.setBounds(35, 394, 172, 46);
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(!inicializarRAMS){
-
-					String[][] rams = {
-							{"5", "SM5-16G", "Samsung", "16", "DDR5", "60"},
-							{"7", "HX4-32G", "Hynyx", "32", "DDR4", "45"},
-							{"10", "TS5-64GB", "Toshiba", "64", "DDR5", "80"},
-							{"20", "RZB-128G", "Razor Blade", "128", "DDR5", "120"},
-							{"15", "MCN-8EB", "Micron", "8", "DDR2", "10"}
-					};
-
-					for (String[] datos : rams) {
-						try {
-							tiendaPC.addRAM(Integer.parseInt(datos[0]), datos[1], datos[2], Double.parseDouble(datos[3]),datos[4],Double.parseDouble(datos[5]));
-							RAM ram = new RAM(Integer.parseInt(datos[0]), datos[1], datos[2], Double.parseDouble(datos[3]),datos[4],Double.parseDouble(datos[5]));
-							modelo = (DefaultTableModel) tableComponentes.getModel();
-							Object ramInfo [] = {ram.getClass().getSimpleName(),datos[2],datos[1],ram.calcularPrecio(),datos[0]};
-							modelo.addRow(ramInfo);
-						} catch (IllegalArgumentException e) {
-							JOptionPane.showMessageDialog(null,"La ram con el número de serie: "+ datos[1]+" ya se habia ingresado, se procederá a ingresar la próxima que no se haya añadido previamente.","RAM Ingresada previamente",JOptionPane.ERROR_MESSAGE);
-						}
-					}
-					inicializarRAMS = true;
-					JOptionPane.showMessageDialog(null,"Se han inicializado los datos de prueba correctamente.","Datos Inicializados correctamente",JOptionPane.INFORMATION_MESSAGE);	
-				} 
-				else
-					JOptionPane.showMessageDialog(null,"Ya se inicializaron los datos de las RAMS.","Ya se inicializaron estos datos",JOptionPane.ERROR_MESSAGE);
-			}
-		});
-		panelRAM.add(button_1);
-		button_1.setFont(new Font("Arial Black", Font.PLAIN, 21));
-
 		JButton btnAadir = new JButton("A\u00F1adir");
-		btnAadir.setBounds(580, 401, 145, 39);
+		btnAadir.setBounds(1125, 619, 145, 39);
 		btnAadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String marca = textMarcaRAM.getText();
@@ -752,9 +653,6 @@ public class MenuTienda extends JFrame {
 					tiendaPC.addRAM(cantidad, id, marca, capacidad, tipo, precioBase);
 					RAM ram = new RAM(cantidad, id, marca, capacidad, tipo, precioBase);
 					lblPrecioRAM.setText(String.valueOf(ram.calcularPrecio())+"$");
-					modelo = (DefaultTableModel) tableComponentes.getModel();
-					Object ramInfo [] = {ram.getClass().getSimpleName(),marca,id,ram.calcularPrecio(),cantidad};
-					modelo.addRow(ramInfo);
 					JOptionPane.showMessageDialog(null,"Los datos de esta RAM han sido ingresados satisfactoriamente a la Tienda.Se ha actualizado el precio de la RAM.","Ingreso Exitoso",JOptionPane.INFORMATION_MESSAGE);
 
 				}
@@ -770,7 +668,7 @@ public class MenuTienda extends JFrame {
 
 		JLabel lblDelModeloDe = new JLabel("Del modelo de Memoria RAM que desea a\u00F1adir ingrese:");
 		lblDelModeloDe.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 18));
-		lblDelModeloDe.setBounds(111, 4, 541, 31);
+		lblDelModeloDe.setBounds(462, 11, 541, 31);
 		panelRAM.add(lblDelModeloDe);
 
 		final JPanel panelListadoComponentes = new JPanel();
@@ -779,10 +677,11 @@ public class MenuTienda extends JFrame {
 		panelListadoComponentes.setLayout(null);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 49, 746, 390);
+		scrollPane_1.setBounds(10, 49, 1246, 523);
 		panelListadoComponentes.add(scrollPane_1);
 
 		tableComponentes = new JTable();
+		tableComponentes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableComponentes.setModel(new DefaultTableModel(
 				new Object[][] {
 				},
@@ -807,12 +706,22 @@ public class MenuTienda extends JFrame {
 		tableComponentes.getColumnModel().getColumn(3).setPreferredWidth(55);
 		tableComponentes.getColumnModel().getColumn(4).setResizable(false);
 		tableComponentes.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		tableComponentes.getTableHeader().setReorderingAllowed(false);
 		scrollPane_1.setViewportView(tableComponentes);
 
 		JLabel lblNewLabel_2 = new JLabel("Listado de Componentes Disponibles");
 		lblNewLabel_2.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
-		lblNewLabel_2.setBounds(200, 13, 400, 38);
+		lblNewLabel_2.setBounds(401, 11, 400, 38);
 		panelListadoComponentes.add(lblNewLabel_2);
+
+		JButton btnEditar_1 = new JButton("Editar");
+		btnEditar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null,"Aún en desarrollo.","WIP",JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		btnEditar_1.setBounds(10, 611, 89, 23);
+		panelListadoComponentes.add(btnEditar_1);
 
 		final JPanel panelCPU = new JPanel();
 		panelCPU.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -820,7 +729,7 @@ public class MenuTienda extends JFrame {
 		panelCPU.setLayout(null);
 
 		JPanel panel_7 = new JPanel();
-		panel_7.setBounds(12, 47, 729, 356);
+		panel_7.setBounds(302, 131, 729, 356);
 		panel_7.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panelCPU.add(panel_7);
 		panel_7.setLayout(null);
@@ -922,40 +831,6 @@ public class MenuTienda extends JFrame {
 		spinnerVelocidadCPU.setBounds(267, 204, 81, 27);
 		panel_7.add(spinnerVelocidadCPU);
 
-		JButton buttonInicializarCPU = new JButton("Inicializar");
-		buttonInicializarCPU.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(!inicializarCPU){
-					String[][] cpus = {
-							{"5", "Intel-G4400", "Intel", "Core i5-1135G7", "LGA", "4.2","150"},
-							{"3", "AMD-Ryzen5600X", "AMD", "Ryzen 5 5600X", "PGA", "4.6", "230"},
-							{"7", "Intel-i7-9700K", "Intel", "Core i7-9700K", "LGA", "4.9", "350"},
-							{"2", "Threadripper3990X", "AMD", "Threadripper 3990X", "BGA", "4.3", "1500"},
-							{"4", "Intel-XeonE5-2680", "Intel", "Xeon E5-2680 v4", "LGA", "3.3", "500"}
-					};
-
-					for (String[] datos : cpus) {
-						try {
-							tiendaPC.addCPU(Integer.parseInt(datos[0]),datos[1],datos[2],datos[3],datos[4],Double.parseDouble(datos[5]),Double.parseDouble(datos[6]));
-							CPU cpu = new CPU(Integer.parseInt(datos[0]),datos[1],datos[2],datos[3],datos[4],Double.parseDouble(datos[5]),Double.parseDouble(datos[6]));
-							modelo = (DefaultTableModel)tableComponentes.getModel();
-							Object cpuInfo [] = {cpu.getClass().getSimpleName(),datos[2],datos[1],cpu.calcularPrecio(),datos[0]};
-							modelo.addRow(cpuInfo);
-						} catch (IllegalArgumentException e) {
-							JOptionPane.showMessageDialog(null,"El procesador con el número de serie: "+ datos[1]+" ya se habia ingresado, se procederá a ingresar el próximo que no se haya añadido previamente.","CPU Ingresada previamente",JOptionPane.ERROR_MESSAGE);
-						}
-					}
-					inicializarCPU = true;
-					JOptionPane.showMessageDialog(null,"Se han inicializado los datos de prueba correctamente.","Datos Inicializados correctamente",JOptionPane.INFORMATION_MESSAGE);	
-				} 
-				else
-					JOptionPane.showMessageDialog(null,"Ya se inicializaron los datos de los procesadores previamente.","Ya se inicializaron estos datos",JOptionPane.ERROR_MESSAGE);
-			}
-		});
-		buttonInicializarCPU.setBounds(22, 416, 172, 39);
-		panelCPU.add(buttonInicializarCPU);
-		buttonInicializarCPU.setFont(new Font("Arial Black", Font.PLAIN, 21));
-
 		JButton buttonIngresarCPU = new JButton("A\u00F1adir");
 		buttonIngresarCPU.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -970,9 +845,6 @@ public class MenuTienda extends JFrame {
 					tiendaPC.addCPU(cantidad,id,marca,modelocpu,socket,velocidad,precioBase);
 					CPU cpu = new CPU(cantidad,id,marca,modelocpu,socket,velocidad,precioBase);
 					precioCPU.setText(String.valueOf(cpu.calcularPrecio())+"$");
-					modelo = (DefaultTableModel) tableComponentes.getModel();
-					Object cpuInfo [] = {cpu.getClass().getSimpleName(),marca,id,cpu.calcularPrecio(),cantidad};
-					modelo.addRow(cpuInfo);
 					JOptionPane.showMessageDialog(null,"Los datos de este procesador han sido ingresados satisfactoriamente a la Tienda.Se ha actualizado el precio del Procesador.","Ingreso Exitoso",JOptionPane.INFORMATION_MESSAGE);
 
 				}
@@ -981,13 +853,13 @@ public class MenuTienda extends JFrame {
 				}
 			}
 		});
-		buttonIngresarCPU.setBounds(612, 416, 129, 39);
+		buttonIngresarCPU.setBounds(1126, 619, 129, 39);
 		panelCPU.add(buttonIngresarCPU);
 		buttonIngresarCPU.setFont(new Font("Arial Black", Font.PLAIN, 21));
 
 		JLabel lblDelModeloDe_1 = new JLabel("Del modelo de microprocesador que desea a\u00F1adir ingrese:");
 		lblDelModeloDe_1.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 18));
-		lblDelModeloDe_1.setBounds(115, 3, 541, 31);
+		lblDelModeloDe_1.setBounds(405, 11, 541, 31);
 		panelCPU.add(lblDelModeloDe_1);
 
 		final JPanel panelHDD = new JPanel();
@@ -997,7 +869,7 @@ public class MenuTienda extends JFrame {
 
 		JPanel panel_9 = new JPanel();
 		panel_9.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panel_9.setBounds(22, 44, 723, 359);
+		panel_9.setBounds(315, 125, 723, 359);
 		panelHDD.add(panel_9);
 		panel_9.setLayout(null);
 
@@ -1102,40 +974,6 @@ public class MenuTienda extends JFrame {
 		label_24.setBounds(364, 149, 51, 34);
 		label_24.setFont(new Font("Arial Black", Font.BOLD, 23));
 		panel_9.add(label_24);
-		JButton buttoInicializarHDD = new JButton("Inicializar");
-		buttoInicializarHDD.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(!inicializarHDD){
-					String[][] hdds = {
-							{"5", "SM5-512G", "Samsung", "SM512HDD", "512", "SATA-3","50"},
-							{"7", "SM7-256G", "Samsung", "SM245HDD", "256", "SATA-2","45"},
-							{"12", "TS-128G", "Toshiba", "TS128HDD", "128", "SATA","30"},
-							{"10", "WD-1TB", "Western Digital", "WD1024HDD", "1024", "SATA-3","90"},
-							{"15", "HX5-4TB", "Hynyx", "HX4TBHDD", "4096", "SATA-3","120"}
-					};
-
-					for (String[] datos : hdds) {
-						try {
-							tiendaPC.addHDD(Integer.parseInt(datos[0]), datos[1], datos[2],datos[3],Double.parseDouble(datos[4]),datos[5],Double.parseDouble(datos[6]));
-							HDD hdd = new HDD(Integer.parseInt(datos[0]), datos[1], datos[2],datos[3],Double.parseDouble(datos[4]),datos[5],Double.parseDouble(datos[6]));
-							modelo = (DefaultTableModel)tableComponentes.getModel();
-							Object hddInfo [] = {hdd.getClass().getSimpleName(),datos[2],datos[1],hdd.calcularPrecio(),datos[0]};
-							modelo.addRow(hddInfo);
-						} catch (IllegalArgumentException e) {
-							JOptionPane.showMessageDialog(null,"El disco duro con el número de serie: "+ datos[1]+" ya se habia ingresado, se procederá a ingresar el próximo que no se haya añadido previamente.","HDD Ingresado previamente",JOptionPane.ERROR_MESSAGE);
-						}
-					}
-					inicializarHDD = true;
-					JOptionPane.showMessageDialog(null,"Se han inicializado los datos de prueba correctamente.","Datos Inicializados correctamente",JOptionPane.INFORMATION_MESSAGE);	
-				} 
-				else
-					JOptionPane.showMessageDialog(null,"Ya se inicializaron los datos de los discos duros.","Ya se inicializaron estos datos",JOptionPane.ERROR_MESSAGE);
-
-			}
-		});
-		buttoInicializarHDD.setBounds(22, 416, 172, 34);
-		panelHDD.add(buttoInicializarHDD);
-		buttoInicializarHDD.setFont(new Font("Arial Black", Font.PLAIN, 21));
 
 		JButton buttonIngresarHDD = new JButton("A\u00F1adir");
 		buttonIngresarHDD.addActionListener(new ActionListener() {
@@ -1151,9 +989,6 @@ public class MenuTienda extends JFrame {
 					tiendaPC.addHDD(cantidad,id,marca,modeloHdd,capacidad,tipo,precioBase);
 					HDD hdd = new HDD(cantidad,id,marca,modeloHdd,capacidad,tipo,precioBase);
 					labelPrecioHDD.setText(String.valueOf(hdd.calcularPrecio())+"$");
-					modelo = (DefaultTableModel) tableComponentes.getModel();
-					Object hddInfo [] = {hdd.getClass().getSimpleName(),marca,id,hdd.calcularPrecio(),cantidad};
-					modelo.addRow(hddInfo);
 					JOptionPane.showMessageDialog(null,"Los datos de este disco duro han sido ingresados satisfactoriamente a la Tienda.Se ha actualizado el precio del disco duro.","Ingreso Exitoso",JOptionPane.INFORMATION_MESSAGE);
 
 				}
@@ -1162,14 +997,56 @@ public class MenuTienda extends JFrame {
 				}
 			}
 		});
-		buttonIngresarHDD.setBounds(613, 416, 129, 34);
+		buttonIngresarHDD.setBounds(1141, 622, 129, 34);
 		panelHDD.add(buttonIngresarHDD);
 		buttonIngresarHDD.setFont(new Font("Arial Black", Font.PLAIN, 21));
 
 		JLabel lblDelModeloDe_2 = new JLabel("Del modelo de disco duro que desea a\u00F1adir ingrese:");
 		lblDelModeloDe_2.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 18));
-		lblDelModeloDe_2.setBounds(143, 0, 484, 31);
+		lblDelModeloDe_2.setBounds(421, 11, 484, 31);
 		panelHDD.add(lblDelModeloDe_2);
+
+		final JPanel panelListadoPC = new JPanel();
+		panel.add(panelListadoPC, "name_52437176500000");
+		panelListadoPC.setLayout(null);
+
+		JLabel lblListadoDeComputadoras = new JLabel("Listado de Computadoras Conformadas");
+		lblListadoDeComputadoras.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
+		lblListadoDeComputadoras.setBounds(413, 11, 400, 38);
+		panelListadoPC.add(lblListadoDeComputadoras);
+
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(10, 70, 1241, 538);
+		panelListadoPC.add(scrollPane_2);
+
+		tablePC = new JTable();
+		tablePC.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tablePC.setModel(new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+						"ID", "Motherboard", "CPU", "Memoria RAM (GB)", "Almacenamiento(GB)", "Precio"
+				}
+				) {
+			boolean[] columnEditables = new boolean[] {
+					false, false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		tablePC.getColumnModel().getColumn(0).setResizable(false);
+		tablePC.getColumnModel().getColumn(1).setResizable(false);
+		tablePC.getColumnModel().getColumn(1).setPreferredWidth(145);
+		tablePC.getColumnModel().getColumn(2).setResizable(false);
+		tablePC.getColumnModel().getColumn(2).setPreferredWidth(114);
+		tablePC.getColumnModel().getColumn(3).setResizable(false);
+		tablePC.getColumnModel().getColumn(3).setPreferredWidth(108);
+		tablePC.getColumnModel().getColumn(4).setResizable(false);
+		tablePC.getColumnModel().getColumn(4).setPreferredWidth(120);
+		tablePC.getColumnModel().getColumn(5).setResizable(false);
+		tablePC.getTableHeader().setReorderingAllowed(false);
+		scrollPane_2.setViewportView(tablePC);
 
 		JMenuItem mntmAadirTrabajador = new JMenuItem("A\u00F1adir Trabajador");
 		mntmAadirTrabajador.addActionListener(new ActionListener() {
@@ -1182,12 +1059,14 @@ public class MenuTienda extends JFrame {
 				panelListadoComponentes.setVisible(false);
 				panelHDD.setVisible(false);
 				panelCPU.setVisible(false);
+				panelListadoPC.setVisible(false);
 				apellidosTrabajador.setText("");
 				nombreTrabajador.setText("");
 				idTrabajador.setText("");
 				comboBoxCargo.setSelectedIndex(0);
 				comboBoxEscolar.setSelectedIndex(0);
 				salarioTrabajador.setText("");
+				numIDT.setText(String.valueOf(counterTrabajador));
 
 			}
 		});
@@ -1207,6 +1086,7 @@ public class MenuTienda extends JFrame {
 				panelListadoComponentes.setVisible(false);
 				panelHDD.setVisible(false);
 				panelCPU.setVisible(false);
+				panelListadoPC.setVisible(false);
 			}
 		});
 		mnAadirComponentes.add(mntmMotherboard);
@@ -1222,6 +1102,7 @@ public class MenuTienda extends JFrame {
 				panelListadoComponentes.setVisible(false);
 				panelHDD.setVisible(false);
 				panelCPU.setVisible(false);
+				panelListadoPC.setVisible(false);
 			}
 		});
 		mnAadirComponentes.add(mntmRam);
@@ -1237,6 +1118,7 @@ public class MenuTienda extends JFrame {
 				panelListadoComponentes.setVisible(false);
 				panelHDD.setVisible(true);
 				panelCPU.setVisible(false);
+				panelListadoPC.setVisible(false);
 			}
 		});
 		mnAadirComponentes.add(mntmDiscosDuros);
@@ -1251,21 +1133,39 @@ public class MenuTienda extends JFrame {
 				panelRAM.setVisible(false);	
 				panelListadoComponentes.setVisible(false);
 				panelHDD.setVisible(false);
-				panelCPU.setVisible(true);	
+				panelCPU.setVisible(true);
+				panelListadoPC.setVisible(false);
 			}
 		});
 		mnAadirComponentes.add(mntmProcesadorcpu);
 
 		JMenuItem mntmCrearPc = new JMenuItem("Crear PC");
+		mntmCrearPc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(tiendaPC.buscarRAMS()!= 0 && tiendaPC.buscarHDDS()!= 0 && tiendaPC.buscarCPUS() != 0 && tiendaPC.buscarMotherboards() != 0 ) {
+					try {
+						crearPC dialog = new crearPC(tiendaPC ,MenuTienda.this);
+						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+						dialog.setLocationRelativeTo(null);
+						dialog.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				} else
+					JOptionPane.showMessageDialog(null,"Debe haber al menos un componente de cada tipo para formar una pc.","No se ha ingresado cada tipo de componente",JOptionPane.ERROR_MESSAGE);
+
+			}
+		});
 		mnGerencia.add(mntmCrearPc);
 
 		JMenu mnNewMenu = new JMenu("Listados");
 		menuBar.add(mnNewMenu);
 
-		JMenuItem mntmMostrarListado = new JMenuItem("Mostrar Listado de Trabajadores");
+		final JMenuItem mntmMostrarListado = new JMenuItem("Mostrar Listado de Trabajadores");
 		mntmMostrarListado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(tiendaPC.getTrabajadores().size() != 0){
+					// mostrar panel de la tabla
 					panelInicio.setVisible(false);
 					paneIngresarTrabajador.setVisible(false);
 					panelListaTrabajadores.setVisible(true);
@@ -1274,6 +1174,16 @@ public class MenuTienda extends JFrame {
 					panelListadoComponentes.setVisible(false);
 					panelHDD.setVisible(false);
 					panelCPU.setVisible(false);
+					panelListadoPC.setVisible(false);
+
+					// añadir trabajadores a la tabla
+					modelo = (DefaultTableModel) tableTrabajador.getModel();
+					modelo.setRowCount(0);
+					for(Trabajador t : tiendaPC.getTrabajadores()){
+						Object trabajador [] = {t.getNumeroTrabajador(),t.getNombre(),t.getApellidos(),t.getCargo(),t.getId(),t.getNivelEscolar(),t.getSalario()};
+						modelo.addRow(trabajador);
+					}
+
 				}
 				else
 					JOptionPane.showMessageDialog(null,"No hay ningún trabajador agregado a la tienda.","No se ha ingresado ningún trabajador",JOptionPane.INFORMATION_MESSAGE);
@@ -1281,10 +1191,11 @@ public class MenuTienda extends JFrame {
 		});
 		mnNewMenu.add(mntmMostrarListado);
 
-		JMenuItem mntmMostrarListadoDe = new JMenuItem("Mostrar Listado de Componentes");
+		final JMenuItem mntmMostrarListadoDe = new JMenuItem("Mostrar Listado de Componentes");
 		mntmMostrarListadoDe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(tiendaPC.getComponentes().size() != 0){
+					// Mostrar panel de la tabla
 					panelInicio.setVisible(false);
 					paneIngresarTrabajador.setVisible(false);
 					panelListaTrabajadores.setVisible(false);
@@ -1293,6 +1204,15 @@ public class MenuTienda extends JFrame {
 					panelListadoComponentes.setVisible(true);
 					panelHDD.setVisible(false);
 					panelCPU.setVisible(false);
+					panelListadoPC.setVisible(false);
+
+					// rellenar tabla
+					modelo = (DefaultTableModel) tableComponentes.getModel();
+					modelo.setRowCount(0);
+					for(Componente c : tiendaPC.getComponentes()){
+						Object Info [] = {c.getClass().getSimpleName(),c.getMarca(),c.getNumeroSerie(),c.calcularPrecio(),c.getCantidadDisponible()};
+						modelo.addRow(Info);
+					}
 				}
 				else
 					JOptionPane.showMessageDialog(null,"No hay ningún componente agregado a la tienda.","No se ha ingresado ningún componente",JOptionPane.INFORMATION_MESSAGE);
@@ -1300,7 +1220,33 @@ public class MenuTienda extends JFrame {
 		});
 		mnNewMenu.add(mntmMostrarListadoDe);
 
-		JMenuItem mntmMostrarListadoDe_1 = new JMenuItem("Mostrar Listado de PC conformadas");
+		final JMenuItem mntmMostrarListadoDe_1 = new JMenuItem("Mostrar Listado de PC conformadas");
+		mntmMostrarListadoDe_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(tiendaPC.getComputadoras().size() !=0){
+					panelInicio.setVisible(false);
+					paneIngresarTrabajador.setVisible(false);
+					panelListaTrabajadores.setVisible(false);
+					panelMotherboard.setVisible(false);
+					panelRAM.setVisible(false);	
+					panelListadoComponentes.setVisible(false);
+					panelHDD.setVisible(false);
+					panelCPU.setVisible(false);
+					panelListadoPC.setVisible(true);
+					// rellenar tabla
+					modelo = (DefaultTableModel)tablePC.getModel();
+					modelo.setRowCount(0);
+					for(PC p : tiendaPC.getComputadoras()){	
+						Object [] info = {p.getId(), p.getMotherboardPC().getModelo(), p.getCpuPC().getModelo(), p.memoriaTotal(), p.almacenamientoTotal(), p.calcularPrecioTotal()};
+						modelo.addRow(info);
+					}
+				}
+				else
+					JOptionPane.showMessageDialog(null,"No hay ninguna computadora agregada a la tienda.","No se ha ingresado ninguna computadora",JOptionPane.INFORMATION_MESSAGE);
+
+
+			}
+		});
 		mnNewMenu.add(mntmMostrarListadoDe_1);
 
 		JMenu mnReportes = new JMenu("Reportes");
@@ -1312,8 +1258,9 @@ public class MenuTienda extends JFrame {
 				if(tiendaPC.getTrabajadores().size() != 0){
 					if (dialogreporteTrabajador == null || !dialogreporteTrabajador.isShowing()) {
 						try {
-							dialogreporteTrabajador = new reporteTrabajador(tiendaPC);
+							dialogreporteTrabajador = new reporteTrabajador(tiendaPC,MenuTienda.this);
 							dialogreporteTrabajador.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+							dialogreporteTrabajador.setLocationRelativeTo(null);
 							dialogreporteTrabajador.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -1334,9 +1281,11 @@ public class MenuTienda extends JFrame {
 				if(tiendaPC.getComponentes().size() != 0){
 					if (dialogReporteComponentes == null || !dialogReporteComponentes.isShowing()) {
 						try {
-							dialogReporteComponentes = new reporteComponentes(tiendaPC);
+							dialogReporteComponentes = new reporteComponentes(tiendaPC, MenuTienda.this);
 							dialogReporteComponentes.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+							dialogReporteComponentes.setLocationRelativeTo(null);
 							dialogReporteComponentes.setVisible(true);
+
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -1350,23 +1299,36 @@ public class MenuTienda extends JFrame {
 		mnReportes.add(mntmReportesDeComponentes);
 
 		JMenuItem mntmReporteDeComputadoras = new JMenuItem("Reporte de Computadoras seg\u00FAn su precio.");
+		mntmReporteDeComputadoras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(tiendaPC.getComputadoras().size()!=0){
+
+					try {
+						reportesPC dialog = new reportesPC(MenuTienda.this, tiendaPC);
+						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+						dialog.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				else
+					JOptionPane.showMessageDialog(null,"No hay computadora agregada a la tienda.","No se ha ingresado ninguna computadora",JOptionPane.INFORMATION_MESSAGE);	
+			}
+		});
 		mnReportes.add(mntmReporteDeComputadoras);
 
 		JMenuItem mntmReporteDeTarjetas = new JMenuItem("Reporte de tarjetas RAM seg\u00FAn su velocidad y tipo de Memoria.");
 		mntmReporteDeTarjetas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(tiendaPC.buscarRAMS()!= 0){
-					if (dialogReportesRAM == null || !dialogReportesRAM.isShowing()) {
-						try {
-							dialogReportesRAM = new reportesRAM(tiendaPC);
-							dialogReportesRAM.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-							dialogReportesRAM.setVisible(true);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+					try {
+						dialogReportesRAM = new reportesRAM(tiendaPC, MenuTienda.this);
+						dialogReportesRAM.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+						dialogReportesRAM.setLocationRelativeTo(null);
+						dialogReportesRAM.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
-					else
-						JOptionPane.showMessageDialog(null,"Ya tiene abierta esta ventana.","Error",JOptionPane.ERROR_MESSAGE);	
 				} else
 					JOptionPane.showMessageDialog(null,"No hay ninguna memoria RAM agregada a la tienda.","No se ha ingresado ninguna memoria ram",JOptionPane.INFORMATION_MESSAGE);
 			}
@@ -1379,17 +1341,15 @@ public class MenuTienda extends JFrame {
 		JMenuItem mntmDatosDeLa = new JMenuItem("Datos de la Tienda");
 		mntmDatosDeLa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (dialogInfoTienda == null || !dialogInfoTienda.isShowing()) {
-					try {
-						dialogInfoTienda = new InfoTienda(tiendaPC);
-						dialogInfoTienda.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-						dialogInfoTienda.setVisible(true);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+				try {
+					dialogInfoTienda = new InfoTienda(tiendaPC, MenuTienda.this);
+					dialogInfoTienda.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialogInfoTienda.setLocationRelativeTo(null);
+					dialogInfoTienda.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-				else
-					JOptionPane.showMessageDialog(null,"Ya tiene abierta esta ventana.","Error",JOptionPane.ERROR_MESSAGE);	
+
 			}
 
 		});
@@ -1403,8 +1363,41 @@ public class MenuTienda extends JFrame {
 		});
 		mnInformacin.add(mntmInformacionDeLos);
 
-		JMenuItem mntmInicio = new JMenuItem("Volver al Inicio");
+		final JMenuItem mntmInicio = new JMenuItem("Volver al Inicio");
 		mnInformacin.add(mntmInicio);
+
+		JMenuItem mntmModificarInformacinDe = new JMenuItem("Modificar Informaci\u00F3n de la tienda");
+		mntmModificarInformacinDe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					CambiarDatos dialog = new CambiarDatos(MenuTienda.this, tiendaPC);
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		mnInformacin.add(mntmModificarInformacinDe);
+
+		JMenuItem mntmCerrarSesin = new JMenuItem("Cerrar Sesi\u00F3n");
+		mntmCerrarSesin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							Login dialog = new Login(tiendaPC);
+							dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+							dialog.setVisible(true);
+							dispose();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		mnInformacin.add(mntmCerrarSesin);
 		mntmInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				panelInicio.setVisible(true);
@@ -1415,9 +1408,87 @@ public class MenuTienda extends JFrame {
 				panelListadoComponentes.setVisible(false);
 				panelHDD.setVisible(false);
 				panelCPU.setVisible(false);
+				panelListadoPC.setVisible(false);
 			}
 		});
 
-	}
+		JButton btnBorrar = new JButton("Borrar");
+		btnBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(tableTrabajador.getSelectedRows().length == 1){
+					int fila = tableTrabajador.getSelectedRow();
+					if(fila != 0){
+						String id = (String)tableTrabajador.getValueAt(fila , 4);
+						int pos = tiendaPC.posTrabajadorPorID(id);
+						JOptionPane.showMessageDialog(null,"Se ha borrado el trabajador " +tiendaPC.getTrabajadores().get(pos).getNombre()+" correctamente","Trabajador eliminado", JOptionPane.INFORMATION_MESSAGE);
+						tiendaPC.getTrabajadores().remove(pos);
+						mntmMostrarListado.doClick();
+					}
+					else
+						JOptionPane.showMessageDialog(null,"No se puede eliminar el gerente","Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else
+					JOptionPane.showMessageDialog(null,"Seleccione a un trabajador de la lista","No selecciono ninguno", JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		btnBorrar.setBounds(1161, 608, 89, 23);
+		panelListaTrabajadores.add(btnBorrar);
 
+		JButton btnBorrar_1 = new JButton("Borrar");
+		btnBorrar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(tableComponentes.getSelectedRows().length == 1){
+					int fila = tableComponentes.getSelectedRow();
+					String tipo = (String)tableComponentes.getValueAt(fila , 0);
+					String id = (String)tableComponentes.getValueAt(fila , 2);
+					int pos = -1;
+					if(tipo.equals("RAM"))
+						pos = tiendaPC.posRAMPorID(id);
+					if(tipo.equals("CPU"))
+						pos = tiendaPC.posCPUPorID(id);
+					if(tipo.equals("HDD"))
+						pos = tiendaPC.posHDDPorID(id);
+					if(tipo.equals("Motherboard"))
+						pos = tiendaPC.posMotherboardPorID(id);
+					JOptionPane.showMessageDialog(null,"Se ha eliminado el componente " +tiendaPC.getComponentes().get(pos).getNumeroSerie()+" correctamente","Componente eliminado", JOptionPane.INFORMATION_MESSAGE);
+					tiendaPC.getComponentes().remove(pos);
+					if(tableComponentes.getRowCount()==1)
+						mntmInicio.doClick();
+					else
+						mntmMostrarListadoDe.doClick();
+
+				}
+				else
+					JOptionPane.showMessageDialog(null,"Seleccione un Componente de la lista","No selecciono ninguno", JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		btnBorrar_1.setBounds(1167, 611, 89, 23);
+		panelListadoComponentes.add(btnBorrar_1);
+
+
+		JButton btnNewButton_1 = new JButton("Borrar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(tablePC.getSelectedRows().length == 1){
+					int fila = tablePC.getSelectedRow();
+					String id = (String)tablePC.getValueAt(fila , 0);
+					int pos = tiendaPC.posPCPorID(id);
+					JOptionPane.showMessageDialog(null,"Se ha eliminado la computadora con id: " +tiendaPC.getComputadoras().get(pos).getId()+" correctamente","PC eliminada", JOptionPane.INFORMATION_MESSAGE);
+					tiendaPC.getComputadoras().remove(pos);
+					if(tablePC.getRowCount()==1)
+						mntmInicio.doClick();
+					else
+						mntmMostrarListadoDe_1.doClick();
+
+				}
+				else
+					JOptionPane.showMessageDialog(null,"Seleccione una computadora de la lista","No selecciono ninguno", JOptionPane.ERROR_MESSAGE);
+
+			}
+		});
+		btnNewButton_1.setBounds(10, 619, 89, 23);
+		panelListadoPC.add(btnNewButton_1);
+
+
+	}
 }
