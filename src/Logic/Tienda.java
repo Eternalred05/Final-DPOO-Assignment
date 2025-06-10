@@ -28,7 +28,7 @@ public class Tienda {
 		if(!nombre.isEmpty())
 			this.nombre = nombre;
 		else
-			throw new IllegalArgumentException("El nombre de la tienda est· vacÌo.");
+			throw new IllegalArgumentException("El nombre de la tienda est√° vac√≠o.");
 	}
 
 	public String getId() {
@@ -39,7 +39,7 @@ public class Tienda {
 		if(!id.isEmpty())
 			this.id = id;
 		else
-			throw new IllegalArgumentException("El ID de la tienda est· vacÌo.");
+			throw new IllegalArgumentException("El ID de la tienda est√° vac√≠o.");
 	}
 
 	public String getDireccion() {
@@ -50,7 +50,7 @@ public class Tienda {
 		if(!direccion.isEmpty())
 			this.direccion = direccion;
 		else
-			throw new IllegalArgumentException("La direcciÛn de la tienda est· vacÌa.");
+			throw new IllegalArgumentException("La direcci√≥n de la tienda est√° vac√≠a.");
 	}
 
 	public String getTelefono() {
@@ -68,13 +68,13 @@ public class Tienda {
 				if(!letter)
 					this.telefono = telefono;
 				else
-					throw new IllegalArgumentException("No puede contener letras el telÈfono.");
+					throw new IllegalArgumentException("No puede contener letras el tel√©fono.");
 			}
 			else
-				throw new IllegalArgumentException("El telÈfono debe tener 8 dÌgitos.");
+				throw new IllegalArgumentException("El tel√©fono debe tener 8 d√≠gitos.");
 		}
 		else
-			throw new IllegalArgumentException("El telÈfono de la tienda est· vacÌo.");
+			throw new IllegalArgumentException("El tel√©fono de la tienda est√° vac√≠o.");
 	}
 
 	public Gerente getGerente() {
@@ -85,14 +85,14 @@ public class Tienda {
 		if(gerente != null)
 			this.gerente = gerente;
 		else
-			throw new IllegalArgumentException("No puede estar vacÌo el gerente.");
+			throw new IllegalArgumentException("No puede estar vac√≠o el gerente.");
 	}
 
 	public void addTrabajador(String nombre, String apellidos, String id, int numeroTrabajador,double salario, String nivelEscolar, String cargo) {
 		Trabajador t = new Trabajador (nombre,apellidos,id,numeroTrabajador,salario,nivelEscolar,cargo);		
 		for(Trabajador a : trabajadores){
 			if(a.getId().equals(t.getId()))
-				throw new IllegalArgumentException("Ya se ingresÛ un trabajador con este id.");
+				throw new IllegalArgumentException("Ya se ingres√≥ un trabajador con este id.");
 		}
 		trabajadores.add(t);
 	}
@@ -109,7 +109,7 @@ public class Tienda {
 		for(Componente c : componentes){
 			if(c instanceof RAM){
 				if(c.getNumeroSerie().toLowerCase().equals(ram.numeroSerie.toLowerCase()))
-					throw new IllegalArgumentException("Ya se ingresÛ una RAM con este ID.");
+					throw new IllegalArgumentException("Ya se ingres√≥ una RAM con este ID.");
 
 			}
 		}
@@ -120,7 +120,7 @@ public class Tienda {
 		for(Componente c : componentes){
 			if(c instanceof Motherboard){
 				if(c.getNumeroSerie().toLowerCase().equals(m.numeroSerie.toLowerCase()))
-					throw new IllegalArgumentException("Ya se ingresÛ una Motherboard con este ID.");
+					throw new IllegalArgumentException("Ya se ingres√≥ una Motherboard con este ID.");
 			}
 		}
 		componentes.add(m);
@@ -131,7 +131,7 @@ public class Tienda {
 		for(Componente c : componentes){
 			if(c instanceof CPU){
 				if(c.getNumeroSerie().toLowerCase().equals(cpu.numeroSerie.toLowerCase()))
-					throw new IllegalArgumentException("Ya se ingresÛ un procesador con este ID.");
+					throw new IllegalArgumentException("Ya se ingres√≥ un procesador con este ID.");
 			}
 		}
 		componentes.add(cpu);
@@ -141,7 +141,7 @@ public class Tienda {
 		for(Componente c : componentes){
 			if(c instanceof HDD){
 				if(c.getNumeroSerie().toLowerCase().equals(hdd.numeroSerie.toLowerCase()))
-					throw new IllegalArgumentException("Ya se ingresÛ un Disco Duro con este ID.");
+					throw new IllegalArgumentException("Ya se ingres√≥ un Disco Duro con este ID.");
 			}
 		}
 		componentes.add(hdd);
@@ -153,7 +153,7 @@ public class Tienda {
 		pc.addRamsPC(r);
 		for(PC p : computadoras)
 			if(p.getId().equalsIgnoreCase(id))
-				throw new IllegalArgumentException("Ya se ingresÛ una computadora con este ID.");
+				throw new IllegalArgumentException("Ya se ingres√≥ una computadora con este ID.");
 		computadoras.add(pc);
 	}
 
@@ -193,7 +193,7 @@ public class Tienda {
 		return listado;
 	}
 
-	public ArrayList<Componente> ramsPorTipoyMemoria(String tipo, double memoria){ // RAMS con memorias con tamaÒo mayores que uno dado
+	public ArrayList<Componente> ramsPorTipoyMemoria(String tipo, double memoria){ // RAMS con memorias con tama√±o mayores que uno dado
 		ArrayList<Componente> listado = new ArrayList<>();
 		for(Componente c : componentes)
 			if(c instanceof RAM)
@@ -369,22 +369,29 @@ public class Tienda {
 			componentes.get(pos).setCantidadDisponible(cant-1);
 		}
 	}
-
-
+public void eliminarComponentesFueraStock() {
+		for (int i = 0; i<componentes.size() ; i++) {
+			Componente c = componentes.get(i);
+			if (c.getCantidadDisponible() == 0) {
+				componentes.remove(i);
+			}
+		}
+	}
+	
 	// Inicializar datos
 	public static Tienda inicializarTienda(){
-		Gerente gerente = new Gerente("Alexandro", "ValdÈs PiÒeda", 2005,9,15);	
+		Gerente gerente = new Gerente("Alexandro", "Vald√©s Pi√±eda", 2005,9,15);	
 		return new Tienda("GameStop777","GAME05","Avenida 33A Calle 156, Playa","72627762",gerente);
 	}
 
 	public void inicializarTrabajadores(){
-		addTrabajador("Alexandro", "ValdÈs PiÒeda","05091568088",0, 15000, "Universitario", "Gerente");
+		addTrabajador("Alexandro", "Vald√©s Pi√±eda","05091568088",0, 15000, "Universitario", "Gerente");
 		addTrabajador("Gloria", "Santos Rosado","06030867876",1, 5000, "Universitario", "Especialista en productos");
-		addTrabajador("Jorge Luis", "ValdÈs PiÒeda", "97070758088", 2 ,15000, "Universitario", "Especialista en Software");
+		addTrabajador("Jorge Luis", "Vald√©s Pi√±eda", "97070758088", 2 ,15000, "Universitario", "Especialista en Software");
 		addTrabajador("Javier", "Soto Villanueva", "05090160882",3,7000, "Universitario", "Asesor de Ventas");
-		addTrabajador("Ronal", "S·lazar Hern·ndez", "05101568066",4,6500, "Universitario", "Especialista en Software");
-		addTrabajador("Aylin", "V·zquez Alvarez", "06061367412",5,4000, "Obrero Calificado", "Encargado de inventario");
-		addTrabajador("Rodolfo", "Remesar MartÌn","72081843200", 6, 9900,"Universitario", "Especialista en Software");
+		addTrabajador("Ronal", "S√°lazar Hern√°ndez", "05101568066",4,6500, "Universitario", "Especialista en Software");
+		addTrabajador("Aylin", "V√°zquez Alvarez", "06061367412",5,4000, "Obrero Calificado", "Encargado de inventario");
+		addTrabajador("Rodolfo", "Remesar Mart√≠n","72081843200", 6, 9900,"Universitario", "Especialista en Software");
 	}
 	public void inicializarComponentes(){
 		ArrayList<String> conexiones = new ArrayList<String>();
