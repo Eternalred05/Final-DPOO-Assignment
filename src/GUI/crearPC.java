@@ -309,14 +309,14 @@ public class crearPC extends JDialog {
 		tableCPU = new JTable();
 		tableCPU.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableCPU.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"ID", "Marca", "Modelo", "Socket", "Velocidad", "Precio", "Disponibles"
-			}
-		) {
+				new Object[][] {
+				},
+				new String[] {
+						"ID", "Marca", "Modelo", "Socket", "Velocidad", "Precio", "Disponibles"
+				}
+				) {
 			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false, false, false
+					false, false, false, false, false, false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
@@ -431,6 +431,7 @@ public class crearPC extends JDialog {
 		panelCPU.add(button_7);
 
 		JButton button_1 = new JButton("Escoger");
+		button_1.setFont(new Font("Sans Serif Collection", Font.PLAIN, 12));
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(tableRAM.getSelectedRows().length == 1 ){
@@ -459,6 +460,7 @@ public class crearPC extends JDialog {
 		panelRAM.add(button_1);
 
 		JButton btnContinuar = new JButton("Continuar");
+		btnContinuar.setFont(new Font("Sans Serif Collection", Font.PLAIN, 12));
 		btnContinuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(r.size()!=0){
@@ -491,9 +493,32 @@ public class crearPC extends JDialog {
 				panelCPU.setVisible(true);
 			}
 		});
-		button_4.setFont(new Font("Sans Serif Collection", Font.PLAIN, 11));
+		button_4.setFont(new Font("Sans Serif Collection", Font.PLAIN, 12));
 		button_4.setBounds(10, 11, 89, 23);
 		panelRAM.add(button_4);
+
+		JButton btnDeshacerUltimaEleccion = new JButton("Deshacer \u00FAltima elecci\u00F3n");
+		btnDeshacerUltimaEleccion.setFont(new Font("Sans Serif Collection", Font.PLAIN, 12));
+		btnDeshacerUltimaEleccion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(r.size()>0){
+					RAM anterior = r.get(r.size()-1);
+					String id = anterior.getNumeroSerie();
+					int fila = -1;
+					for(int i=0;i<tableRAM.getRowCount() && fila == -1;i++)
+						if(tableRAM.getValueAt(i,0).equals(id)){
+							fila = i;
+						}
+					modeloRAM.setValueAt((int)tableRAM.getValueAt(fila, 5)+1, fila, 5);
+					JOptionPane.showMessageDialog(null,"Se deshizo su última memoria ram escogida de sus selecciones la ram tiene id: "+anterior.getNumeroSerie(),"Elección removida",JOptionPane.INFORMATION_MESSAGE);
+					r.remove(r.size()-1);
+				}
+				else
+					JOptionPane.showMessageDialog(null,"No se puede deshacer si no se ha escogido alguna RAM.","Sin selecciones",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		btnDeshacerUltimaEleccion.setBounds(463, 11, 197, 23);
+		panelRAM.add(btnDeshacerUltimaEleccion);
 
 		JButton button_2 = new JButton("Escoger");
 		button_2.addActionListener(new ActionListener() {
@@ -557,8 +582,16 @@ public class crearPC extends JDialog {
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				modeloHDD.setRowCount(0);
+				modeloRAM.setRowCount(0);
 				h.clear();
 				r.clear();
+
+				rams = tienda.listaRAMcompatMotherboard(m.getTipoMemoriaRAM());
+				for(Componente c : rams){
+					Object info [] = {c.getNumeroSerie(),c.getMarca(),((RAM)c).getMemoria(),((RAM)c).getTipo(), c.calcularPrecio(),c.getCantidadDisponible()};
+					modeloRAM.addRow(info);
+				}
+
 				panelRAM.setVisible(true);			
 				panelHDD.setVisible(false);
 			}
@@ -566,6 +599,29 @@ public class crearPC extends JDialog {
 		button_5.setFont(new Font("Sans Serif Collection", Font.PLAIN, 11));
 		button_5.setBounds(10, 11, 89, 23);
 		panelHDD.add(button_5);
+
+		JButton button_8 = new JButton("Deshacer \u00FAltima elecci\u00F3n");
+		button_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(h.size()>0){
+					HDD anterior = h.get(h.size()-1);
+					String id = anterior.getNumeroSerie();
+					int fila = -1;
+					for(int i=0;i<tableHDD.getRowCount() && fila == -1;i++)
+						if(tableHDD.getValueAt(i,0).equals(id)){
+							fila = i;
+						}
+					modeloHDD.setValueAt((int)tableHDD.getValueAt(fila, 6)+1, fila, 6);
+					JOptionPane.showMessageDialog(null,"Se deshizo su último disco duro escogido de sus selecciones el hdd tiene id: "+anterior.getNumeroSerie(),"Elección removida",JOptionPane.INFORMATION_MESSAGE);
+					h.remove(h.size()-1);
+				}
+				else
+					JOptionPane.showMessageDialog(null,"No se puede deshacer si no se ha escogido algún HDD.","Sin selecciones",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		button_8.setFont(new Font("Sans Serif Collection", Font.PLAIN, 12));
+		button_8.setBounds(470, 10, 190, 23);
+		panelHDD.add(button_8);
 
 		JButton btnCrearPc = new JButton("Crear PC");
 		btnCrearPc.addActionListener(new ActionListener() {
@@ -594,6 +650,13 @@ public class crearPC extends JDialog {
 		button_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				h.clear();
+				modeloHDD.setRowCount(0);
+				hdds = tienda.listaHDDcompatMotherboard(m.getConexionesDiscos());
+				for(Componente c : hdds){
+					Object info [] = {c.getNumeroSerie(),c.getMarca(),((HDD)c).getModelo(),((HDD)c).getCapacidad(),((HDD)c).getTipoConexion(), c.calcularPrecio(),c.getCantidadDisponible()};
+					modeloHDD.addRow(info);
+				}
+
 				panelCrearPC.setVisible(false);			
 				panelHDD.setVisible(true);
 			}

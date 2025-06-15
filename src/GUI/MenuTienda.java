@@ -36,6 +36,7 @@ import javax.swing.JComboBox;
 import javax.swing.border.LineBorder;
 
 import java.awt.Color;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.swing.SwingConstants;
@@ -54,6 +55,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JProgressBar;
 import javax.swing.ImageIcon;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class MenuTienda extends JFrame {
 
@@ -77,8 +80,8 @@ public class MenuTienda extends JFrame {
 	private int counterTrabajador = 0;
 	private JTable tablePC;
 
-	public MenuTienda(Tienda tienda, String usuario) {
-		JOptionPane.showMessageDialog(null,"Bienvenido a la app de gestión de la tienda, "+ usuario ,"Bienvenido",JOptionPane.INFORMATION_MESSAGE);
+	public MenuTienda(Tienda tienda, String usuario, boolean gerencia) {
+		JOptionPane.showMessageDialog(null,"Bienvenido a la app de gestiÃ³n de la tienda, "+ usuario ,"Bienvenido",JOptionPane.INFORMATION_MESSAGE);
 
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuTienda.class.getResource("/javax/swing/plaf/metal/icons/ocean/menu.gif")));
@@ -289,7 +292,7 @@ public class MenuTienda extends JFrame {
 					}
 				}
 				else
-					JOptionPane.showMessageDialog(null,"Seleccione al menos una conexión para los discos.","Error",JOptionPane.ERROR_MESSAGE);	
+					JOptionPane.showMessageDialog(null,"Seleccione al menos una conexiÃ³n para los discos.","Error",JOptionPane.ERROR_MESSAGE);	
 			}
 		});
 		buttonIngresarMother.setFont(new Font("Arial Black", Font.PLAIN, 21));
@@ -399,10 +402,10 @@ public class MenuTienda extends JFrame {
 		niveles[1]= "Primario";
 		niveles[2]= "Secundario";
 		niveles[3]="Preuniversitario";
-		niveles[4]="Técnico Medio";
+		niveles[4]="TÃ©cnico Medio";
 		niveles[5]="Obrero Calificado";
 		niveles[6]="Universitario";
-		niveles[7]="Técnico profesional";
+		niveles[7]="TÃ©cnico profesional";
 
 		defaultComboBoxModel = new DefaultComboBoxModel(niveles);
 		comboBoxEscolar.setModel(defaultComboBoxModel);
@@ -522,11 +525,13 @@ public class MenuTienda extends JFrame {
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"Aún en desarrollo.","WIP",JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null,"AÃºn en desarrollo.","WIP",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 
 		btnEditar.setBounds(10, 608, 89, 23);
+		if(!gerencia)
+			btnEditar.setEnabled(false);
 		panelListaTrabajadores.add(btnEditar);
 
 		// Componentes de las RAM
@@ -623,12 +628,12 @@ public class MenuTienda extends JFrame {
 		panel_3.add(lblPrecioDeLa);
 
 		JLabel RAMNumeroSerie = new JLabel("N\u00FAmero de Serie");
-		RAMNumeroSerie.setBounds(20, 163, 162, 34);
+		RAMNumeroSerie.setBounds(20, 161, 162, 34);
 		panel_3.add(RAMNumeroSerie);
 		RAMNumeroSerie.setFont(new Font("Tahoma", Font.BOLD, 17));
 
 		final JTextFieldLimitado textNumeroSerie = new JTextFieldLimitado();
-		textNumeroSerie.setBounds(238, 156, 162, 27);
+		textNumeroSerie.setBounds(237, 163, 162, 27);
 		panel_3.add(textNumeroSerie);
 		textNumeroSerie.setLimit(10);
 		textNumeroSerie.setHorizontalAlignment(SwingConstants.CENTER);
@@ -717,7 +722,7 @@ public class MenuTienda extends JFrame {
 		JButton btnEditar_1 = new JButton("Editar");
 		btnEditar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"Aún en desarrollo.","WIP",JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null,"AÃºn en desarrollo.","WIP",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		btnEditar_1.setBounds(10, 611, 89, 23);
@@ -1070,6 +1075,8 @@ public class MenuTienda extends JFrame {
 
 			}
 		});
+		if(!gerencia)
+			mntmAadirTrabajador.setEnabled(false);
 		mnGerencia.add(mntmAadirTrabajador);
 
 		JMenu mnAadirComponentes = new JMenu("A\u00F1adir Componentes");
@@ -1176,7 +1183,7 @@ public class MenuTienda extends JFrame {
 					panelCPU.setVisible(false);
 					panelListadoPC.setVisible(false);
 
-					// añadir trabajadores a la tabla
+					// aÃ±adir trabajadores a la tabla
 					modelo = (DefaultTableModel) tableTrabajador.getModel();
 					modelo.setRowCount(0);
 					for(Trabajador t : tiendaPC.getTrabajadores()){
@@ -1186,7 +1193,7 @@ public class MenuTienda extends JFrame {
 
 				}
 				else
-					JOptionPane.showMessageDialog(null,"No hay ningún trabajador agregado a la tienda.","No se ha ingresado ningún trabajador",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"No hay ningÃºn trabajador agregado a la tienda.","No se ha ingresado ningÃºn trabajador",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		mnNewMenu.add(mntmMostrarListado);
@@ -1215,7 +1222,7 @@ public class MenuTienda extends JFrame {
 					}
 				}
 				else
-					JOptionPane.showMessageDialog(null,"No hay ningún componente agregado a la tienda.","No se ha ingresado ningún componente",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"No hay ningÃºn componente agregado a la tienda.","No se ha ingresado ningÃºn componente",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		mnNewMenu.add(mntmMostrarListadoDe);
@@ -1269,7 +1276,7 @@ public class MenuTienda extends JFrame {
 					else
 						JOptionPane.showMessageDialog(null,"Ya tiene abierta esta ventana.","Error",JOptionPane.ERROR_MESSAGE);	
 				} else
-					JOptionPane.showMessageDialog(null,"No hay ningún trabajador agregado a la tienda.","No se ha ingresado ningún trabajador",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"No hay ningÃºn trabajador agregado a la tienda.","No se ha ingresado ningÃºn trabajador",JOptionPane.INFORMATION_MESSAGE);
 			}
 
 		});
@@ -1293,7 +1300,7 @@ public class MenuTienda extends JFrame {
 					else
 						JOptionPane.showMessageDialog(null,"Ya tiene abierta esta ventana.","Error",JOptionPane.ERROR_MESSAGE);	
 				} else
-					JOptionPane.showMessageDialog(null,"No hay ningún componente agregado a la tienda.","No se ha ingresado ningún componente",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"No hay ningÃºn componente agregado a la tienda.","No se ha ingresado ningÃºn componente",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		mnReportes.add(mntmReportesDeComponentes);
@@ -1358,7 +1365,7 @@ public class MenuTienda extends JFrame {
 		JMenuItem mntmInformacionDeLos = new JMenuItem("Informacion de los Desarrolladores");
 		mntmInformacionDeLos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"Desarrollado por Alexandro Valdés Piñeda y Gloria Santos Rosado, Grupo 12 Facultad de Ingeniería Informática","Info Desarrollo",JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null,"Desarrollado por Alexandro ValdÃ©s PiÃ±eda y Gloria Santos Rosado, Grupo 12 Facultad de IngenierÃ­a InformÃ¡tica","Info Desarrollo",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		mnInformacin.add(mntmInformacionDeLos);
@@ -1378,6 +1385,8 @@ public class MenuTienda extends JFrame {
 				}
 			}
 		});
+		if(!gerencia)
+			mntmModificarInformacinDe.setEnabled(false);
 		mnInformacin.add(mntmModificarInformacinDe);
 
 		JMenuItem mntmCerrarSesin = new JMenuItem("Cerrar Sesi\u00F3n");
@@ -1432,6 +1441,8 @@ public class MenuTienda extends JFrame {
 			}
 		});
 		btnBorrar.setBounds(1161, 608, 89, 23);
+		if(!gerencia)
+			btnBorrar.setEnabled(false);
 		panelListaTrabajadores.add(btnBorrar);
 
 		JButton btnBorrar_1 = new JButton("Borrar");
@@ -1488,7 +1499,6 @@ public class MenuTienda extends JFrame {
 		});
 		btnNewButton_1.setBounds(10, 619, 89, 23);
 		panelListadoPC.add(btnNewButton_1);
-
 
 	}
 }
