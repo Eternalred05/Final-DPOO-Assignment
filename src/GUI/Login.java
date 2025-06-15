@@ -32,6 +32,7 @@ import Componentes.JPasswordFieldLimitado;
 public class Login extends JDialog {
 	private Tienda tienda;
 	private boolean correcto = false;
+	private boolean gerencia = false;
 	private String usuario;
 
 	public Login(Tienda tiendaPC) {
@@ -85,17 +86,19 @@ public class Login extends JDialog {
 						}
 					if(correcto){
 						JOptionPane.showMessageDialog(null, "Las credenciales ingresadas son correctas.","Información Correcta",JOptionPane.INFORMATION_MESSAGE);
-						EventQueue.invokeLater(new Runnable() {
-							public void run() {
-								try {
-									MenuTienda frame = new MenuTienda(tienda, usuario);
-									frame.setVisible(true);
-									dispose();
-								} catch (Exception e) {
-									e.printStackTrace();
+						if(usuario.equals(tienda.getGerente().getNombre()))
+							gerencia = true;
+							EventQueue.invokeLater(new Runnable() {
+								public void run() {
+									try {
+										MenuTienda frame = new MenuTienda(tienda, usuario,gerencia);
+										frame.setVisible(true);
+										dispose();
+									} catch (Exception e) {
+										e.printStackTrace();
+									}
 								}
-							}
-						});
+							});
 
 					}
 					else 
