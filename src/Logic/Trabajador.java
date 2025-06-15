@@ -29,10 +29,10 @@ public class Trabajador {
 			if(!digit)
 				this.nombre = nombre;
 			else
-				throw new IllegalArgumentException("El nombre no puede contener n˙meros.");
+				throw new IllegalArgumentException("El nombre no puede contener n√∫meros.");
 		}
 		else
-			throw new IllegalArgumentException("El nombre del trabajador est· vacÌo.");
+			throw new IllegalArgumentException("El nombre del trabajador est√° vac√≠o.");
 
 	}
 
@@ -51,10 +51,10 @@ public class Trabajador {
 			if(!digit)
 				this.apellidos = apellidos;
 			else
-				throw new IllegalArgumentException("Los apellidos no deben contener n˙meros.");
+				throw new IllegalArgumentException("Los apellidos no deben contener n√∫meros.");
 		}
 		else
-			throw new IllegalArgumentException("Los apellidos est·n vacÌos.");
+			throw new IllegalArgumentException("Los apellidos est√°n vac√≠os.");
 	}
 
 	public String getId() {
@@ -62,7 +62,7 @@ public class Trabajador {
 	}
 
 	public void setId(String id) {
-		if (id.length() == 11){
+		if (id.length() == 11) {
 			for(char c : id.toCharArray())
 				if (Character.isLetter(c))
 					throw new IllegalArgumentException("No puede contener letras.");
@@ -70,7 +70,10 @@ public class Trabajador {
 			int anio = (cadena[0] - '0') * 10 + (cadena[1] - '0');
 			int mes = (cadena[2] - '0') * 10 + (cadena[3] - '0');
 			int dia = (cadena[4] - '0') * 10 + (cadena[5] - '0');
-			int siglo = Character.getNumericValue(id.charAt(7));
+			int siglo = Character.getNumericValue(id.charAt(6));
+			int edad;
+			int anioActual = LocalDate.now().getYear();
+
 			try {
 				@SuppressWarnings("unused")
 				LocalDate fechaCarnet = LocalDate.of(anio, mes, dia);
@@ -78,12 +81,22 @@ public class Trabajador {
 			catch (DateTimeException e){
 				throw new IllegalArgumentException ("La fecha del carnet es incorrecta");
 			}
+			if(siglo >= 0 && siglo <=5){
+				edad = 1900+anio;
+				if((anioActual - edad)>(anioActual-1900))
+					throw new IllegalArgumentException("El siglo de su carnet no coincide o es imposible que sea ese");	
+			}
+
+			if(siglo >= 6 && siglo <=8){
+				edad = 2000+anio;
+				if(edad > anioActual)
+					throw new IllegalArgumentException("El siglo de su carnet no coincide con su edad o es imposible que sea ese");	
+			}
+
 			this.id = id;
 		} 
 
-		else throw new IllegalArgumentException("El tamaÒo del carnet debe ser de 11 digitos");
-
-
+		else throw new IllegalArgumentException("El tama√±o del carnet debe ser de 11 digitos");
 	}
 
 	public double getSalario() {
@@ -105,7 +118,7 @@ public class Trabajador {
 		if(!nivelEscolar.isEmpty())
 			this.nivelEscolar = nivelEscolar;
 		else
-			throw new IllegalArgumentException("El nivel escolar del trabajador est· vacÌo.");
+			throw new IllegalArgumentException("El nivel escolar del trabajador est√° vac√≠o.");
 	}
 
 	public String getCargo() {
@@ -116,7 +129,7 @@ public class Trabajador {
 		if(!cargo.isEmpty())
 			this.cargo = cargo;
 		else
-			throw new IllegalArgumentException("El cargo del trabajador est· vacÌo.");
+			throw new IllegalArgumentException("El cargo del trabajador est√° vac√≠o.");
 	}
 
 	public int getNumeroTrabajador() {
