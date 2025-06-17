@@ -1479,7 +1479,7 @@ public class MenuTienda extends JFrame {
 		});
 		btnNewButton_1.setBounds(10, 619, 89, 23);
 		panelListadoPC.add(btnNewButton_1);
-// editar trabajador
+		// editar trabajador
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -1529,10 +1529,21 @@ public class MenuTienda extends JFrame {
 						pos = tiendaPC.posHDDPorID(id);
 					if(tipo.equals("Motherboard"))
 						pos = tiendaPC.posMotherboardPorID(id);
-						mntmMostrarListadoDe.doClick();
+					Componente c = tiendaPC.getComponentes().get(pos);
+					try {
+						editarDialog dialog = new editarDialog(MenuTienda.this,tiendaPC,pos,null,c);
+						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+						dialog.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
-					else
-						JOptionPane.showMessageDialog(null,"No se puede editar el gerente..","No se puede modificar al gerente", JOptionPane.ERROR_MESSAGE);
+
+
+
+					mntmMostrarListadoDe.doClick();
+				}
+				else
+					JOptionPane.showMessageDialog(null,"No se puede editar el gerente.","No se puede modificar al gerente", JOptionPane.ERROR_MESSAGE);
 			}
 		});
 		btnEditar_1.setBounds(10, 611, 89, 23);
