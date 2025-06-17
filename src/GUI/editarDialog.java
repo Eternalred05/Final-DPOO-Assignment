@@ -275,6 +275,12 @@ public class editarDialog extends JDialog {
 		panel_2.add(label_15);
 
 		JButton button = new JButton("Editar");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				((Motherboard)c).getConexionesDiscos().add("IDE");
+				dispose();
+			}
+		});
 		button.setFont(new Font("Sans Serif Collection", Font.PLAIN, 21));
 		button.setBounds(541, 491, 129, 34);
 		panelMotherboard.add(button);
@@ -570,8 +576,8 @@ public class editarDialog extends JDialog {
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
-					tienda.editarTrabajador(t, nombreTrabajador.getText(),apellidosTrabajador.getText(),(double)salarioTrabajador.getValue(),(String)comboBoxCargo.getSelectedItem(),(String)comboBoxEscolar.getSelectedItem());
-					JOptionPane.showMessageDialog(null,"Se han guaradado los cambios","Cambios realizados",JOptionPane.INFORMATION_MESSAGE);
+					t.editarTrabajador(nombreTrabajador.getText(),apellidosTrabajador.getText(),(double)salarioTrabajador.getValue(),(String)comboBoxCargo.getSelectedItem(),(String)comboBoxEscolar.getSelectedItem());
+					JOptionPane.showMessageDialog(null,"Se han guardado los cambios","Cambios realizados",JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 				}
 				catch(IllegalArgumentException e){
