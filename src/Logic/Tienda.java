@@ -382,7 +382,7 @@ public class Tienda {
 		t.setNombre(nombre);
 		t.setApellidos(apellidos);
 		t.setCargo(cargo);
-		t.setCargo(escolaridad);
+		t.setNivelEscolar(escolaridad);
 		t.setSalario(salario);
 	}
 
