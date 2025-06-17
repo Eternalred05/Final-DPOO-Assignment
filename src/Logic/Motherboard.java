@@ -16,12 +16,13 @@ public class Motherboard extends Componente {
 		else 
 			throw new IllegalArgumentException("Ese tipo de RAM no se encuentra disponible");
 	}
-	public Motherboard(int cantidadDisponible, String numeroSerie, String marca, String modelo,String tipoConector, String tipoMemoriaRAM, ArrayList<String> conexionesDiscos,double precioBase) {
+	public Motherboard(int cantidadDisponible, String numeroSerie, String marca, String modelo,String tipoConector, String tipoMemoriaRAM, ArrayList<String> conexiones,double precioBase) {
 		super(cantidadDisponible, numeroSerie,precioBase,marca);
 		setModelo(modelo);
 		setTipoConector(tipoConector);
 		setTipoMemoriaRAM(tipoMemoriaRAM);
-		setConexionesDiscos(conexionesDiscos);
+		conexionesDiscos = new ArrayList<>();
+		setConexionesDiscos(conexiones);
 	}
 
 	public String getModelo() {
@@ -31,7 +32,7 @@ public class Motherboard extends Componente {
 		if(modelo!= null && !modelo.isEmpty())
 			this.modelo = modelo;
 		else
-			throw new IllegalArgumentException("No puede estar vacío el modelo");
+			throw new IllegalArgumentException("No puede estar vacÃ­o el modelo");
 	}
 	public String getTipoConector() {
 		return tipoSocket;
@@ -47,11 +48,13 @@ public class Motherboard extends Componente {
 		return conexionesDiscos;
 	}
 
-	public void setConexionesDiscos(ArrayList<String> conexionesDiscos) {
-		if(conexionesDiscos != null && conexionesDiscos.size()!=0)
-			this.conexionesDiscos = conexionesDiscos;
-		else
-			throw new IllegalArgumentException("Ingrese al menos una conexión de disco que soporta el Motherboard");	
+	public void setConexionesDiscos(ArrayList<String> conexiones) {
+		if(conexiones != null && conexiones.size()!=0){
+			for(String s : conexiones)
+				conexionesDiscos.add(s);
+		}
+		else 
+			throw new IllegalArgumentException("Ingrese al menos una conexiÃ³n de disco que soporta el Motherboard");	
 	}
 
 	@Override
