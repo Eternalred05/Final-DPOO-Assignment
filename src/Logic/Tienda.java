@@ -367,17 +367,25 @@ public class Tienda {
 			pos = posHDDPorID(id);
 			cant = componentes.get(pos).getCantidadDisponible();
 			componentes.get(pos).setCantidadDisponible(cant-1);
-		}
+		}	
 	}
-public void eliminarComponentesFueraStock() {
+	public void eliminarComponentesFueraStock() {
 		for (int i = 0; i<componentes.size() ; i++) {
 			Componente c = componentes.get(i);
 			if (c.getCantidadDisponible() == 0) {
 				componentes.remove(i);
 			}
 		}
+	} 
+	//Editar
+	public void editarTrabajador(Trabajador t, String nombre, String apellidos,double salario,String cargo, String escolaridad){
+		t.setNombre(nombre);
+		t.setApellidos(apellidos);
+		t.setCargo(cargo);
+		t.setNivelEscolar(escolaridad);
+		t.setSalario(salario);
 	}
-	
+
 	// Inicializar datos
 	public static Tienda inicializarTienda(){
 		Gerente gerente = new Gerente("Alexandro", "Valdés Piñeda", 2005,9,15);	
@@ -387,11 +395,12 @@ public void eliminarComponentesFueraStock() {
 	public void inicializarTrabajadores(){
 		addTrabajador("Alexandro", "Valdés Piñeda","05091568088",0, 15000, "Universitario", "Gerente");
 		addTrabajador("Gloria", "Santos Rosado","06030867876",1, 5000, "Universitario", "Especialista en productos");
-		addTrabajador("Jorge Luis", "Valdés Piñeda", "97070758088", 2 ,15000, "Universitario", "Especialista en Software");
-		addTrabajador("Javier", "Soto Villanueva", "05090160882",3,7000, "Universitario", "Asesor de Ventas");
-		addTrabajador("Ronal", "Sálazar Hernández", "05101568066",4,6500, "Universitario", "Especialista en Software");
+		addTrabajador("Jorge Luis", "Valdés Piñeda", "97070758088", 2 ,15000, "Universitario", "Especialista en software");
+		addTrabajador("Javier", "Soto Villanueva", "05090160882",3,7000, "Universitario", "Asesor de ventas");
+		addTrabajador("Ronal", "Sálazar Hernández", "05101568066",4,6500, "Universitario", "Especialista en software");
 		addTrabajador("Aylin", "Vázquez Alvarez", "06061367412",5,4000, "Obrero Calificado", "Encargado de inventario");
-		addTrabajador("Rodolfo", "Remesar Martín","72081843200", 6, 9900,"Universitario", "Especialista en Software");
+		addTrabajador("Rodolfo", "Remesar Martín","72081843200", 6, 9900,"Universitario", "Especialista en software");
+		addTrabajador("Cristiano", "Ronaldo Aveiro","87020501669", 7, 12000,"Universitario", "Especialista en software");
 	}
 	public void inicializarComponentes(){
 		ArrayList<String> conexiones = new ArrayList<String>();

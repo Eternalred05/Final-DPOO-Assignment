@@ -368,7 +368,7 @@ public class MenuTienda extends JFrame {
 		comboBoxCargo.setBounds(622, 316, 235, 20);
 		Object[] cargos = new Object[8];
 		cargos[0]="";
-		cargos[1]= "Gestor de Ventas";
+		cargos[1]= "Gestor de ventas";
 		cargos[2]= "Encargado de inventario";
 		cargos[3]="Asesor de ventas";
 		cargos[4]="Especialista en productos";
@@ -522,17 +522,6 @@ public class MenuTienda extends JFrame {
 		lblListadoDeTrabajadores.setBounds(465, 6, 256, 38);
 		panelListaTrabajadores.add(lblListadoDeTrabajadores);
 
-		JButton btnEditar = new JButton("Editar");
-		btnEditar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"Aún en desarrollo.","WIP",JOptionPane.INFORMATION_MESSAGE);
-			}
-		});
-
-		btnEditar.setBounds(10, 608, 89, 23);
-		if(!gerencia)
-			btnEditar.setEnabled(false);
-		panelListaTrabajadores.add(btnEditar);
 
 		// Componentes de las RAM
 		final JPanel panelRAM = new JPanel();
@@ -718,15 +707,6 @@ public class MenuTienda extends JFrame {
 		lblNewLabel_2.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
 		lblNewLabel_2.setBounds(401, 11, 400, 38);
 		panelListadoComponentes.add(lblNewLabel_2);
-
-		JButton btnEditar_1 = new JButton("Editar");
-		btnEditar_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"Aún en desarrollo.","WIP",JOptionPane.INFORMATION_MESSAGE);
-			}
-		});
-		btnEditar_1.setBounds(10, 611, 89, 23);
-		panelListadoComponentes.add(btnEditar_1);
 
 		final JPanel panelCPU = new JPanel();
 		panelCPU.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -1499,6 +1479,74 @@ public class MenuTienda extends JFrame {
 		});
 		btnNewButton_1.setBounds(10, 619, 89, 23);
 		panelListadoPC.add(btnNewButton_1);
+		// editar trabajador
+		JButton btnEditar = new JButton("Editar");
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(tableTrabajador.getSelectedRows().length == 1) {
+					int fila = tableTrabajador.getSelectedRow();
+					if(fila!=0){
+						String id = (String)tableTrabajador.getValueAt(fila,4);
+						int pos = tiendaPC.posTrabajadorPorID(id);
+						Trabajador t = tiendaPC.getTrabajadores().get(pos);
+						try {
+							editarDialog dialog = new editarDialog(MenuTienda.this,tiendaPC,pos,t,null);
+							dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+							dialog.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						mntmMostrarListado.doClick();
+					}
+					else
+						JOptionPane.showMessageDialog(null,"No se puede editar el gerente..","No se puede modificar al gerente", JOptionPane.ERROR_MESSAGE);
+				} else
+					JOptionPane.showMessageDialog(null,"Seleccione a un trabajador de la lista","No seleccionó ninguno", JOptionPane.ERROR_MESSAGE);
 
+			}
+
+		});
+
+		btnEditar.setBounds(10, 608, 89, 23);
+		if(!gerencia)
+			btnEditar.setEnabled(false);
+		panelListaTrabajadores.add(btnEditar);
+
+		// editar componente
+		JButton btnEditar_1 = new JButton("Editar");
+		btnEditar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(tableComponentes.getSelectedRows().length == 1) {
+					int fila = tableComponentes.getSelectedRow();
+					String tipo = (String)tableComponentes.getValueAt(fila , 0);
+					String id = (String)tableComponentes.getValueAt(fila , 2);
+					int pos = -1;
+					if(tipo.equals("RAM"))
+						pos = tiendaPC.posRAMPorID(id);
+					if(tipo.equals("CPU"))
+						pos = tiendaPC.posCPUPorID(id);
+					if(tipo.equals("HDD"))
+						pos = tiendaPC.posHDDPorID(id);
+					if(tipo.equals("Motherboard"))
+						pos = tiendaPC.posMotherboardPorID(id);
+					Componente c = tiendaPC.getComponentes().get(pos);
+					try {
+						editarDialog dialog = new editarDialog(MenuTienda.this,tiendaPC,pos,null,c);
+						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+						dialog.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+
+
+
+					mntmMostrarListadoDe.doClick();
+				}
+				else
+					JOptionPane.showMessageDialog(null,"No se puede editar el gerente.","No se puede modificar al gerente", JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		btnEditar_1.setBounds(10, 611, 89, 23);
+		panelListadoComponentes.add(btnEditar_1);
 	}
 }
