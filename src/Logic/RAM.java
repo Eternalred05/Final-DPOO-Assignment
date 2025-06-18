@@ -12,7 +12,7 @@ public class RAM extends Componente {
 		if(memoria >= 1 && memoria <= 128)
 			this.memoria = memoria;
 		else
-			throw new IllegalArgumentException("La memoria no se encuentra de 0.5gb a 128gb");
+			throw new IllegalArgumentException("La memoria no se encuentra de 1gb a 128gb");
 	}
 	public RAM(int cantidadDisponible, String id, String marca, double memoria , String tipo, double precioBase) {
 		super(cantidadDisponible, id, precioBase,marca);
@@ -26,7 +26,7 @@ public class RAM extends Componente {
 		if("DDR5".equalsIgnoreCase(tipo)|| "DDR4".equalsIgnoreCase(tipo) || "DDR3".equalsIgnoreCase(tipo) || "DDR2".equalsIgnoreCase(tipo)|| "DDR".equalsIgnoreCase(tipo))
 			this.tipo = tipo;
 		else
-			throw new IllegalArgumentException("No se ingresó un tipo de RAM comercial válida");
+			throw new IllegalArgumentException("No se ingresÃ³ un tipo de RAM comercial vÃ¡lida");
 	}
 	
 	@Override
@@ -35,5 +35,14 @@ public class RAM extends Componente {
 		double aporteTipo = "DDR5".equalsIgnoreCase(tipo) ? 60 : "DDR4".equalsIgnoreCase(tipo) ? 45 : "DDR3".equalsIgnoreCase(tipo) ? 30 :"DDR2".equalsIgnoreCase(tipo) ? 20 : 15;
 		return precioBase + aporteMemoria + aporteTipo;
 	} 
+	
+	
+	public void editarRAM(int cantidadDisponible, String marca, double memoria , String tipo, double precioBase){
+		setCantidadDisponible(cantidadDisponible);
+		setMarca(marca);
+		setMemoria(memoria);
+		setTipo(tipo);
+		setPrecioBase(precioBase);
+	}
 
 }
