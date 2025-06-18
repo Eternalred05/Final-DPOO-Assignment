@@ -54,94 +54,96 @@ public class InfoTienda extends JDialog {
 		String apellidos = tienda.getGerente().getApellidos();
 
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(0, 0, 139));
+		panel.setBackground(new Color(211, 211, 211));
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panel.setBounds(0, 0, 618, 342);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 
-		JLabel lblNombreDeLa = new JLabel("Nombre de la Tienda:");
-		lblNombreDeLa.setFont(new Font("Arial Black", Font.PLAIN, 18));
-		lblNombreDeLa.setBounds(26, 57, 223, 26);
-		panel.add(lblNombreDeLa);
-
-		JLabel lblNombreTienda = new JLabel(nombre);
-		lblNombreTienda.setFont(new Font("Arial Black", Font.PLAIN, 18));
-		lblNombreTienda.setBounds(243, 60, 311, 21);
-		panel.add(lblNombreTienda);
-
-		JLabel lblDireccinDeLa = new JLabel("Direcci\u00F3n de la Tienda:");
-		lblDireccinDeLa.setFont(new Font("Arial Black", Font.PLAIN, 18));
-		lblDireccinDeLa.setBounds(26, 84, 270, 26);
-		panel.add(lblDireccinDeLa);
-
-		JLabel lblDireccion = new JLabel(direccion);
-		lblDireccion.setFont(new Font("Arial Black", Font.PLAIN, 18));
-		lblDireccion.setBounds(266, 84, 329, 26);
-		panel.add(lblDireccion);
-
-		JLabel lblIdentificadorDeLa = new JLabel("Identificador de la Tienda:");
-		lblIdentificadorDeLa.setFont(new Font("Arial Black", Font.PLAIN, 18));
-		lblIdentificadorDeLa.setBounds(26, 121, 270, 14);
-		panel.add(lblIdentificadorDeLa);
-
-		JLabel lblId = new JLabel(id);
-		lblId.setBackground(Color.WHITE);
-		lblId.setFont(new Font("Arial Black", Font.PLAIN, 18));
-		lblId.setBounds(292, 115, 303, 26);
-		panel.add(lblId);
-
-		JLabel lblDeLaTienda = new JLabel("Tel\u00E9fono de la Tienda:");
-		lblDeLaTienda.setFont(new Font("Arial Black", Font.PLAIN, 18));
-		lblDeLaTienda.setBounds(26, 152, 232, 14);
-		panel.add(lblDeLaTienda);
-
-		JLabel labelPhone = new JLabel(telefono);
-		labelPhone.setFont(new Font("Arial Black", Font.PLAIN, 18));
-		labelPhone.setBounds(255, 146, 138, 26);
-		panel.add(labelPhone);
-
 		JLabel lblNombreDelGerente = new JLabel("Nombre del Gerente:");
-		lblNombreDelGerente.setFont(new Font("Arial Black", Font.PLAIN, 18));
+		lblNombreDelGerente.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNombreDelGerente.setBounds(26, 228, 223, 26);
 		panel.add(lblNombreDelGerente);
 
-		JLabel lblNombregerente = new JLabel(nombreG + " " +apellidos);
-		lblNombregerente.setFont(new Font("Arial Black", Font.PLAIN, 18));
-		lblNombregerente.setBounds(243, 228, 352, 26);
-		panel.add(lblNombregerente);
-
 		JLabel lblFechaDeIngreso = new JLabel("Fecha de ingreso del Gerente:");
-		lblFechaDeIngreso.setFont(new Font("Arial Black", Font.PLAIN, 18));
+		lblFechaDeIngreso.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblFechaDeIngreso.setBounds(26, 243, 311, 54);
 		panel.add(lblFechaDeIngreso);
 
-		JLabel labelFecha = new JLabel(fechaGerente);
-		labelFecha.setFont(new Font("Arial Black", Font.PLAIN, 18));
-		labelFecha.setBounds(335, 257, 138, 26);
-		panel.add(labelFecha);
-
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panel_1.setBackground(Color.LIGHT_GRAY);
+		panel_1.setBackground(new Color(128, 128, 128));
 		panel_1.setBounds(10, 228, 598, 66);
 		panel.add(panel_1);
+		panel_1.setLayout(null);
+
+		JLabel lblNombregerente = new JLabel(nombreG + " " +apellidos);
+		lblNombregerente.setBounds(191, 0, 352, 26);
+		panel_1.add(lblNombregerente);
+		lblNombregerente.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+		JLabel labelFecha = new JLabel(fechaGerente);
+		labelFecha.setBounds(261, 29, 138, 26);
+		panel_1.add(labelFecha);
+		labelFecha.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
 		JLabel lblInformacimDelGerente = new JLabel("Informaci\u00F3n sobre el Gerente:");
-		lblInformacimDelGerente.setForeground(new Color(255, 255, 255));
-		lblInformacimDelGerente.setFont(new Font("Arial Black", Font.PLAIN, 18));
-		lblInformacimDelGerente.setBounds(136, 206, 321, 26);
+		lblInformacimDelGerente.setForeground(Color.BLACK);
+		lblInformacimDelGerente.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblInformacimDelGerente.setBounds(179, 206, 321, 26);
 		panel.add(lblInformacimDelGerente);
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panel_2.setBackground(Color.LIGHT_GRAY);
-		panel_2.setBounds(10, 57, 598, 119);
+		panel_2.setBackground(new Color(128, 128, 128));
+		panel_2.setBounds(10, 57, 598, 138);
 		panel.add(panel_2);
+		panel_2.setLayout(null);
+
+		JLabel labelPhone = new JLabel(telefono);
+		labelPhone.setBounds(240, 107, 179, 26);
+		panel_2.add(labelPhone);
+		labelPhone.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+		JLabel lblId = new JLabel(id);
+		lblId.setBounds(240, 76, 303, 26);
+		panel_2.add(lblId);
+		lblId.setBackground(Color.WHITE);
+		lblId.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+		JLabel lblDireccion = new JLabel(direccion);
+		lblDireccion.setBounds(240, 39, 329, 26);
+		panel_2.add(lblDireccion);
+		lblDireccion.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+		JLabel lblDeLaTienda = new JLabel("Tel\u00E9fono de la Tienda:");
+		lblDeLaTienda.setBounds(10, 113, 232, 14);
+		panel_2.add(lblDeLaTienda);
+		lblDeLaTienda.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+		JLabel lblIdentificadorDeLa = new JLabel("Identificador de la Tienda:");
+		lblIdentificadorDeLa.setBounds(10, 76, 270, 26);
+		panel_2.add(lblIdentificadorDeLa);
+		lblIdentificadorDeLa.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+		JLabel lblDireccinDeLa = new JLabel("Direcci\u00F3n de la Tienda:");
+		lblDireccinDeLa.setBounds(10, 39, 270, 26);
+		panel_2.add(lblDireccinDeLa);
+		lblDireccinDeLa.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+		JLabel lblNombreDeLa = new JLabel("Nombre de la Tienda:");
+		lblNombreDeLa.setBounds(10, 2, 223, 26);
+		panel_2.add(lblNombreDeLa);
+		lblNombreDeLa.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+		JLabel lblNombreTienda = new JLabel(nombre);
+		lblNombreTienda.setBounds(221, 5, 311, 21);
+		panel_2.add(lblNombreTienda);
+		lblNombreTienda.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
 		JLabel lblInformacinSobreLa = new JLabel("Informaci\u00F3n sobre la Tienda:");
-		lblInformacinSobreLa.setForeground(new Color(255, 255, 255));
-		lblInformacinSobreLa.setFont(new Font("Arial Black", Font.PLAIN, 18));
+		lblInformacinSobreLa.setForeground(Color.BLACK);
+		lblInformacinSobreLa.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblInformacinSobreLa.setBounds(146, 30, 303, 26);
 		panel.add(lblInformacinSobreLa);
 
