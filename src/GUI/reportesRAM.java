@@ -84,29 +84,29 @@ public class reportesRAM extends JDialog {
 
 		final JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "DDR", "DDR2", "DDR3", "DDR4", "DDR5"}));
-		comboBox.setFont(new Font("Sans Serif Collection", Font.PLAIN, 14));
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		comboBox.setBounds(66, 46, 108, 22);
 		contentPanel.add(comboBox);
 
 		JLabel lblTipoDeMemoria = new JLabel("Tipo de Memoria");
-		lblTipoDeMemoria.setFont(new Font("Sans Serif Collection", Font.PLAIN, 23));
+		lblTipoDeMemoria.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblTipoDeMemoria.setBounds(37, 11, 200, 34);
 		contentPanel.add(lblTipoDeMemoria);
 
 		JLabel lblCantidadDeMemoria = new JLabel("Cantidad de memoria");
-		lblCantidadDeMemoria.setFont(new Font("Sans Serif Collection", Font.PLAIN, 23));
+		lblCantidadDeMemoria.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblCantidadDeMemoria.setBounds(367, 11, 246, 34);
 		contentPanel.add(lblCantidadDeMemoria);
 
 		final JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(1.0, 1.0, 128.0, 1.0));
-		spinner.setFont(new Font("Sans Serif Collection", Font.PLAIN, 14));
-		spinner.setBounds(440, 42, 87, 21);
+		spinner.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		spinner.setBounds(440, 47, 87, 21);
 		contentPanel.add(spinner);
 
 		JLabel lblGb = new JLabel("GB");
-		lblGb.setFont(new Font("Sans Serif Collection", Font.PLAIN, 23));
-		lblGb.setBounds(537, 37, 41, 34);
+		lblGb.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblGb.setBounds(537, 37, 34, 34);
 		contentPanel.add(lblGb);
 
 		JButton button = new JButton("Filtrar");
@@ -127,24 +127,24 @@ public class reportesRAM extends JDialog {
 					if(rams.size()!=0)
 						JOptionPane.showMessageDialog(null,"Filtro Actualizado.", "Filtrado Exitoso", JOptionPane.INFORMATION_MESSAGE);
 					else
-						JOptionPane.showMessageDialog(null,"No se encontrÛ ninguna coincidencia.", "Sin coincidencias", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null,"No se encontr√≥ ninguna coincidencia.", "Sin coincidencias", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else
-					JOptionPane.showMessageDialog(null,"No deje campos vacÌos.", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,"No deje campos vac√≠os.", "Error", JOptionPane.ERROR_MESSAGE);
 
 			}
 		});
-		button.setFont(new Font("Sans Serif Collection", Font.PLAIN, 23));
+		button.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		button.setBounds(562, 482, 108, 41);
 		contentPanel.add(button);
 
 		JButton button_1 = new JButton("?");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"Este reporte buscar· memorias ram con un tipo de memoria especÌfico y una cantidad de memoria en gigabytes mayor a la que se especifica.", "InformaciÛn del reporte", JOptionPane.INFORMATION_MESSAGE);	
+				JOptionPane.showMessageDialog(null,"Este reporte buscar√° memorias ram con un tipo de memoria espec√≠fico y una cantidad de memoria en gigabytes mayor a la que se especifica.", "Informaci√≥n del reporte", JOptionPane.INFORMATION_MESSAGE);	
 			}
 		});
-		button_1.setFont(new Font("Sans Serif Collection", Font.PLAIN, 20));
+		button_1.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		button_1.setBounds(623, 9, 47, 41);
 		contentPanel.add(button_1);
 	}
