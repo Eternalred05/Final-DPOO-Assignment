@@ -63,5 +63,16 @@ public class Motherboard extends Componente {
 		double aporteMemoria = "DDR5".equalsIgnoreCase(tipoMemoriaRAM) ? 60 : "DDR4".equalsIgnoreCase(tipoMemoriaRAM) ? 45 : "DDR3".equalsIgnoreCase(tipoMemoriaRAM) ? 30 :"DDR2".equalsIgnoreCase(tipoMemoriaRAM) ? 20 : 15;
 		return precioBase + aporteSocket + aporteMemoria;
 	}
+	
+	public void editarMotherboard(int cantidadDisponible,String marca, String modelo,String tipoConector, String tipoMemoriaRAM, ArrayList<String> conexiones,double precioBase) {
+		setCantidadDisponible(cantidadDisponible);
+		setMarca(marca);
+		setModelo(modelo);
+		setTipoConector(tipoConector);
+		setTipoMemoriaRAM(tipoMemoriaRAM);
+		setPrecioBase(precioBase);
+		conexionesDiscos.clear();
+		addConexionesDiscos(conexiones);
+	}
 }
 
