@@ -144,8 +144,8 @@ public class MenuTienda extends JFrame {
 
 		final JComboBox comboBoxSocketMother = new JComboBox();
 		comboBoxSocketMother.setModel(new DefaultComboBoxModel(new String[] {"", "LGA", "PGA", "BGA"}));
-		comboBoxSocketMother.setFont(new Font("Arial Black", Font.PLAIN, 17));
-		comboBoxSocketMother.setBounds(269, 94, 114, 27);
+		comboBoxSocketMother.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		comboBoxSocketMother.setBounds(235, 94, 173, 27);
 		panel_4.add(comboBoxSocketMother);
 
 		JLabel label_8 = new JLabel("Precio base");
@@ -159,22 +159,22 @@ public class MenuTienda extends JFrame {
 		panel_4.add(label_9);
 
 		final JSpinner spinnerPrecioBaseMotherboard = new JSpinner();
-		spinnerPrecioBaseMotherboard.setModel(new SpinnerNumberModel(0.0, 0.0, 350.0, 1.0));
-		spinnerPrecioBaseMotherboard.setFont(new Font("Arial Black", Font.PLAIN, 17));
-		spinnerPrecioBaseMotherboard.setBounds(269, 204, 114, 27);
+		spinnerPrecioBaseMotherboard.setModel(new SpinnerNumberModel(0.0, 0.0, 999.0, 1.0));
+		spinnerPrecioBaseMotherboard.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		spinnerPrecioBaseMotherboard.setBounds(235, 204, 81, 27);
 		panel_4.add(spinnerPrecioBaseMotherboard);
 
 		final JTextFieldLimitado marcaMotherboard = new JTextFieldLimitado();
 		marcaMotherboard.setLimit(15);
 		marcaMotherboard.setHorizontalAlignment(SwingConstants.CENTER);
-		marcaMotherboard.setFont(new Font("Arial Black", Font.PLAIN, 17));
-		marcaMotherboard.setBounds(269, 15, 114, 27);
+		marcaMotherboard.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		marcaMotherboard.setBounds(235, 15, 173, 27);
 		panel_4.add(marcaMotherboard);
 
 		final JSpinner spinnerUnitsMotherboard = new JSpinner();
 		spinnerUnitsMotherboard.setModel(new SpinnerNumberModel(1, 1, 100, 1));
-		spinnerUnitsMotherboard.setFont(new Font("Arial Black", Font.PLAIN, 17));
-		spinnerUnitsMotherboard.setBounds(269, 241, 116, 27);
+		spinnerUnitsMotherboard.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		spinnerUnitsMotherboard.setBounds(235, 241, 81, 27);
 		panel_4.add(spinnerUnitsMotherboard);
 
 		JPanel panel_5 = new JPanel();
@@ -185,7 +185,7 @@ public class MenuTienda extends JFrame {
 
 		final JLabel labelPrecioMother = new JLabel("0.0000$");
 		labelPrecioMother.setHorizontalAlignment(SwingConstants.CENTER);
-		labelPrecioMother.setFont(new Font("Arial Black", Font.PLAIN, 20));
+		labelPrecioMother.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		labelPrecioMother.setBounds(10, 11, 153, 27);
 		panel_5.add(labelPrecioMother);
 
@@ -202,8 +202,8 @@ public class MenuTienda extends JFrame {
 		final JTextFieldLimitado idMotherboard = new JTextFieldLimitado();
 		idMotherboard.setLimit(10);
 		idMotherboard.setHorizontalAlignment(SwingConstants.CENTER);
-		idMotherboard.setFont(new Font("Arial Black", Font.PLAIN, 17));
-		idMotherboard.setBounds(269, 170, 114, 27);
+		idMotherboard.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		idMotherboard.setBounds(235, 170, 173, 27);
 		panel_4.add(idMotherboard);
 
 		JLabel lblModelo = new JLabel("Modelo");
@@ -214,19 +214,19 @@ public class MenuTienda extends JFrame {
 		final JTextFieldLimitado modeloMotherboard = new JTextFieldLimitado();
 		modeloMotherboard.setLimit(10);
 		modeloMotherboard.setHorizontalAlignment(SwingConstants.CENTER);
-		modeloMotherboard.setFont(new Font("Arial Black", Font.PLAIN, 17));
-		modeloMotherboard.setBounds(269, 55, 114, 27);
+		modeloMotherboard.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		modeloMotherboard.setBounds(235, 55, 173, 27);
 		panel_4.add(modeloMotherboard);
 
-		JLabel lblTiposDeRams = new JLabel("Tipos de RAMS soportadas");
+		JLabel lblTiposDeRams = new JLabel("Tipo de RAM soportada");
 		lblTiposDeRams.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblTiposDeRams.setBounds(20, 126, 242, 34);
 		panel_4.add(lblTiposDeRams);
 
 		final JComboBox comboBoxRAMMother = new JComboBox();
 		comboBoxRAMMother.setModel(new DefaultComboBoxModel(new String[] {"", "DDR", "DDR2", "DDR3", "DDR4", "DDR5"}));
-		comboBoxRAMMother.setFont(new Font("Arial Black", Font.PLAIN, 17));
-		comboBoxRAMMother.setBounds(269, 130, 114, 27);
+		comboBoxRAMMother.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		comboBoxRAMMother.setBounds(235, 130, 173, 27);
 		panel_4.add(comboBoxRAMMother);
 
 		JPanel panel_6 = new JPanel();
@@ -243,22 +243,22 @@ public class MenuTienda extends JFrame {
 		final JCheckBox chckbxSata = new JCheckBox("SATA");
 		chckbxSata.setBounds(12, 76, 114, 23);
 		panel_6.add(chckbxSata);
-		chckbxSata.setFont(new Font("Arial Black", Font.PLAIN, 20));
+		chckbxSata.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		final JCheckBox chckbxSata_2 = new JCheckBox("SATA-2");
 		chckbxSata_2.setBounds(12, 109, 114, 23);
 		panel_6.add(chckbxSata_2);
-		chckbxSata_2.setFont(new Font("Arial Black", Font.PLAIN, 20));
+		chckbxSata_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		final JCheckBox chckbxSata_3 = new JCheckBox("SATA-3");
 		chckbxSata_3.setBounds(171, 76, 114, 23);
 		panel_6.add(chckbxSata_3);
-		chckbxSata_3.setFont(new Font("Arial Black", Font.PLAIN, 20));
+		chckbxSata_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		final JCheckBox chckbxIde = new JCheckBox("IDE");
 		chckbxIde.setBounds(171, 109, 87, 23);
 		panel_6.add(chckbxIde);
-		chckbxIde.setFont(new Font("Arial Black", Font.PLAIN, 20));
+		chckbxIde.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		JButton buttonIngresarMother = new JButton("A\u00F1adir ");
 		buttonIngresarMother.addActionListener(new ActionListener() {
@@ -295,21 +295,21 @@ public class MenuTienda extends JFrame {
 					JOptionPane.showMessageDialog(null,"Seleccione al menos una conexión para los discos.","Error",JOptionPane.ERROR_MESSAGE);	
 			}
 		});
-		buttonIngresarMother.setFont(new Font("Arial Black", Font.PLAIN, 21));
+		buttonIngresarMother.setFont(new Font("Tahoma", Font.BOLD, 20));
 		buttonIngresarMother.setBounds(1127, 619, 129, 39);
 		panelMotherboard.add(buttonIngresarMother);
 
-		JLabel lblNewLabel = new JLabel("Del modelo de Mother Board que desea a\u00F1adir ingrese:");
-		lblNewLabel.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 18));
+		JLabel lblNewLabel = new JLabel("Del modelo de Motherboard que desea a\u00F1adir ingrese:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblNewLabel.setBounds(398, 11, 541, 31);
 		panelMotherboard.add(lblNewLabel);
 		paneIngresarTrabajador.setLayout(null);
 
 		JLabel lblNumeroDeId = new JLabel("Numero de ID actual");
 		lblNumeroDeId.setForeground(Color.BLACK);
-		lblNumeroDeId.setBounds(1014, 49, 227, 25);
+		lblNumeroDeId.setBounds(1051, 49, 203, 25);
 		paneIngresarTrabajador.add(lblNumeroDeId);
-		lblNumeroDeId.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
+		lblNumeroDeId.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		JPanel numId = new JPanel();
 		numId.setBounds(1125, 85, 35, 34);
@@ -321,51 +321,51 @@ public class MenuTienda extends JFrame {
 		final JLabel numIDT = new JLabel("0");
 		numIDT.setBounds(0, 0, 35, 34);
 		numId.add(numIDT);
-		numIDT.setFont(new Font("Arial Black", Font.PLAIN, 15));
+		numIDT.setFont(new Font("Tahoma", Font.BOLD, 15));
 		numIDT.setHorizontalAlignment(SwingConstants.CENTER);
 		final JTextFieldLimitado nombreTrabajador = new JTextFieldLimitado();
 		nombreTrabajador.setLimit(25);
 		nombreTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
-		nombreTrabajador.setFont(new Font("Arial Black", Font.PLAIN, 15));
-		nombreTrabajador.setBounds(622, 154, 235, 20);
+		nombreTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		nombreTrabajador.setBounds(595, 174, 235, 20);
 		paneIngresarTrabajador.add(nombreTrabajador);
 
 		JLabel label_1 = new JLabel("Nombre");
 		label_1.setForeground(Color.BLACK);
-		label_1.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
-		label_1.setBounds(480, 145, 103, 34);
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		label_1.setBounds(453, 165, 103, 34);
 		paneIngresarTrabajador.add(label_1);
 
 		JLabel label_14 = new JLabel("Apellidos");
 		label_14.setForeground(Color.BLACK);
-		label_14.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
-		label_14.setBounds(480, 192, 126, 34);
+		label_14.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		label_14.setBounds(453, 212, 126, 34);
 		paneIngresarTrabajador.add(label_14);
 
 		final JTextFieldLimitado apellidosTrabajador = new JTextFieldLimitado();
 		apellidosTrabajador.setLimit(25);
 		apellidosTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
-		apellidosTrabajador.setFont(new Font("Arial Black", Font.PLAIN, 15));
-		apellidosTrabajador.setBounds(622, 201, 235, 20);
+		apellidosTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		apellidosTrabajador.setBounds(595, 221, 235, 20);
 		paneIngresarTrabajador.add(apellidosTrabajador);
 
 		final JTextFieldLimitado idTrabajador = new JTextFieldLimitado();
 		idTrabajador.setLimit(11);
 		idTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
-		idTrabajador.setFont(new Font("Arial Black", Font.PLAIN, 15));
-		idTrabajador.setBounds(622, 243, 235, 20);
+		idTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		idTrabajador.setBounds(595, 263, 235, 20);
 		paneIngresarTrabajador.add(idTrabajador);
 
 		JLabel label_15 = new JLabel("Identificador");
 		label_15.setForeground(Color.BLACK);
-		label_15.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
-		label_15.setBounds(480, 234, 164, 34);
+		label_15.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		label_15.setBounds(453, 254, 164, 34);
 		paneIngresarTrabajador.add(label_15);
 
 		final JComboBox comboBoxCargo = new JComboBox();
 		comboBoxCargo.setForeground(Color.BLACK);
-		comboBoxCargo.setFont(new Font("Arial Black", Font.PLAIN, 11));
-		comboBoxCargo.setBounds(622, 316, 235, 20);
+		comboBoxCargo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		comboBoxCargo.setBounds(595, 336, 235, 20);
 		Object[] cargos = new Object[8];
 		cargos[0]="";
 		cargos[1]= "Gestor de ventas";
@@ -382,20 +382,20 @@ public class MenuTienda extends JFrame {
 
 		JLabel label_21 = new JLabel("Cargo");
 		label_21.setForeground(Color.BLACK);
-		label_21.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
-		label_21.setBounds(480, 306, 87, 34);
+		label_21.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		label_21.setBounds(453, 326, 87, 34);
 		paneIngresarTrabajador.add(label_21);
 
 		JLabel label_25 = new JLabel("Nivel \r\nEscolar");
 		label_25.setForeground(Color.BLACK);
-		label_25.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
-		label_25.setBounds(478, 351, 151, 34);
+		label_25.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		label_25.setBounds(451, 371, 151, 34);
 		paneIngresarTrabajador.add(label_25);
 
 		final JComboBox comboBoxEscolar = new JComboBox();
 		comboBoxEscolar.setForeground(Color.BLACK);
-		comboBoxEscolar.setFont(new Font("Arial Black", Font.PLAIN, 11));
-		comboBoxEscolar.setBounds(622, 361, 235, 20);
+		comboBoxEscolar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		comboBoxEscolar.setBounds(595, 381, 235, 20);
 
 		Object[] niveles = new Object[8];
 		niveles[0]="";
@@ -416,20 +416,20 @@ public class MenuTienda extends JFrame {
 		salarioTrabajador.setForeground(Color.BLACK);
 		salarioTrabajador.setLimit(10);
 		salarioTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
-		salarioTrabajador.setFont(new Font("Arial Black", Font.PLAIN, 15));
-		salarioTrabajador.setBounds(622, 402, 235, 20);
+		salarioTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		salarioTrabajador.setBounds(595, 422, 235, 20);
 		paneIngresarTrabajador.add(salarioTrabajador);
 
 		JLabel label_26 = new JLabel("Salario");
 		label_26.setForeground(Color.BLACK);
-		label_26.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
-		label_26.setBounds(480, 393, 105, 34);
+		label_26.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		label_26.setBounds(453, 413, 105, 34);
 		paneIngresarTrabajador.add(label_26);
 
 		JLabel lblNewLabel_1 = new JLabel("Ingrese los datos de un trabajador:");
 		lblNewLabel_1.setForeground(Color.BLACK);
-		lblNewLabel_1.setBounds(493, 11, 402, 23);
-		lblNewLabel_1.setFont(new Font("Sitka Text", Font.PLAIN, 20));
+		lblNewLabel_1.setBounds(453, 11, 402, 23);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		paneIngresarTrabajador.add(lblNewLabel_1);
 
@@ -465,12 +465,12 @@ public class MenuTienda extends JFrame {
 
 			}
 		});
-		btnNewButton.setFont(new Font("Arial Black", Font.PLAIN, 21));
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 20));
 		paneIngresarTrabajador.add(btnNewButton);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panel_1.setBounds(264, 98, 827, 431);
+		panel_1.setBounds(296, 123, 674, 373);
 		paneIngresarTrabajador.add(panel_1);
 
 
@@ -518,7 +518,7 @@ public class MenuTienda extends JFrame {
 		scrollPane.setViewportView(tableTrabajador);
 
 		JLabel lblListadoDeTrabajadores = new JLabel("Listado de Trabajadores");
-		lblListadoDeTrabajadores.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
+		lblListadoDeTrabajadores.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblListadoDeTrabajadores.setBounds(465, 6, 256, 38);
 		panelListaTrabajadores.add(lblListadoDeTrabajadores);
 
@@ -530,7 +530,7 @@ public class MenuTienda extends JFrame {
 		panelRAM.setLayout(null);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(387, 151, 690, 317);
+		panel_3.setBounds(301, 137, 690, 332);
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_3.setLayout(null);
 		panelRAM.add(panel_3);
@@ -551,7 +551,7 @@ public class MenuTienda extends JFrame {
 		panel_3.add(label_2);
 
 		final JComboBox comboBoxTipoRAM = new JComboBox();
-		comboBoxTipoRAM.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		comboBoxTipoRAM.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		comboBoxTipoRAM.setBounds(237, 120, 163, 27);
 		Object[] tiposRAM = new Object[6];
 		tiposRAM[0]="";
@@ -575,27 +575,27 @@ public class MenuTienda extends JFrame {
 		panel_3.add(label_5);
 
 		final JSpinner spinnerCapacidadRAM = new JSpinner();
-		spinnerCapacidadRAM.setFont(new Font("Arial Black", Font.PLAIN, 17));
-		spinnerCapacidadRAM.setModel(new SpinnerNumberModel(0.0, 0.0, 128.0, 1.0));
+		spinnerCapacidadRAM.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		spinnerCapacidadRAM.setModel(new SpinnerNumberModel(1.0, 1.0, 128.0, 1.0));
 		spinnerCapacidadRAM.setBounds(237, 70, 81, 27);
 		panel_3.add(spinnerCapacidadRAM);
 
 		final JSpinner spinnerPrecioBaseRAM = new JSpinner();
 		spinnerPrecioBaseRAM.setModel(new SpinnerNumberModel(0.0, 0.0, 250.0, 1.0));
-		spinnerPrecioBaseRAM.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		spinnerPrecioBaseRAM.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		spinnerPrecioBaseRAM.setBounds(237, 201, 81, 27);
 		panel_3.add(spinnerPrecioBaseRAM);
 
 		final JTextFieldLimitado textMarcaRAM = new JTextFieldLimitado();
 		textMarcaRAM.setHorizontalAlignment(SwingConstants.CENTER);
-		textMarcaRAM.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		textMarcaRAM.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		textMarcaRAM.setLimit(15);
 		textMarcaRAM.setBounds(238, 27, 162, 27);
 		panel_3.add(textMarcaRAM);
 
 		final JSpinner spinnerRAMUnit = new JSpinner();
-		spinnerRAMUnit.setModel(new SpinnerNumberModel(0, 0, 300, 1));
-		spinnerRAMUnit.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		spinnerRAMUnit.setModel(new SpinnerNumberModel(1, 1, 300, 1));
+		spinnerRAMUnit.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		spinnerRAMUnit.setBounds(237, 240, 81, 27);
 		panel_3.add(spinnerRAMUnit);
 
@@ -606,14 +606,14 @@ public class MenuTienda extends JFrame {
 		panel_PrecioRAM.setLayout(null);
 
 		final JLabel lblPrecioRAM = new JLabel("0.0000$");
-		lblPrecioRAM.setFont(new Font("Arial Black", Font.PLAIN, 20));
+		lblPrecioRAM.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblPrecioRAM.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPrecioRAM.setBounds(10, 11, 153, 27);
 		panel_PrecioRAM.add(lblPrecioRAM);
 
 		JLabel lblPrecioDeLa = new JLabel("Precio de la RAM");
 		lblPrecioDeLa.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblPrecioDeLa.setBounds(482, 193, 162, 42);
+		lblPrecioDeLa.setBounds(492, 193, 162, 42);
 		panel_3.add(lblPrecioDeLa);
 
 		JLabel RAMNumeroSerie = new JLabel("N\u00FAmero de Serie");
@@ -626,11 +626,11 @@ public class MenuTienda extends JFrame {
 		panel_3.add(textNumeroSerie);
 		textNumeroSerie.setLimit(10);
 		textNumeroSerie.setHorizontalAlignment(SwingConstants.CENTER);
-		textNumeroSerie.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		textNumeroSerie.setFont(new Font("Tahoma", Font.PLAIN, 17));
 
 		JLabel lblGb = new JLabel("GB");
-		lblGb.setFont(new Font("Arial Black", Font.BOLD, 23));
-		lblGb.setBounds(349, 64, 51, 34);
+		lblGb.setFont(new Font("Tahoma", Font.BOLD, 23));
+		lblGb.setBounds(328, 64, 51, 34);
 		panel_3.add(lblGb);
 
 		JButton btnAadir = new JButton("A\u00F1adir");
@@ -661,8 +661,8 @@ public class MenuTienda extends JFrame {
 		btnAadir.setFont(new Font("Arial Black", Font.PLAIN, 21));
 
 		JLabel lblDelModeloDe = new JLabel("Del modelo de Memoria RAM que desea a\u00F1adir ingrese:");
-		lblDelModeloDe.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 18));
-		lblDelModeloDe.setBounds(462, 11, 541, 31);
+		lblDelModeloDe.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblDelModeloDe.setBounds(351, 11, 541, 31);
 		panelRAM.add(lblDelModeloDe);
 
 		final JPanel panelListadoComponentes = new JPanel();
@@ -704,7 +704,7 @@ public class MenuTienda extends JFrame {
 		scrollPane_1.setViewportView(tableComponentes);
 
 		JLabel lblNewLabel_2 = new JLabel("Listado de Componentes Disponibles");
-		lblNewLabel_2.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblNewLabel_2.setBounds(401, 11, 400, 38);
 		panelListadoComponentes.add(lblNewLabel_2);
 
@@ -725,17 +725,17 @@ public class MenuTienda extends JFrame {
 		panel_7.add(label_6);
 
 		final JTextFieldLimitado marcaCPU = new JTextFieldLimitado();
-		marcaCPU.setBounds(266, 15, 148, 27);
+		marcaCPU.setBounds(266, 15, 190, 27);
 		marcaCPU.setLimit(15);
 		marcaCPU.setHorizontalAlignment(SwingConstants.CENTER);
-		marcaCPU.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		marcaCPU.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_7.add(marcaCPU);
 
 		final JTextFieldLimitado idCPU = new JTextFieldLimitado();
-		idCPU.setBounds(266, 160, 148, 27);
+		idCPU.setBounds(266, 160, 190, 27);
 		idCPU.setLimit(15);
 		idCPU.setHorizontalAlignment(SwingConstants.CENTER);
-		idCPU.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		idCPU.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_7.add(idCPU);
 
 		JLabel label_7 = new JLabel("N\u00FAmero de Serie");
@@ -749,10 +749,10 @@ public class MenuTienda extends JFrame {
 		panel_7.add(label_10);
 
 		final JTextFieldLimitado modeloCPU = new JTextFieldLimitado();
-		modeloCPU.setBounds(264, 61, 150, 27);
+		modeloCPU.setBounds(264, 61, 192, 27);
 		modeloCPU.setLimit(20);
 		modeloCPU.setHorizontalAlignment(SwingConstants.CENTER);
-		modeloCPU.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		modeloCPU.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_7.add(modeloCPU);
 
 		JLabel label_11 = new JLabel("Tipo de Socket");
@@ -761,9 +761,9 @@ public class MenuTienda extends JFrame {
 		panel_7.add(label_11);
 
 		final JComboBox comboBoxSocketCPU = new JComboBox();
-		comboBoxSocketCPU.setBounds(267, 107, 148, 27);
+		comboBoxSocketCPU.setBounds(267, 107, 189, 27);
 		comboBoxSocketCPU.setModel(new DefaultComboBoxModel(new String[] {"", "LGA", "BGA", "PGA"}));
-		comboBoxSocketCPU.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		comboBoxSocketCPU.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_7.add(comboBoxSocketCPU);
 
 		JLabel label_13 = new JLabel("Precio base");
@@ -774,7 +774,7 @@ public class MenuTienda extends JFrame {
 		final JSpinner spinnerPrecioBaseCPU = new JSpinner();
 		spinnerPrecioBaseCPU.setBounds(267, 249, 81, 27);
 		spinnerPrecioBaseCPU.setModel(new SpinnerNumberModel(0.0, 0.0, 450.0, 1.0));
-		spinnerPrecioBaseCPU.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		spinnerPrecioBaseCPU.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_7.add(spinnerPrecioBaseCPU);
 
 		JLabel label_16 = new JLabel("Cantidad de unidades");
@@ -785,7 +785,7 @@ public class MenuTienda extends JFrame {
 		final JSpinner spinnerUnidadesCPU = new JSpinner();
 		spinnerUnidadesCPU.setModel(new SpinnerNumberModel(1, 1, 500, 1));
 		spinnerUnidadesCPU.setBounds(267, 289, 81, 27);
-		spinnerUnidadesCPU.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		spinnerUnidadesCPU.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_7.add(spinnerUnidadesCPU);
 
 		JLabel lblPrecioDeLa_1 = new JLabel("Precio de la CPU");
@@ -801,7 +801,7 @@ public class MenuTienda extends JFrame {
 
 		final JLabel precioCPU = new JLabel("0.0000$");
 		precioCPU.setHorizontalAlignment(SwingConstants.CENTER);
-		precioCPU.setFont(new Font("Arial Black", Font.PLAIN, 20));
+		precioCPU.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		precioCPU.setBounds(12, 13, 153, 27);
 		panel_8.add(precioCPU);
 
@@ -812,7 +812,7 @@ public class MenuTienda extends JFrame {
 
 		final JSpinner spinnerVelocidadCPU = new JSpinner();
 		spinnerVelocidadCPU.setModel(new SpinnerNumberModel(1.0, 1.0, 5.0, 1.0));
-		spinnerVelocidadCPU.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		spinnerVelocidadCPU.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		spinnerVelocidadCPU.setBounds(267, 204, 81, 27);
 		panel_7.add(spinnerVelocidadCPU);
 
@@ -843,7 +843,7 @@ public class MenuTienda extends JFrame {
 		buttonIngresarCPU.setFont(new Font("Arial Black", Font.PLAIN, 21));
 
 		JLabel lblDelModeloDe_1 = new JLabel("Del modelo de microprocesador que desea a\u00F1adir ingrese:");
-		lblDelModeloDe_1.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 18));
+		lblDelModeloDe_1.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblDelModeloDe_1.setBounds(405, 11, 541, 31);
 		panelCPU.add(lblDelModeloDe_1);
 
@@ -864,22 +864,22 @@ public class MenuTienda extends JFrame {
 		panel_9.add(label_17);
 
 		final JTextFieldLimitado marcaHdd = new JTextFieldLimitado();
-		marcaHdd.setBounds(247, 15, 154, 27);
+		marcaHdd.setBounds(247, 15, 185, 27);
 		marcaHdd.setLimit(15);
 		marcaHdd.setHorizontalAlignment(SwingConstants.CENTER);
-		marcaHdd.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		marcaHdd.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_9.add(marcaHdd);
 
 		JLabel label_18 = new JLabel("N\u00FAmero de Serie");
-		label_18.setBounds(30, 205, 162, 34);
+		label_18.setBounds(30, 188, 162, 34);
 		label_18.setFont(new Font("Tahoma", Font.BOLD, 17));
 		panel_9.add(label_18);
 
 		final JTextFieldLimitado numeroSerieHDD = new JTextFieldLimitado();
-		numeroSerieHDD.setBounds(253, 209, 148, 27);
+		numeroSerieHDD.setBounds(247, 192, 179, 27);
 		numeroSerieHDD.setLimit(10);
 		numeroSerieHDD.setHorizontalAlignment(SwingConstants.CENTER);
-		numeroSerieHDD.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		numeroSerieHDD.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_9.add(numeroSerieHDD);
 
 		JLabel label_19 = new JLabel("Modelo");
@@ -888,21 +888,21 @@ public class MenuTienda extends JFrame {
 		panel_9.add(label_19);
 
 		final JTextFieldLimitado modeloHDD = new JTextFieldLimitado();
-		modeloHDD.setBounds(247, 62, 154, 27);
+		modeloHDD.setBounds(247, 62, 185, 27);
 		modeloHDD.setLimit(10);
 		modeloHDD.setHorizontalAlignment(SwingConstants.CENTER);
-		modeloHDD.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		modeloHDD.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_9.add(modeloHDD);
 
 		JLabel label_20 = new JLabel("Precio base");
-		label_20.setBounds(30, 252, 129, 27);
+		label_20.setBounds(30, 233, 129, 27);
 		label_20.setFont(new Font("Tahoma", Font.BOLD, 17));
 		panel_9.add(label_20);
 
 		final JSpinner spinnerPrecioHdd = new JSpinner();
 		spinnerPrecioHdd.setModel(new SpinnerNumberModel(0.0, 0.0, 450.0, 1.0));
-		spinnerPrecioHdd.setBounds(253, 249, 81, 27);
-		spinnerPrecioHdd.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		spinnerPrecioHdd.setBounds(247, 230, 81, 27);
+		spinnerPrecioHdd.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_9.add(spinnerPrecioHdd);
 
 		JLabel lblPrecioDelDisco = new JLabel("Precio del disco duro");
@@ -918,7 +918,7 @@ public class MenuTienda extends JFrame {
 
 		final JLabel labelPrecioHDD = new JLabel("0.0000$");
 		labelPrecioHDD.setHorizontalAlignment(SwingConstants.CENTER);
-		labelPrecioHDD.setFont(new Font("Arial Black", Font.PLAIN, 20));
+		labelPrecioHDD.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		labelPrecioHDD.setBounds(10, 11, 153, 27);
 		panel_11.add(labelPrecioHDD);
 
@@ -928,36 +928,36 @@ public class MenuTienda extends JFrame {
 		panel_9.add(lblTipoDeConexin);
 
 		final JComboBox comboBoxConexionHDD = new JComboBox();
-		comboBoxConexionHDD.setBounds(247, 109, 154, 27);
+		comboBoxConexionHDD.setBounds(247, 109, 185, 27);
 		comboBoxConexionHDD.setModel(new DefaultComboBoxModel(new String[] {"", "IDE", "SATA", "SATA-2", "SATA-3"}));
-		comboBoxConexionHDD.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		comboBoxConexionHDD.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_9.add(comboBoxConexionHDD);
 
 		JLabel label_22 = new JLabel("Cantidad de unidades");
-		label_22.setBounds(30, 292, 192, 37);
+		label_22.setBounds(30, 271, 192, 37);
 		label_22.setFont(new Font("Tahoma", Font.BOLD, 17));
 		panel_9.add(label_22);
 
 		final JSpinner unitsHDD = new JSpinner();
 		unitsHDD.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-		unitsHDD.setBounds(253, 292, 81, 27);
-		unitsHDD.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		unitsHDD.setBounds(247, 276, 81, 27);
+		unitsHDD.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_9.add(unitsHDD);
 
 		JLabel label_23 = new JLabel("Cantidad de Memoria");
-		label_23.setBounds(30, 152, 192, 27);
+		label_23.setBounds(30, 150, 192, 27);
 		label_23.setFont(new Font("Tahoma", Font.BOLD, 17));
 		panel_9.add(label_23);
 
 		final JSpinner spinnerMemoriaHDD = new JSpinner();
-		spinnerMemoriaHDD.setBounds(253, 152, 81, 27);
+		spinnerMemoriaHDD.setBounds(247, 147, 81, 27);
 		spinnerMemoriaHDD.setModel(new SpinnerNumberModel(128.0, 128.0, 4096.0, 1.0));
-		spinnerMemoriaHDD.setFont(new Font("Arial Black", Font.PLAIN, 17));
+		spinnerMemoriaHDD.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_9.add(spinnerMemoriaHDD);
 
 		JLabel label_24 = new JLabel("GB");
-		label_24.setBounds(364, 149, 51, 34);
-		label_24.setFont(new Font("Arial Black", Font.BOLD, 23));
+		label_24.setBounds(329, 144, 51, 34);
+		label_24.setFont(new Font("Tahoma", Font.BOLD, 23));
 		panel_9.add(label_24);
 
 		JButton buttonIngresarHDD = new JButton("A\u00F1adir");
@@ -987,7 +987,7 @@ public class MenuTienda extends JFrame {
 		buttonIngresarHDD.setFont(new Font("Arial Black", Font.PLAIN, 21));
 
 		JLabel lblDelModeloDe_2 = new JLabel("Del modelo de disco duro que desea a\u00F1adir ingrese:");
-		lblDelModeloDe_2.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 18));
+		lblDelModeloDe_2.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblDelModeloDe_2.setBounds(421, 11, 484, 31);
 		panelHDD.add(lblDelModeloDe_2);
 
@@ -996,8 +996,8 @@ public class MenuTienda extends JFrame {
 		panelListadoPC.setLayout(null);
 
 		JLabel lblListadoDeComputadoras = new JLabel("Listado de Computadoras Conformadas");
-		lblListadoDeComputadoras.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
-		lblListadoDeComputadoras.setBounds(413, 11, 400, 38);
+		lblListadoDeComputadoras.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblListadoDeComputadoras.setBounds(429, 11, 400, 38);
 		panelListadoPC.add(lblListadoDeComputadoras);
 
 		JScrollPane scrollPane_2 = new JScrollPane();
@@ -1074,6 +1074,22 @@ public class MenuTienda extends JFrame {
 				panelHDD.setVisible(false);
 				panelCPU.setVisible(false);
 				panelListadoPC.setVisible(false);
+				// poner todo en blanco
+				marcaMotherboard.setText("");
+				modeloMotherboard.setText("");
+				comboBoxRAMMother.setSelectedItem("");
+				comboBoxSocketMother.setSelectedItem("");
+				idMotherboard.setText("");
+				spinnerPrecioBaseMotherboard.setValue(1.00);
+				spinnerUnitsMotherboard.setValue(1);
+				chckbxIde.setSelected(false);
+				chckbxSata.setSelected(false);
+				chckbxSata_2.setSelected(false);
+				chckbxSata_3.setSelected(false);
+				labelPrecioMother.setText(String.valueOf(0.00)+"$");
+
+
+
 			}
 		});
 		mnAadirComponentes.add(mntmMotherboard);
@@ -1090,6 +1106,16 @@ public class MenuTienda extends JFrame {
 				panelHDD.setVisible(false);
 				panelCPU.setVisible(false);
 				panelListadoPC.setVisible(false);
+				// iniciar con todo en blanco
+				textMarcaRAM.setText("");
+				textNumeroSerie.setText("");
+				comboBoxTipoRAM.setSelectedItem("");
+				spinnerCapacidadRAM.setValue(1.00);
+				spinnerPrecioBaseRAM.setValue(0.00);
+				spinnerRAMUnit.setValue(1);
+				lblPrecioRAM.setText(String.valueOf(0.00)+"$");
+
+
 			}
 		});
 		mnAadirComponentes.add(mntmRam);
@@ -1106,6 +1132,15 @@ public class MenuTienda extends JFrame {
 				panelHDD.setVisible(true);
 				panelCPU.setVisible(false);
 				panelListadoPC.setVisible(false);
+				// para iniciar con todo en blanco
+				marcaHdd.setText("");
+				modeloHDD.setText("");
+				comboBoxConexionHDD.setSelectedItem("");
+				spinnerMemoriaHDD.setValue(128.00);
+				spinnerPrecioHdd.setValue(1.00);
+				unitsHDD.setValue(1);
+				numeroSerieHDD.setText("");
+				labelPrecioHDD.setText(String.valueOf(0.00)+"$");
 			}
 		});
 		mnAadirComponentes.add(mntmDiscosDuros);
@@ -1402,6 +1437,7 @@ public class MenuTienda extends JFrame {
 		});
 
 		JButton btnBorrar = new JButton("Borrar");
+		btnBorrar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(tableTrabajador.getSelectedRows().length == 1){
@@ -1426,6 +1462,7 @@ public class MenuTienda extends JFrame {
 		panelListaTrabajadores.add(btnBorrar);
 
 		JButton btnBorrar_1 = new JButton("Borrar");
+		btnBorrar_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnBorrar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(tableComponentes.getSelectedRows().length == 1){
@@ -1481,6 +1518,7 @@ public class MenuTienda extends JFrame {
 		panelListadoPC.add(btnNewButton_1);
 		// editar trabajador
 		JButton btnEditar = new JButton("Editar");
+		btnEditar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(tableTrabajador.getSelectedRows().length == 1) {
@@ -1514,6 +1552,7 @@ public class MenuTienda extends JFrame {
 
 		// editar componente
 		JButton btnEditar_1 = new JButton("Editar");
+		btnEditar_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnEditar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(tableComponentes.getSelectedRows().length == 1) {
@@ -1543,7 +1582,7 @@ public class MenuTienda extends JFrame {
 					mntmMostrarListadoDe.doClick();
 				}
 				else
-					JOptionPane.showMessageDialog(null,"No se puede editar el gerente.","No se puede modificar al gerente", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,"No se seleccionó ningún componente.","Error al editar", JOptionPane.ERROR_MESSAGE);
 			}
 		});
 		btnEditar_1.setBounds(10, 611, 89, 23);
