@@ -59,7 +59,7 @@ public class Login extends JDialog {
 		getContentPane().add(lblIngreseElUsuario);
 
 		final JTextFieldLimitado user = new JTextFieldLimitado();
-		user.setFont(new Font("Sans Serif Collection", Font.PLAIN, 13));
+		user.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		user.setHorizontalAlignment(SwingConstants.CENTER);
 		user.setLimit(30);
 		user.setBounds(133, 118, 295, 20);
@@ -67,7 +67,7 @@ public class Login extends JDialog {
 
 		final JPasswordFieldLimitado password = new JPasswordFieldLimitado();
 		password.setHorizontalAlignment(SwingConstants.CENTER);
-		password.setFont(new Font("Sans Serif Collection", Font.PLAIN, 13));
+		password.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		password.setLimit(11);
 		password.setBounds(133, 190, 295, 20);
 		getContentPane().add(password);
