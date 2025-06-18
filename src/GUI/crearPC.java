@@ -25,6 +25,7 @@ import java.awt.Font;
 import javax.swing.ListSelectionModel;
 import Componentes.JTextFieldLimitado;
 import javax.swing.DropMode;
+import javax.swing.SwingConstants;
 
 public class crearPC extends JDialog {
 
@@ -110,7 +111,7 @@ public class crearPC extends JDialog {
 		scrollPane_2.setViewportView(tableRAM);
 
 		JLabel lblEscojaHasta = new JLabel("Escoja Hasta 4 RAMS compatibles con la motherboard escogida de la lista:");
-		lblEscojaHasta.setFont(new Font("Sans Serif Collection", Font.PLAIN, 12));
+		lblEscojaHasta.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblEscojaHasta.setBounds(105, 45, 449, 23);
 		panelRAM.add(lblEscojaHasta);
 
@@ -119,8 +120,8 @@ public class crearPC extends JDialog {
 		panelHDD.setLayout(null);
 
 		JLabel lblEscojaHasta_1 = new JLabel("Escoja hasta 4 Discos Duros  compatible con la motherboard escogida de la lista");
-		lblEscojaHasta_1.setFont(new Font("Sans Serif Collection", Font.PLAIN, 11));
-		lblEscojaHasta_1.setBounds(124, 47, 434, 23);
+		lblEscojaHasta_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblEscojaHasta_1.setBounds(91, 47, 493, 23);
 		panelHDD.add(lblEscojaHasta_1);
 
 		JScrollPane scrollPane_3 = new JScrollPane();
@@ -162,7 +163,7 @@ public class crearPC extends JDialog {
 		panelCrearPC.setLayout(null);
 
 		JLabel lblLosComponentesDe = new JLabel("Los componentes de su pc ser\u00EDan los siguientes");
-		lblLosComponentesDe.setFont(new Font("Sans Serif Collection", Font.PLAIN, 14));
+		lblLosComponentesDe.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblLosComponentesDe.setBounds(169, 2, 339, 20);
 		panelCrearPC.add(lblLosComponentesDe);
 
@@ -256,13 +257,14 @@ public class crearPC extends JDialog {
 		panelCrearPC.add(lblDiscosDuros);
 
 		final JTextFieldLimitado idPC = new JTextFieldLimitado();
-		idPC.setFont(new Font("Sans Serif Collection", Font.PLAIN, 13));
+		idPC.setHorizontalAlignment(SwingConstants.CENTER);
+		idPC.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		idPC.setLimit(10);
-		idPC.setBounds(98, 481, 88, 20);
+		idPC.setBounds(88, 481, 119, 20);
 		panelCrearPC.add(idPC);
 
 		JLabel lblIdentificadorDeLa = new JLabel("Identificador de la PC");
-		lblIdentificadorDeLa.setFont(new Font("Sans Serif Collection", Font.PLAIN, 13));
+		lblIdentificadorDeLa.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblIdentificadorDeLa.setBounds(88, 463, 160, 14);
 		panelCrearPC.add(lblIdentificadorDeLa);
 
@@ -274,14 +276,14 @@ public class crearPC extends JDialog {
 		tableMotherBoard = new JTable();
 		tableMotherBoard.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableMotherBoard.setModel(new DefaultTableModel(
-				new Object[][] {
-				},
-				new String[] {
-						"ID", "Marca", "Modelo", "Socket", "Tipo de RAM", "Conexiones para discos", "Precio", "Disponibles"
-				}
-				) {
+			new Object[][] {
+			},
+			new String[] {
+				"ID", "Marca", "Modelo", "Socket", "Tipo de RAM", "Conexiones para discos", "Precio", "Disponibles"
+			}
+		) {
 			boolean[] columnEditables = new boolean[] {
-					false, false, false, false, false, false, false, false
+				false, false, false, false, false, false, false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
@@ -296,7 +298,7 @@ public class crearPC extends JDialog {
 		tableMotherBoard.getColumnModel().getColumn(4).setResizable(false);
 		tableMotherBoard.getColumnModel().getColumn(4).setPreferredWidth(86);
 		tableMotherBoard.getColumnModel().getColumn(5).setResizable(false);
-		tableMotherBoard.getColumnModel().getColumn(5).setPreferredWidth(162);
+		tableMotherBoard.getColumnModel().getColumn(5).setPreferredWidth(190);
 		tableMotherBoard.getColumnModel().getColumn(6).setResizable(false);
 		tableMotherBoard.getColumnModel().getColumn(7).setResizable(false);
 		tableMotherBoard.getColumnModel().getColumn(7).setPreferredWidth(80);
@@ -347,7 +349,7 @@ public class crearPC extends JDialog {
 		scrollPane.setViewportView(tableMotherBoard);
 
 		JLabel lblEscojaUnaMotherboard = new JLabel("Escoja una Motherboard de la lista");
-		lblEscojaUnaMotherboard.setFont(new Font("Sans Serif Collection", Font.PLAIN, 11));
+		lblEscojaUnaMotherboard.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblEscojaUnaMotherboard.setBounds(239, 42, 195, 23);
 		panelMother.add(lblEscojaUnaMotherboard);
 
@@ -356,11 +358,13 @@ public class crearPC extends JDialog {
 		panelCPU.setLayout(null);
 
 		JLabel lblEscojaUnaCpu = new JLabel("Escoja una CPU compatible con la motherboard escogida de la lista");
+		lblEscojaUnaCpu.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblEscojaUnaCpu.setBounds(157, 47, 401, 23);
 		panelCPU.add(lblEscojaUnaCpu);
 		panelCPU.add(scrollPane_1);
 
 		JButton btnEscoger = new JButton("Escoger");
+		btnEscoger.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnEscoger.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(tableMotherBoard.getSelectedRows().length == 1){
@@ -391,6 +395,7 @@ public class crearPC extends JDialog {
 
 
 		JButton button = new JButton("Escoger");
+		button.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(tableCPU.getSelectedRows().length == 1){
@@ -426,12 +431,12 @@ public class crearPC extends JDialog {
 				panelMother.setVisible(true);
 			}
 		});
-		button_7.setFont(new Font("Sans Serif Collection", Font.PLAIN, 11));
+		button_7.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		button_7.setBounds(10, 11, 89, 23);
 		panelCPU.add(button_7);
 
 		JButton button_1 = new JButton("Escoger");
-		button_1.setFont(new Font("Sans Serif Collection", Font.PLAIN, 12));
+		button_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(tableRAM.getSelectedRows().length == 1 ){
@@ -460,7 +465,7 @@ public class crearPC extends JDialog {
 		panelRAM.add(button_1);
 
 		JButton btnContinuar = new JButton("Continuar");
-		btnContinuar.setFont(new Font("Sans Serif Collection", Font.PLAIN, 12));
+		btnContinuar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnContinuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(r.size()!=0){
@@ -493,12 +498,12 @@ public class crearPC extends JDialog {
 				panelCPU.setVisible(true);
 			}
 		});
-		button_4.setFont(new Font("Sans Serif Collection", Font.PLAIN, 12));
+		button_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		button_4.setBounds(10, 11, 89, 23);
 		panelRAM.add(button_4);
 
 		JButton btnDeshacerUltimaEleccion = new JButton("Deshacer \u00FAltima elecci\u00F3n");
-		btnDeshacerUltimaEleccion.setFont(new Font("Sans Serif Collection", Font.PLAIN, 12));
+		btnDeshacerUltimaEleccion.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnDeshacerUltimaEleccion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(r.size()>0){
@@ -521,6 +526,7 @@ public class crearPC extends JDialog {
 		panelRAM.add(btnDeshacerUltimaEleccion);
 
 		JButton button_2 = new JButton("Escoger");
+		button_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(tableHDD.getSelectedRows().length == 1 ){
@@ -549,6 +555,7 @@ public class crearPC extends JDialog {
 		panelHDD.add(button_2);
 
 		JButton button_3 = new JButton("Continuar");
+		button_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(h.size()!=0){
@@ -596,7 +603,7 @@ public class crearPC extends JDialog {
 				panelHDD.setVisible(false);
 			}
 		});
-		button_5.setFont(new Font("Sans Serif Collection", Font.PLAIN, 11));
+		button_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		button_5.setBounds(10, 11, 89, 23);
 		panelHDD.add(button_5);
 
@@ -619,11 +626,12 @@ public class crearPC extends JDialog {
 					JOptionPane.showMessageDialog(null,"No se puede deshacer si no se ha escogido algún HDD.","Sin selecciones",JOptionPane.ERROR_MESSAGE);
 			}
 		});
-		button_8.setFont(new Font("Sans Serif Collection", Font.PLAIN, 12));
+		button_8.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		button_8.setBounds(470, 10, 190, 23);
 		panelHDD.add(button_8);
 
 		JButton btnCrearPc = new JButton("Crear PC");
+		btnCrearPc.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnCrearPc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String id = idPC.getText();
@@ -661,7 +669,7 @@ public class crearPC extends JDialog {
 				panelHDD.setVisible(true);
 			}
 		});
-		button_6.setFont(new Font("Sans Serif Collection", Font.PLAIN, 11));
+		button_6.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		button_6.setBounds(10, 2, 89, 23);
 		panelCrearPC.add(button_6);
 	}
