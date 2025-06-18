@@ -48,14 +48,14 @@ public class Login extends JDialog {
 
 		JLabel lblIngreseLaContrasea = new JLabel("Ingrese la contrase\u00F1a");
 		lblIngreseLaContrasea.setForeground(Color.WHITE);
-		lblIngreseLaContrasea.setFont(new Font("Sans Serif Collection", Font.PLAIN, 17));
-		lblIngreseLaContrasea.setBounds(189, 159, 196, 20);
+		lblIngreseLaContrasea.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblIngreseLaContrasea.setBounds(189, 156, 196, 23);
 		getContentPane().add(lblIngreseLaContrasea);
 
 		JLabel lblIngreseElUsuario = new JLabel("Ingrese el usuario");
 		lblIngreseElUsuario.setForeground(Color.WHITE);
-		lblIngreseElUsuario.setFont(new Font("Sans Serif Collection", Font.PLAIN, 17));
-		lblIngreseElUsuario.setBounds(201, 87, 169, 20);
+		lblIngreseElUsuario.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblIngreseElUsuario.setBounds(201, 84, 169, 23);
 		getContentPane().add(lblIngreseElUsuario);
 
 		final JTextFieldLimitado user = new JTextFieldLimitado();
@@ -88,17 +88,17 @@ public class Login extends JDialog {
 						JOptionPane.showMessageDialog(null, "Las credenciales ingresadas son correctas.","Información Correcta",JOptionPane.INFORMATION_MESSAGE);
 						if(usuario.equals(tienda.getGerente().getNombre()))
 							gerencia = true;
-							EventQueue.invokeLater(new Runnable() {
-								public void run() {
-									try {
-										MenuTienda frame = new MenuTienda(tienda, usuario,gerencia);
-										frame.setVisible(true);
-										dispose();
-									} catch (Exception e) {
-										e.printStackTrace();
-									}
+						EventQueue.invokeLater(new Runnable() {
+							public void run() {
+								try {
+									MenuTienda frame = new MenuTienda(tienda, usuario,gerencia);
+									frame.setVisible(true);
+									dispose();
+								} catch (Exception e) {
+									e.printStackTrace();
 								}
-							});
+							}
+						});
 
 					}
 					else 
@@ -112,7 +112,7 @@ public class Login extends JDialog {
 
 			}
 		});
-		btnContinuar.setFont(new Font("Sans Serif Collection", Font.PLAIN, 13));
+		btnContinuar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnContinuar.setBounds(230, 248, 110, 23);
 		getContentPane().add(btnContinuar);
 
@@ -127,7 +127,7 @@ public class Login extends JDialog {
 			}
 		});
 		showPass.setForeground(Color.BLACK);
-		showPass.setFont(new Font("Sans Serif Collection", Font.PLAIN, 13));
+		showPass.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		showPass.setBackground(Color.WHITE);
 		showPass.setBounds(441, 190, 73, 20);
 		getContentPane().add(showPass);
