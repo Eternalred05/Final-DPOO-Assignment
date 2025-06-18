@@ -2,7 +2,7 @@ package Logic;
 public class CPU extends Componente {
 	private String modelo;
 	private String socket;
-	private double velocidad; // se expresar· en Ghz y se usar· de un rango de 1Ghz hasta 5.0Ghz como en la gran cantidad de ordenadores modernos
+	private double velocidad; // se expresar√° en Ghz y se usar√° de un rango de 1Ghz hasta 5.0Ghz como en la gran cantidad de ordenadores modernos
 
 	public double getVelocidad() {
 		return velocidad;
@@ -36,7 +36,7 @@ public class CPU extends Componente {
 		if(modelo!= null && !modelo.isEmpty())
 			this.modelo = modelo;
 		else
-			throw new IllegalArgumentException("No puede estar vacÌo el modelo");
+			throw new IllegalArgumentException("No puede estar vac√≠o el modelo");
 	}
 
 	public String getSocket() {
@@ -46,12 +46,21 @@ public class CPU extends Componente {
 		if(socket!= null && !socket.isEmpty())
 			this.socket = socket;
 		else
-			throw new IllegalArgumentException("No puede estar vacÌo el socket");
+			throw new IllegalArgumentException("No puede estar vac√≠o el socket");
 	}
 	@Override
 	public double calcularPrecio() {
 		double aporteVelocidad = velocidad * 50; 
 		return precioBase + aporteVelocidad;
+	}
+	
+	public void editarCPU(int cantidadDisponible,String marca, String modelo, String socket, double velocidad, double precioBase){
+		setCantidadDisponible(cantidadDisponible);
+		setMarca(marca);
+		setModelo(modelo);
+		setSocket(socket);
+		setVelocidad(velocidad);
+		setPrecioBase(precioBase);
 	}
 }
 
