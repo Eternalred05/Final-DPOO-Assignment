@@ -9,6 +9,7 @@ public class Tienda {
 	private ArrayList<Trabajador> trabajadores;
 	private ArrayList<PC> computadoras;
 	private ArrayList<Componente> componentes;
+	
 	public Tienda(String nombre, String id, String direccion, String telefono, Gerente gerente) {
 		setNombre(nombre);
 		setId(id);
@@ -377,14 +378,6 @@ public class Tienda {
 			}
 		}
 	} 
-	//Editar
-	public void editarTrabajador(Trabajador t, String nombre, String apellidos,double salario,String cargo, String escolaridad){
-		t.setNombre(nombre);
-		t.setApellidos(apellidos);
-		t.setCargo(cargo);
-		t.setNivelEscolar(escolaridad);
-		t.setSalario(salario);
-	}
 
 	// Inicializar datos
 	public static Tienda inicializarTienda(){
