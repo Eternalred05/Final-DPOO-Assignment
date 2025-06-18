@@ -55,7 +55,7 @@ public class reportesPC extends JDialog {
 		contentPanel.add(label);
 
 		final JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(new Double(500), new Double(500), null, new Double(1)));
+		spinner.setModel(new SpinnerNumberModel(new Double(100), new Double(100), null, new Double(1)));
 		spinner.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		spinner.setBounds(271, 44, 89, 25);
 		contentPanel.add(spinner);
