@@ -51,8 +51,8 @@ public class reporteComponentes extends JDialog {
 		contentPanel.setLayout(null);
 
 		JLabel lblMarcasDisponibles = new JLabel("Marcas Disponibles");
-		lblMarcasDisponibles.setFont(new Font("Sans Serif Collection", Font.PLAIN, 23));
-		lblMarcasDisponibles.setBounds(20, 11, 289, 34);
+		lblMarcasDisponibles.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		lblMarcasDisponibles.setBounds(30, 11, 240, 34);
 		contentPanel.add(lblMarcasDisponibles);
 
 		Object[] marcasO;
@@ -68,19 +68,19 @@ public class reporteComponentes extends JDialog {
 
 		modeloCbox = new DefaultComboBoxModel(marcasO);
 		final JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Sans Serif Collection", Font.PLAIN, 13));
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		comboBox.setBounds(20, 46, 221, 27);
 		comboBox.setModel(modeloCbox);
 		contentPanel.add(comboBox);
 
 		JLabel lblPrecio = new JLabel("Precio");
-		lblPrecio.setFont(new Font("Sans Serif Collection", Font.PLAIN, 23));
-		lblPrecio.setBounds(440, 11, 105, 34);
+		lblPrecio.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		lblPrecio.setBounds(440, 11, 80, 34);
 		contentPanel.add(lblPrecio);
 
 		final JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(new Double(1), new Double(1), null, new Double(1)));
-		spinner.setFont(new Font("Sans Serif Collection", Font.PLAIN, 13));
+		spinner.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		spinner.setBounds(432, 49, 87, 20);
 		contentPanel.add(spinner);
 
@@ -104,14 +104,14 @@ public class reporteComponentes extends JDialog {
 					if(componentes.size() != 0)
 						JOptionPane.showMessageDialog(null,"Filtro Actualizado.", "Filtrado Exitoso", JOptionPane.INFORMATION_MESSAGE);
 					else
-						JOptionPane.showMessageDialog(null,"No se encontrÛ ninguna coincidencia.", "Sin coincidencias", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null,"No se encontr√≥ ninguna coincidencia.", "Sin coincidencias", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else
-					JOptionPane.showMessageDialog(null,"No deje campos vacÌos.", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,"No deje campos vac√≠os.", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		});
-		button.setFont(new Font("Sans Serif Collection", Font.PLAIN, 23));
-		button.setBounds(519, 480, 151, 52);
+		button.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		button.setBounds(556, 480, 114, 45);
 		contentPanel.add(button);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -149,10 +149,10 @@ public class reporteComponentes extends JDialog {
 		JButton button_1 = new JButton("?");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"Este reporte buscar· componentes con una marca especifica con un precio menor al especifÌcado.", "InformaciÛn del reporte", JOptionPane.INFORMATION_MESSAGE);	
+				JOptionPane.showMessageDialog(null,"Este reporte buscar√° componentes con una marca especifica con un precio menor al especif√≠cado.", "Informaci√≥n del reporte", JOptionPane.INFORMATION_MESSAGE);	
 			}
 		});
-		button_1.setFont(new Font("Sans Serif Collection", Font.PLAIN, 20));
+		button_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		button_1.setBounds(623, 11, 47, 41);
 		contentPanel.add(button_1);
 	}
