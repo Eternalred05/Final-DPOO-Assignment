@@ -1,7 +1,7 @@
 package Logic;
 public class HDD extends Componente {
 	private String modelo;
-	private double capacidad; // se expresa la cantidad en Gigabytes y con un minimo de 128gb y maximo 4096gb(4TB) siendo el maximo comercial actual
+	private double capacidad; // se expresa la cantidad en Gigabytes y con un minimo de 128gb y maximo 4096gb(4TB)
 	private String tipoConexion; 
 
 	public double getCapacidad() {
@@ -12,7 +12,7 @@ public class HDD extends Componente {
 		if(capacidad >= 128 && capacidad <= 4096 )
 			this.capacidad = capacidad;
 		else
-			throw new IllegalArgumentException("La capacidad no se encuentra en los límites dados");
+			throw new IllegalArgumentException("La capacidad no se encuentra en los lÃ­mites dados");
 	}
 
 	public HDD(int cantidadDisponible, String numeroSerie, String marca, String modelo,double capacidad, String tipoConexion,double precioBase) {
@@ -29,7 +29,7 @@ public class HDD extends Componente {
 		if(modelo!= null && !modelo.isEmpty())
 			this.modelo = modelo;
 		else
-			throw new IllegalArgumentException("No puede estar vacío el modelo");
+			throw new IllegalArgumentException("No puede estar vacÃ­o el modelo");
 	}
 
 	public String getTipoConexion() {
@@ -40,7 +40,7 @@ public class HDD extends Componente {
 		if(tipoConexion!= null && !tipoConexion.isEmpty())
 			this.tipoConexion = tipoConexion;
 		else
-			throw new IllegalArgumentException("No puede estar vacío el tipo de conexión");
+			throw new IllegalArgumentException("No puede estar vacÃ­o el tipo de conexiÃ³n");
 	}
 
 
@@ -49,6 +49,15 @@ public class HDD extends Componente {
 		double aporteCapacidad = capacidad * 0.5;
 		double aporteConexion = "SATA-3".equalsIgnoreCase(tipoConexion) ? 40 : "SATA-2".equalsIgnoreCase(tipoConexion) ? 35 : "SATA".equalsIgnoreCase(tipoConexion) ? 30 : 20;
 		return precioBase + aporteCapacidad + aporteConexion;
+	}
+
+	public void editarHDD(int cantidadDisponible, String marca, String modelo,double capacidad, String tipoConexion,double precioBase){
+		setCantidadDisponible(cantidadDisponible);
+		setMarca(marca);
+		setModelo(modelo);
+		setCapacidad(capacidad);
+		setTipoConexion(tipoConexion);
+		setPrecioBase(precioBase);
 	}
 }
 
