@@ -50,23 +50,23 @@ public class reportesPC extends JDialog {
 
 		tienda = tiendaPC;
 		JLabel label = new JLabel("Precio");
-		label.setFont(new Font("Sans Serif Collection", Font.PLAIN, 23));
-		label.setBounds(278, 13, 105, 34);
+		label.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		label.setBounds(283, 14, 89, 34);
 		contentPanel.add(label);
 
 		final JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(new Double(500), new Double(500), null, new Double(1)));
-		spinner.setFont(new Font("Sans Serif Collection", Font.PLAIN, 13));
-		spinner.setBounds(271, 44, 89, 20);
+		spinner.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		spinner.setBounds(271, 44, 89, 25);
 		contentPanel.add(spinner);
 
 		JButton button = new JButton("?");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"Este reporte buscar· computadoras con un precio menor a uno especificado.", "InformaciÛn del reporte", JOptionPane.INFORMATION_MESSAGE);	
+				JOptionPane.showMessageDialog(null,"Este reporte buscar√° computadoras con un precio menor a uno especificado.", "Informaci√≥n del reporte", JOptionPane.INFORMATION_MESSAGE);	
 			}
 		});
-		button.setFont(new Font("Sans Serif Collection", Font.PLAIN, 20));
+		button.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		button.setBounds(623, 11, 47, 41);
 		contentPanel.add(button);
 
@@ -118,13 +118,13 @@ public class reportesPC extends JDialog {
 				if(pcs.size()!=0)
 					JOptionPane.showMessageDialog(null,"Filtro Actualizado.", "Filtrado Exitoso", JOptionPane.INFORMATION_MESSAGE);
 				else
-					JOptionPane.showMessageDialog(null,"No se encontrÛ ninguna coincidencia.", "Sin coincidencias", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"No se encontr√≥ ninguna coincidencia.", "Sin coincidencias", JOptionPane.INFORMATION_MESSAGE);
 
 			}
 			//	}
 		});
-		button_1.setFont(new Font("Sans Serif Collection", Font.PLAIN, 23));
-		button_1.setBounds(537, 491, 133, 34);
+		button_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		button_1.setBounds(557, 491, 113, 34);
 		contentPanel.add(button_1);
 	}
 }
