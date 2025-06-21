@@ -27,6 +27,8 @@ import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class reporteComponentes extends JDialog {
 
@@ -51,6 +53,7 @@ public class reporteComponentes extends JDialog {
 		contentPanel.setLayout(null);
 
 		JLabel lblMarcasDisponibles = new JLabel("Marcas Disponibles");
+		lblMarcasDisponibles.setForeground(Color.WHITE);
 		lblMarcasDisponibles.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblMarcasDisponibles.setBounds(30, 11, 240, 34);
 		contentPanel.add(lblMarcasDisponibles);
@@ -74,6 +77,7 @@ public class reporteComponentes extends JDialog {
 		contentPanel.add(comboBox);
 
 		JLabel lblPrecio = new JLabel("Precio");
+		lblPrecio.setForeground(Color.WHITE);
 		lblPrecio.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblPrecio.setBounds(440, 11, 80, 34);
 		contentPanel.add(lblPrecio);
@@ -115,7 +119,7 @@ public class reporteComponentes extends JDialog {
 		contentPanel.add(button);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 80, 660, 389);
+		scrollPane.setBounds(10, 80, 660, 387);
 		contentPanel.add(scrollPane);
 
 		tableComponentes = new JTable();
@@ -153,7 +157,12 @@ public class reporteComponentes extends JDialog {
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		button_1.setBounds(623, 11, 47, 41);
+		button_1.setBounds(621, 32, 47, 41);
 		contentPanel.add(button_1);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(-386, -165, 1920, 1080);
+		contentPanel.add(lblNewLabel);
+		lblNewLabel.setIcon(new ImageIcon(reporteComponentes.class.getResource("/Resources/228516.jpg")));
 	}
 }
