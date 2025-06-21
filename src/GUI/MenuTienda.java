@@ -113,8 +113,8 @@ public class MenuTienda extends JFrame {
 		panelInicio.setLayout(null);
 
 		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon(MenuTienda.class.getResource("/Resources/1stScreen.jpg")));
-		lblNewLabel_3.setBounds(0, 0, 1280, 673);
+		lblNewLabel_3.setIcon(new ImageIcon(MenuTienda.class.getResource("/Resources/1244914.png")));
+		lblNewLabel_3.setBounds(-605, -609, 3840, 2160);
 		panelInicio.add(lblNewLabel_3);
 
 		final JPanel paneIngresarTrabajador = new JPanel();
@@ -129,7 +129,7 @@ public class MenuTienda extends JFrame {
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
 		panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_4.setBounds(267, 126, 733, 407);
+		panel_4.setBounds(258, 121, 733, 407);
 		panelMotherboard.add(panel_4);
 
 		JLabel label_3 = new JLabel("Marca");
@@ -159,7 +159,7 @@ public class MenuTienda extends JFrame {
 		panel_4.add(label_9);
 
 		final JSpinner spinnerPrecioBaseMotherboard = new JSpinner();
-		spinnerPrecioBaseMotherboard.setModel(new SpinnerNumberModel(0.0, 0.0, 999.0, 1.0));
+		spinnerPrecioBaseMotherboard.setModel(new SpinnerNumberModel(100.0, 100.0, 1000.0, 5.0));
 		spinnerPrecioBaseMotherboard.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		spinnerPrecioBaseMotherboard.setBounds(235, 204, 81, 27);
 		panel_4.add(spinnerPrecioBaseMotherboard);
@@ -300,12 +300,18 @@ public class MenuTienda extends JFrame {
 		panelMotherboard.add(buttonIngresarMother);
 
 		JLabel lblNewLabel = new JLabel("Del modelo de Motherboard que desea a\u00F1adir ingrese:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblNewLabel.setBounds(398, 11, 541, 31);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		lblNewLabel.setBounds(340, 66, 635, 31);
 		panelMotherboard.add(lblNewLabel);
+
+		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setBounds(-76, 0, 2560, 1600);
+		panelMotherboard.add(lblNewLabel_5);
+		lblNewLabel_5.setIcon(new ImageIcon(MenuTienda.class.getResource("/Resources/228261.jpg")));
 		paneIngresarTrabajador.setLayout(null);
 
-		JLabel lblNumeroDeId = new JLabel("Numero de ID actual");
+		JLabel lblNumeroDeId = new JLabel("N\u00FAmero de ID actual");
 		lblNumeroDeId.setForeground(Color.BLACK);
 		lblNumeroDeId.setBounds(1051, 49, 203, 25);
 		paneIngresarTrabajador.add(lblNumeroDeId);
@@ -327,13 +333,13 @@ public class MenuTienda extends JFrame {
 		nombreTrabajador.setLimit(25);
 		nombreTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
 		nombreTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		nombreTrabajador.setBounds(595, 174, 235, 20);
+		nombreTrabajador.setBounds(595, 173, 235, 20);
 		paneIngresarTrabajador.add(nombreTrabajador);
 
 		JLabel label_1 = new JLabel("Nombre");
 		label_1.setForeground(Color.BLACK);
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		label_1.setBounds(453, 165, 103, 34);
+		label_1.setBounds(453, 164, 103, 34);
 		paneIngresarTrabajador.add(label_1);
 
 		JLabel label_14 = new JLabel("Apellidos");
@@ -412,14 +418,6 @@ public class MenuTienda extends JFrame {
 
 		paneIngresarTrabajador.add(comboBoxEscolar);
 
-		final JTextFieldLimitado salarioTrabajador = new JTextFieldLimitado();
-		salarioTrabajador.setForeground(Color.BLACK);
-		salarioTrabajador.setLimit(10);
-		salarioTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
-		salarioTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		salarioTrabajador.setBounds(595, 422, 235, 20);
-		paneIngresarTrabajador.add(salarioTrabajador);
-
 		JLabel label_26 = new JLabel("Salario");
 		label_26.setForeground(Color.BLACK);
 		label_26.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -428,51 +426,22 @@ public class MenuTienda extends JFrame {
 
 		JLabel lblNewLabel_1 = new JLabel("Ingrese los datos de un trabajador:");
 		lblNewLabel_1.setForeground(Color.BLACK);
-		lblNewLabel_1.setBounds(453, 11, 402, 23);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_1.setBounds(459, 64, 402, 46);
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 25));
 
 		paneIngresarTrabajador.add(lblNewLabel_1);
 
-
-		// Botones del Panel del Trabajador
-
-		JButton btnNewButton = new JButton("Ingresar");
-		btnNewButton.setBounds(1125, 622, 129, 34);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String nombre = nombreTrabajador.getText();
-				String apellidos = apellidosTrabajador.getText();
-				String id = idTrabajador.getText();
-				String cargo =(String)comboBoxCargo.getSelectedItem();
-				String escolaridad = (String)comboBoxEscolar.getSelectedItem();
-				double salario; 
-				try{
-					salario = Double.parseDouble(salarioTrabajador.getText());
-					tiendaPC.addTrabajador(nombre,apellidos,id,counterTrabajador,salario,escolaridad,cargo);
-					Object trabajador [] = {String.valueOf(counterTrabajador),nombre,apellidos,cargo,id,escolaridad,String.valueOf(salario)};
-					DefaultTableModel modelo = (DefaultTableModel) tableTrabajador.getModel();
-					modelo.addRow(trabajador);
-					JOptionPane.showMessageDialog(null,"Los datos del trabajador han sido ingresados satisfactoriamente a la Tienda","Ingreso Exitoso",JOptionPane.INFORMATION_MESSAGE);
-					counterTrabajador++;
-					numIDT.setText(Integer.toString(counterTrabajador));
-				}
-				catch (NumberFormatException e){
-					JOptionPane.showMessageDialog(null,"Ingrese el salario correctamente.","Error",JOptionPane.ERROR_MESSAGE);
-				}
-				catch (IllegalArgumentException e){
-					JOptionPane.showMessageDialog(null,e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-				}
-
-			}
-		});
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 20));
-		paneIngresarTrabajador.add(btnNewButton);
-
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panel_1.setBounds(296, 123, 674, 373);
+		panel_1.setBounds(595, 434, 81, 25);
 		paneIngresarTrabajador.add(panel_1);
+		panel_1.setLayout(null);
 
+		final JSpinner salarioTrabajador = new JSpinner();
+		salarioTrabajador.setBounds(0, 0, 78, 20);
+		panel_1.add(salarioTrabajador);
+		salarioTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		salarioTrabajador.setModel(new SpinnerNumberModel(2000.0, 2000.0, 15000.0, 100.0));
 
 
 		final JPanel panelListaTrabajadores = new JPanel();
@@ -518,6 +487,7 @@ public class MenuTienda extends JFrame {
 		scrollPane.setViewportView(tableTrabajador);
 
 		JLabel lblListadoDeTrabajadores = new JLabel("Listado de Trabajadores");
+		lblListadoDeTrabajadores.setForeground(Color.BLACK);
 		lblListadoDeTrabajadores.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblListadoDeTrabajadores.setBounds(465, 6, 256, 38);
 		panelListaTrabajadores.add(lblListadoDeTrabajadores);
@@ -581,7 +551,7 @@ public class MenuTienda extends JFrame {
 		panel_3.add(spinnerCapacidadRAM);
 
 		final JSpinner spinnerPrecioBaseRAM = new JSpinner();
-		spinnerPrecioBaseRAM.setModel(new SpinnerNumberModel(0.0, 0.0, 250.0, 1.0));
+		spinnerPrecioBaseRAM.setModel(new SpinnerNumberModel(100.0, 100.0, 599.0, 1.0));
 		spinnerPrecioBaseRAM.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		spinnerPrecioBaseRAM.setBounds(237, 201, 81, 27);
 		panel_3.add(spinnerPrecioBaseRAM);
@@ -661,9 +631,16 @@ public class MenuTienda extends JFrame {
 		btnAadir.setFont(new Font("Arial Black", Font.PLAIN, 21));
 
 		JLabel lblDelModeloDe = new JLabel("Del modelo de Memoria RAM que desea a\u00F1adir ingrese:");
-		lblDelModeloDe.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblDelModeloDe.setBounds(351, 11, 541, 31);
+		lblDelModeloDe.setBackground(Color.GREEN);
+		lblDelModeloDe.setForeground(Color.WHITE);
+		lblDelModeloDe.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		lblDelModeloDe.setBounds(355, 71, 614, 31);
 		panelRAM.add(lblDelModeloDe);
+
+		JLabel lblNewLabel_7 = new JLabel("");
+		lblNewLabel_7.setIcon(new ImageIcon(MenuTienda.class.getResource("/Resources/559467.jpg")));
+		lblNewLabel_7.setBounds(-612, -148, 2560, 1440);
+		panelRAM.add(lblNewLabel_7);
 
 		final JPanel panelListadoComponentes = new JPanel();
 		panelListadoComponentes.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -704,6 +681,7 @@ public class MenuTienda extends JFrame {
 		scrollPane_1.setViewportView(tableComponentes);
 
 		JLabel lblNewLabel_2 = new JLabel("Listado de Componentes Disponibles");
+		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblNewLabel_2.setBounds(401, 11, 400, 38);
 		panelListadoComponentes.add(lblNewLabel_2);
@@ -714,7 +692,7 @@ public class MenuTienda extends JFrame {
 		panelCPU.setLayout(null);
 
 		JPanel panel_7 = new JPanel();
-		panel_7.setBounds(302, 131, 729, 356);
+		panel_7.setBounds(300, 131, 729, 356);
 		panel_7.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panelCPU.add(panel_7);
 		panel_7.setLayout(null);
@@ -773,7 +751,7 @@ public class MenuTienda extends JFrame {
 
 		final JSpinner spinnerPrecioBaseCPU = new JSpinner();
 		spinnerPrecioBaseCPU.setBounds(267, 249, 81, 27);
-		spinnerPrecioBaseCPU.setModel(new SpinnerNumberModel(0.0, 0.0, 450.0, 1.0));
+		spinnerPrecioBaseCPU.setModel(new SpinnerNumberModel(100.0, 100.0, 599.0, 1.0));
 		spinnerPrecioBaseCPU.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_7.add(spinnerPrecioBaseCPU);
 
@@ -843,9 +821,15 @@ public class MenuTienda extends JFrame {
 		buttonIngresarCPU.setFont(new Font("Arial Black", Font.PLAIN, 21));
 
 		JLabel lblDelModeloDe_1 = new JLabel("Del modelo de microprocesador que desea a\u00F1adir ingrese:");
-		lblDelModeloDe_1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblDelModeloDe_1.setBounds(405, 11, 541, 31);
+		lblDelModeloDe_1.setForeground(Color.WHITE);
+		lblDelModeloDe_1.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		lblDelModeloDe_1.setBounds(348, 69, 639, 31);
 		panelCPU.add(lblDelModeloDe_1);
+
+		JLabel lblNewLabel_8 = new JLabel("");
+		lblNewLabel_8.setBounds(-711, -653, 2560, 1920);
+		panelCPU.add(lblNewLabel_8);
+		lblNewLabel_8.setIcon(new ImageIcon(MenuTienda.class.getResource("/Resources/228546.jpg")));
 
 		final JPanel panelHDD = new JPanel();
 		panelHDD.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -854,7 +838,7 @@ public class MenuTienda extends JFrame {
 
 		JPanel panel_9 = new JPanel();
 		panel_9.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panel_9.setBounds(315, 125, 723, 359);
+		panel_9.setBounds(320, 116, 723, 359);
 		panelHDD.add(panel_9);
 		panel_9.setLayout(null);
 
@@ -900,7 +884,7 @@ public class MenuTienda extends JFrame {
 		panel_9.add(label_20);
 
 		final JSpinner spinnerPrecioHdd = new JSpinner();
-		spinnerPrecioHdd.setModel(new SpinnerNumberModel(0.0, 0.0, 450.0, 1.0));
+		spinnerPrecioHdd.setModel(new SpinnerNumberModel(100.0, 100.0, 600.0, 100.0));
 		spinnerPrecioHdd.setBounds(247, 230, 81, 27);
 		spinnerPrecioHdd.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_9.add(spinnerPrecioHdd);
@@ -939,7 +923,7 @@ public class MenuTienda extends JFrame {
 		panel_9.add(label_22);
 
 		final JSpinner unitsHDD = new JSpinner();
-		unitsHDD.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		unitsHDD.setModel(new SpinnerNumberModel(1, 1, 200, 1));
 		unitsHDD.setBounds(247, 276, 81, 27);
 		unitsHDD.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_9.add(unitsHDD);
@@ -951,7 +935,7 @@ public class MenuTienda extends JFrame {
 
 		final JSpinner spinnerMemoriaHDD = new JSpinner();
 		spinnerMemoriaHDD.setBounds(247, 147, 81, 27);
-		spinnerMemoriaHDD.setModel(new SpinnerNumberModel(128.0, 128.0, 4096.0, 1.0));
+		spinnerMemoriaHDD.setModel(new SpinnerNumberModel(128.0, 128.0, 4096.0, 2.0));
 		spinnerMemoriaHDD.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_9.add(spinnerMemoriaHDD);
 
@@ -987,15 +971,30 @@ public class MenuTienda extends JFrame {
 		buttonIngresarHDD.setFont(new Font("Arial Black", Font.PLAIN, 21));
 
 		JLabel lblDelModeloDe_2 = new JLabel("Del modelo de disco duro que desea a\u00F1adir ingrese:");
-		lblDelModeloDe_2.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblDelModeloDe_2.setBounds(421, 11, 484, 31);
+		lblDelModeloDe_2.setForeground(Color.WHITE);
+		lblDelModeloDe_2.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		lblDelModeloDe_2.setBounds(422, 56, 555, 31);
 		panelHDD.add(lblDelModeloDe_2);
+
+		JLabel lblNewLabel_11 = new JLabel("");
+		lblNewLabel_11.setIcon(new ImageIcon(MenuTienda.class.getResource("/Resources/428909.jpg")));
+
+		lblNewLabel_11.setBounds(-16, 0, 1296, 664);
+		panelHDD.add(lblNewLabel_11);
+
+
+
+
+
+
+
 
 		final JPanel panelListadoPC = new JPanel();
 		panel.add(panelListadoPC, "name_52437176500000");
 		panelListadoPC.setLayout(null);
 
 		JLabel lblListadoDeComputadoras = new JLabel("Listado de Computadoras Conformadas");
+		lblListadoDeComputadoras.setForeground(Color.WHITE);
 		lblListadoDeComputadoras.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblListadoDeComputadoras.setBounds(429, 11, 400, 38);
 		panelListadoPC.add(lblListadoDeComputadoras);
@@ -1050,7 +1049,7 @@ public class MenuTienda extends JFrame {
 				idTrabajador.setText("");
 				comboBoxCargo.setSelectedIndex(0);
 				comboBoxEscolar.setSelectedIndex(0);
-				salarioTrabajador.setText("");
+				salarioTrabajador.setValue(2000.00);
 				numIDT.setText(String.valueOf(counterTrabajador));
 
 			}
@@ -1516,6 +1515,11 @@ public class MenuTienda extends JFrame {
 		});
 		btnNewButton_1.setBounds(10, 619, 89, 23);
 		panelListadoPC.add(btnNewButton_1);
+
+		JLabel lblNewLabel_10 = new JLabel("");
+		lblNewLabel_10.setIcon(new ImageIcon(MenuTienda.class.getResource("/Resources/228516.jpg")));
+		lblNewLabel_10.setBounds(0, 0, 1295, 667);
+		panelListadoPC.add(lblNewLabel_10);
 		// editar trabajador
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -1549,6 +1553,11 @@ public class MenuTienda extends JFrame {
 		if(!gerencia)
 			btnEditar.setEnabled(false);
 		panelListaTrabajadores.add(btnEditar);
+
+		JLabel lblNewLabel_6 = new JLabel("");
+		lblNewLabel_6.setIcon(new ImageIcon(MenuTienda.class.getResource("/Resources/228367.jpg")));
+		lblNewLabel_6.setBounds(-13, -137, 1920, 1275);
+		panelListaTrabajadores.add(lblNewLabel_6);
 
 		// editar componente
 		JButton btnEditar_1 = new JButton("Editar");
@@ -1587,5 +1596,49 @@ public class MenuTienda extends JFrame {
 		});
 		btnEditar_1.setBounds(10, 611, 89, 23);
 		panelListadoComponentes.add(btnEditar_1);
+
+		JLabel lblNewLabel_9 = new JLabel("");
+		lblNewLabel_9.setIcon(new ImageIcon(MenuTienda.class.getResource("/Resources/228516.jpg")));
+		lblNewLabel_9.setBounds(0, 0, 1292, 663);
+		panelListadoComponentes.add(lblNewLabel_9);
+
+		// Botones del Panel del Trabajador
+
+		JButton btnNewButton = new JButton("Ingresar");
+		btnNewButton.setBounds(1125, 622, 129, 34);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String nombre = nombreTrabajador.getText();
+				String apellidos = apellidosTrabajador.getText();
+				String id = idTrabajador.getText();
+				String cargo =(String)comboBoxCargo.getSelectedItem();
+				String escolaridad = (String)comboBoxEscolar.getSelectedItem();
+				double salario; 
+				try{
+					salario = (double)salarioTrabajador.getValue();
+					tiendaPC.addTrabajador(nombre,apellidos,id,counterTrabajador,salario,escolaridad,cargo);
+					Object trabajador [] = {String.valueOf(counterTrabajador),nombre,apellidos,cargo,id,escolaridad,String.valueOf(salario)};
+					DefaultTableModel modelo = (DefaultTableModel) tableTrabajador.getModel();
+					modelo.addRow(trabajador);
+					JOptionPane.showMessageDialog(null,"Los datos del trabajador han sido ingresados satisfactoriamente a la Tienda","Ingreso Exitoso",JOptionPane.INFORMATION_MESSAGE);
+					counterTrabajador++;
+					numIDT.setText(Integer.toString(counterTrabajador));
+				}
+				catch (NumberFormatException e){
+					JOptionPane.showMessageDialog(null,"Ingrese el salario correctamente.","Error",JOptionPane.ERROR_MESSAGE);
+				}
+				catch (IllegalArgumentException e){
+					JOptionPane.showMessageDialog(null,e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+				}
+
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 20));
+		paneIngresarTrabajador.add(btnNewButton);
+
+		JLabel lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setIcon(new ImageIcon(MenuTienda.class.getResource("/Resources/228367.jpg")));
+		lblNewLabel_4.setBounds(-143, -244, 1920, 1275);
+		paneIngresarTrabajador.add(lblNewLabel_4);
 	}
 }
