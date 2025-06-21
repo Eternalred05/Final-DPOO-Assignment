@@ -29,6 +29,8 @@ import javax.swing.SpinnerNumberModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class reporteTrabajador extends JDialog {
 
@@ -101,16 +103,19 @@ public class reporteTrabajador extends JDialog {
 		contentPanel.add(comboBoxEscolar);
 
 		JLabel label = new JLabel("Salario");
+		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		label.setBounds(455, 32, 105, 34);
 		contentPanel.add(label);
 
 		JLabel label_1 = new JLabel("Cargo");
+		label_1.setForeground(Color.WHITE);
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		label_1.setBounds(45, 32, 87, 34);
 		contentPanel.add(label_1);
 
 		JLabel label_2 = new JLabel("Nivel \r\nEscolar");
+		label_2.setForeground(Color.WHITE);
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		label_2.setBounds(239, 32, 184, 34);
 		contentPanel.add(label_2);
@@ -151,7 +156,7 @@ public class reporteTrabajador extends JDialog {
 			}
 		});
 		btnFiltrar.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		btnFiltrar.setBounds(545, 484, 115, 41);
+		btnFiltrar.setBounds(545, 473, 115, 41);
 		contentPanel.add(btnFiltrar);
 
 		JButton button = new JButton("?");
@@ -161,7 +166,12 @@ public class reporteTrabajador extends JDialog {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		button.setBounds(613, 11, 47, 41);
+		button.setBounds(610, 56, 47, 41);
 		contentPanel.add(button);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(reporteTrabajador.class.getResource("/Resources/228516.jpg")));
+		lblNewLabel.setBounds(0, 0, 680, 530);
+		contentPanel.add(lblNewLabel);
 	}
 }
