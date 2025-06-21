@@ -27,6 +27,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.time.DateTimeException;
 import java.awt.Window.Type;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class CambiarDatos extends JDialog {
 
@@ -37,7 +39,6 @@ public class CambiarDatos extends JDialog {
 
 	@SuppressWarnings("rawtypes")
 	private DefaultComboBoxModel defaultComboBoxModel;
-
 
 	public CambiarDatos(MenuTienda parent, Tienda tiendaPC) {
 		super(parent,true);
@@ -75,11 +76,13 @@ public class CambiarDatos extends JDialog {
 		panelTienda.add(button_1);
 
 		JLabel label_7 = new JLabel("Ingrese los Datos de la Tienda");
+		label_7.setForeground(Color.WHITE);
 		label_7.setFont(new Font("Tahoma", Font.BOLD, 27));
 		label_7.setBounds(124, 45, 420, 31);
 		panelTienda.add(label_7);
 
 		JLabel label_8 = new JLabel("Ingrese el nombre ");
+		label_8.setForeground(Color.WHITE);
 		label_8.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		label_8.setBounds(231, 87, 225, 40);
 		panelTienda.add(label_8);
@@ -92,6 +95,7 @@ public class CambiarDatos extends JDialog {
 		panelTienda.add(TiendaName);
 
 		JLabel label_9 = new JLabel("Ingrese la direcci\u00F3n");
+		label_9.setForeground(Color.WHITE);
 		label_9.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		label_9.setBounds(242, 169, 225, 32);
 		panelTienda.add(label_9);
@@ -104,6 +108,7 @@ public class CambiarDatos extends JDialog {
 		panelTienda.add(TiendaAddress);
 
 		JLabel label_10 = new JLabel("Ingrese el n\u00FAmero de tel\u00E9fono");
+		label_10.setForeground(Color.WHITE);
 		label_10.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		label_10.setBounds(192, 255, 338, 40);
 		panelTienda.add(label_10);
@@ -116,6 +121,7 @@ public class CambiarDatos extends JDialog {
 		panelTienda.add(TiendaPhone);
 
 		JLabel label_11 = new JLabel("Ingrese el ID");
+		label_11.setForeground(Color.WHITE);
 		label_11.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		label_11.setBounds(270, 349, 153, 40);
 		panelTienda.add(label_11);
@@ -129,11 +135,14 @@ public class CambiarDatos extends JDialog {
 
 
 		JLabel label = new JLabel("Ingrese los datos del Gerente del Local");
-		label.setFont(new Font("Tahoma", Font.BOLD, 26));
-		label.setBounds(70, 22, 525, 30);
+		label.setForeground(Color.WHITE);
+		label.setBackground(Color.GRAY);
+		label.setFont(new Font("Tahoma", Font.BOLD, 27));
+		label.setBounds(65, 43, 535, 30);
 		panelGerente.add(label);
 
 		JLabel label_1 = new JLabel("Ingrese su nombre");
+		label_1.setForeground(Color.WHITE);
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		label_1.setBounds(239, 83, 202, 50);
 		panelGerente.add(label_1);
@@ -146,6 +155,7 @@ public class CambiarDatos extends JDialog {
 		panelGerente.add(NombreGerente);
 
 		JLabel label_2 = new JLabel("Ingrese sus apellidos");
+		label_2.setForeground(Color.WHITE);
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		label_2.setBounds(239, 184, 230, 44);
 		panelGerente.add(label_2);
@@ -158,11 +168,13 @@ public class CambiarDatos extends JDialog {
 		panelGerente.add(ApellidosGerente);
 
 		JLabel label_3 = new JLabel("Fecha de Ingreso");
+		label_3.setForeground(Color.WHITE);
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		label_3.setBounds(239, 283, 213, 30);
 		panelGerente.add(label_3);
 
 		JLabel label_4 = new JLabel("Mes");
+		label_4.setForeground(Color.WHITE);
 		label_4.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		label_4.setBounds(306, 324, 70, 44);
 		panelGerente.add(label_4);
@@ -188,6 +200,7 @@ public class CambiarDatos extends JDialog {
 		panelGerente.add(comboBoxMes);
 
 		JLabel label_5 = new JLabel("Dia");
+		label_5.setForeground(Color.WHITE);
 		label_5.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		label_5.setBounds(126, 321, 63, 50);
 		panelGerente.add(label_5);
@@ -213,6 +226,7 @@ public class CambiarDatos extends JDialog {
 		panelGerente.add(comboBoxAnio);
 
 		JLabel label_6 = new JLabel("A\u00F1o");
+		label_6.setForeground(Color.WHITE);
 		label_6.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		label_6.setBounds(472, 322, 70, 44);
 		panelGerente.add(label_6);
@@ -248,6 +262,11 @@ public class CambiarDatos extends JDialog {
 		button.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		button.setBounds(453, 471, 207, 44);
 		panelGerente.add(button);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(CambiarDatos.class.getResource("/Resources/591598.jpg")));
+		lblNewLabel.setBounds(-913, -276, 1629, 1234);
+		panelGerente.add(lblNewLabel);
 
 		JButton button_2 = new JButton("Ingresar Tienda");
 		button_2.addActionListener(new ActionListener() {
@@ -281,5 +300,10 @@ public class CambiarDatos extends JDialog {
 		button_2.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		button_2.setBounds(463, 476, 197, 39);
 		panelTienda.add(button_2);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(CambiarDatos.class.getResource("/Resources/591598.jpg")));
+		lblNewLabel_1.setBounds(-902, -168, 1920, 1080);
+		panelTienda.add(lblNewLabel_1);
 	}
 }
