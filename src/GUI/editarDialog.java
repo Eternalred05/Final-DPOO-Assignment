@@ -31,6 +31,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JCheckBox;
+import javax.swing.ImageIcon;
 
 public class editarDialog extends JDialog {
 	Trabajador t;
@@ -52,25 +53,25 @@ public class editarDialog extends JDialog {
 		panelTrabajador.setLayout(null);
 
 		JLabel label = new JLabel("Salario");
-		label.setBounds(139, 385, 105, 34);
-		label.setForeground(Color.BLACK);
+		label.setBounds(90, 385, 105, 34);
+		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		panelTrabajador.add(label);
 
 		JLabel label_1 = new JLabel("Nivel \r\nEscolar");
-		label_1.setBounds(137, 343, 151, 34);
-		label_1.setForeground(Color.BLACK);
+		label_1.setBounds(90, 338, 151, 34);
+		label_1.setForeground(Color.WHITE);
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		panelTrabajador.add(label_1);
 
 		JLabel label_2 = new JLabel("Cargo");
-		label_2.setBounds(139, 298, 87, 34);
-		label_2.setForeground(Color.BLACK);
+		label_2.setBounds(90, 275, 87, 34);
+		label_2.setForeground(Color.WHITE);
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		panelTrabajador.add(label_2);
 
 		final JComboBox comboBoxCargo = new JComboBox();
-		comboBoxCargo.setBounds(281, 308, 235, 20);
+		comboBoxCargo.setBounds(281, 286, 235, 20);
 		comboBoxCargo.setModel(new DefaultComboBoxModel(new String[] {"", "Gestor de ventas", "Encargado de inventario", "Asesor de ventas", "Especialista en productos", "Encargado de servicio", "Especialista en software", "Cajero"}));
 		comboBoxCargo.setForeground(Color.BLACK);
 		comboBoxCargo.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -84,47 +85,47 @@ public class editarDialog extends JDialog {
 		panelTrabajador.add(comboBoxEscolar);
 
 		JLabel label_3 = new JLabel("Identificador");
-		label_3.setBounds(139, 226, 164, 34);
-		label_3.setForeground(Color.BLACK);
+		label_3.setBounds(92, 215, 164, 34);
+		label_3.setForeground(Color.WHITE);
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		panelTrabajador.add(label_3);
 
 		JLabel label_4 = new JLabel("Apellidos");
-		label_4.setBounds(139, 184, 126, 34);
-		label_4.setForeground(Color.BLACK);
+		label_4.setBounds(90, 168, 126, 34);
+		label_4.setForeground(Color.WHITE);
 		label_4.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		panelTrabajador.add(label_4);
 
 		JLabel label_5 = new JLabel("Nombre");
-		label_5.setBounds(139, 137, 103, 34);
-		label_5.setForeground(Color.BLACK);
+		label_5.setBounds(92, 121, 103, 34);
+		label_5.setForeground(Color.WHITE);
 		label_5.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		panelTrabajador.add(label_5);
 
 		final JTextFieldLimitado nombreTrabajador = new JTextFieldLimitado();
-		nombreTrabajador.setBounds(281, 146, 235, 20);
+		nombreTrabajador.setBounds(281, 179, 235, 20);
 		nombreTrabajador.setLimit(25);
 		nombreTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
 		nombreTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panelTrabajador.add(nombreTrabajador);
 
 		final JTextFieldLimitado apellidosTrabajador = new JTextFieldLimitado();
-		apellidosTrabajador.setBounds(281, 193, 235, 20);
+		apellidosTrabajador.setBounds(281, 132, 235, 20);
 		apellidosTrabajador.setLimit(25);
 		apellidosTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
 		apellidosTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panelTrabajador.add(apellidosTrabajador);
 
 		JTextFieldLimitado idTrabajador = new JTextFieldLimitado();
-		idTrabajador.setBounds(281, 235, 235, 20);
+		idTrabajador.setBounds(281, 226, 235, 20);
 		idTrabajador.setLimit(11);
 		idTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
 		idTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panelTrabajador.add(idTrabajador);
 
-		JLabel lblNumeroDeTrabajador = new JLabel("Numero de Trabajador");
+		JLabel lblNumeroDeTrabajador = new JLabel("N\u00FAmero de Trabajador");
 		lblNumeroDeTrabajador.setBounds(458, 11, 212, 25);
-		lblNumeroDeTrabajador.setForeground(Color.BLACK);
+		lblNumeroDeTrabajador.setForeground(Color.WHITE);
 		lblNumeroDeTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panelTrabajador.add(lblNumeroDeTrabajador);
 
@@ -144,7 +145,7 @@ public class editarDialog extends JDialog {
 		final JSpinner salarioTrabajador = new JSpinner();
 		salarioTrabajador.setBounds(281, 396, 81, 20);
 		salarioTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		salarioTrabajador.setModel(new SpinnerNumberModel(0.0, 0.0, 15000.0, 1.0));
+		salarioTrabajador.setModel(new SpinnerNumberModel(2000.0, 2000.0, 15000.0, 100.0));
 		panelTrabajador.add(salarioTrabajador);
 
 		JPanel panelMotherboard = new JPanel();
@@ -152,89 +153,96 @@ public class editarDialog extends JDialog {
 		panelMotherboard.setLayout(null);
 
 		JLabel label_6 = new JLabel("Marca");
+		label_6.setForeground(Color.WHITE);
 		label_6.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_6.setBounds(10, 34, 101, 34);
+		label_6.setBounds(10, 66, 101, 34);
 		panelMotherboard.add(label_6);
 
 		final JTextFieldLimitado marcaMother = new JTextFieldLimitado();
 		marcaMother.setLimit(15);
 		marcaMother.setHorizontalAlignment(SwingConstants.CENTER);
 		marcaMother.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		marcaMother.setBounds(237, 38, 173, 27);
+		marcaMother.setBounds(237, 64, 173, 27);
 		panelMotherboard.add(marcaMother);
 
 		final JTextFieldLimitado modeloMother = new JTextFieldLimitado();
 		modeloMother.setLimit(10);
 		modeloMother.setHorizontalAlignment(SwingConstants.CENTER);
 		modeloMother.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		modeloMother.setBounds(237, 78, 173, 27);
+		modeloMother.setBounds(237, 104, 173, 27);
 		panelMotherboard.add(modeloMother);
 
 		JLabel label_7 = new JLabel("Modelo");
+		label_7.setForeground(Color.WHITE);
 		label_7.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_7.setBounds(10, 74, 81, 34);
+		label_7.setBounds(10, 101, 81, 34);
 		panelMotherboard.add(label_7);
 
 		JLabel label_8 = new JLabel("Tipo de Socket");
+		label_8.setForeground(Color.WHITE);
 		label_8.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_8.setBounds(10, 113, 129, 34);
+		label_8.setBounds(10, 138, 129, 34);
 		panelMotherboard.add(label_8);
 
 		final JComboBox comboBoxSocketMother = new JComboBox();
 		comboBoxSocketMother.setModel(new DefaultComboBoxModel(new String[] {"", "LGA", "PGA", "BGA"}));
 		comboBoxSocketMother.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		comboBoxSocketMother.setBounds(237, 117, 173, 27);
+		comboBoxSocketMother.setBounds(237, 141, 173, 27);
 		panelMotherboard.add(comboBoxSocketMother);
 
 		final JComboBox comboBoxRAMMother = new JComboBox();
 		comboBoxRAMMother.setModel(new DefaultComboBoxModel(new String[] {"", "DDR", "DDR2", "DDR3", "DDR4", "DDR5"}));
 		comboBoxRAMMother.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		comboBoxRAMMother.setBounds(237, 153, 173, 27);
+		comboBoxRAMMother.setBounds(237, 177, 173, 27);
 		panelMotherboard.add(comboBoxRAMMother);
 
 		JLabel lblTipoDeRam = new JLabel("Tipo de RAM");
+		lblTipoDeRam.setForeground(Color.WHITE);
 		lblTipoDeRam.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblTipoDeRam.setBounds(10, 149, 242, 34);
+		lblTipoDeRam.setBounds(10, 185, 242, 34);
 		panelMotherboard.add(lblTipoDeRam);
 
 		JLabel label_10 = new JLabel("N\u00FAmero de Serie");
+		label_10.setForeground(Color.WHITE);
 		label_10.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_10.setBounds(10, 189, 162, 34);
+		label_10.setBounds(10, 221, 162, 34);
 		panelMotherboard.add(label_10);
 
 		JTextFieldLimitado IDMother = new JTextFieldLimitado();
 		IDMother.setLimit(10);
 		IDMother.setHorizontalAlignment(SwingConstants.CENTER);
 		IDMother.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		IDMother.setBounds(237, 193, 173, 27);
+		IDMother.setBounds(237, 217, 173, 27);
 		panelMotherboard.add(IDMother);
 
 		final JSpinner precioMother = new JSpinner();
-		precioMother.setModel(new SpinnerNumberModel(1.0, 1.0, 9999.0, 1.0));
+		precioMother.setModel(new SpinnerNumberModel(100.0, 100.0, 1000.0, 1.0));
 		precioMother.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		precioMother.setBounds(237, 227, 116, 27);
+		precioMother.setBounds(237, 257, 116, 27);
 		panelMotherboard.add(precioMother);
 
 		JLabel label_11 = new JLabel("Precio base");
+		label_11.setForeground(Color.WHITE);
 		label_11.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_11.setBounds(10, 227, 114, 27);
+		label_11.setBounds(10, 258, 114, 27);
 		panelMotherboard.add(label_11);
 
 		JLabel label_12 = new JLabel("Cantidad de unidades");
+		label_12.setForeground(Color.WHITE);
 		label_12.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_12.setBounds(10, 253, 196, 49);
+		label_12.setBounds(10, 285, 196, 49);
 		panelMotherboard.add(label_12);
 
 		final JSpinner unitMother = new JSpinner();
-		unitMother.setModel(new SpinnerNumberModel(1, 1, 1000, 1));
+		unitMother.setModel(new SpinnerNumberModel(1, 1, 100, 1));
 		unitMother.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		unitMother.setBounds(237, 264, 116, 27);
+		unitMother.setBounds(237, 295, 116, 27);
 		panelMotherboard.add(unitMother);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panel_1.setBounds(56, 307, 293, 192);
+		panel_1.setBounds(377, 286, 293, 192);
 		panelMotherboard.add(panel_1);
 
 		JLabel label_13 = new JLabel("Conexiones de los discos duros");
@@ -263,27 +271,29 @@ public class editarDialog extends JDialog {
 		panel_1.add(chckbxIde);
 
 		JLabel label_14 = new JLabel("Precio del Motherboard");
+		label_14.setForeground(Color.WHITE);
 		label_14.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		label_14.setBounds(452, 34, 184, 34);
+		label_14.setBounds(58, 376, 184, 34);
 		panelMotherboard.add(label_14);
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panel_2.setBounds(452, 81, 173, 49);
+		panel_2.setBounds(68, 406, 173, 49);
 		panelMotherboard.add(panel_2);
-
-		JLabel labelPrecioMother = new JLabel("0.0000$");
-		labelPrecioMother.setHorizontalAlignment(SwingConstants.CENTER);
-		labelPrecioMother.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		labelPrecioMother.setBounds(10, 11, 153, 27);
-		panel_2.add(labelPrecioMother);
+		
+				JLabel labelPrecioMother = new JLabel("0.0000$");
+				labelPrecioMother.setBounds(12, 13, 153, 27);
+				panel_2.add(labelPrecioMother);
+				labelPrecioMother.setHorizontalAlignment(SwingConstants.CENTER);
+				labelPrecioMother.setFont(new Font("Tahoma", Font.PLAIN, 22));
 
 		JPanel panelCPU = new JPanel();
 		getContentPane().add(panelCPU, "name_378939534683800");
 		panelCPU.setLayout(null);
 
 		JLabel label_23 = new JLabel("Marca");
+		label_23.setForeground(Color.WHITE);
 		label_23.setFont(new Font("Tahoma", Font.BOLD, 17));
 		label_23.setBounds(10, 56, 61, 34);
 		panelCPU.add(label_23);
@@ -303,11 +313,13 @@ public class editarDialog extends JDialog {
 		panelCPU.add(modeloCPU);
 
 		JLabel label_24 = new JLabel("Modelo");
+		label_24.setForeground(Color.WHITE);
 		label_24.setFont(new Font("Tahoma", Font.BOLD, 17));
 		label_24.setBounds(10, 103, 81, 32);
 		panelCPU.add(label_24);
 
 		JLabel label_25 = new JLabel("Tipo de Socket");
+		label_25.setForeground(Color.WHITE);
 		label_25.setFont(new Font("Tahoma", Font.BOLD, 17));
 		label_25.setBounds(10, 148, 140, 34);
 		panelCPU.add(label_25);
@@ -326,11 +338,13 @@ public class editarDialog extends JDialog {
 		panelCPU.add(IDCPU);
 
 		JLabel label_26 = new JLabel("N\u00FAmero de Serie");
+		label_26.setForeground(Color.WHITE);
 		label_26.setFont(new Font("Tahoma", Font.BOLD, 17));
 		label_26.setBounds(10, 201, 148, 34);
 		panelCPU.add(label_26);
 
 		JLabel label_27 = new JLabel("Velocidad(Ghz)");
+		label_27.setForeground(Color.WHITE);
 		label_27.setFont(new Font("Tahoma", Font.BOLD, 17));
 		label_27.setBounds(10, 246, 148, 34);
 		panelCPU.add(label_27);
@@ -342,36 +356,39 @@ public class editarDialog extends JDialog {
 		panelCPU.add(velocidadCPU);
 
 		final JSpinner precioCPU = new JSpinner();
-		precioCPU.setModel(new SpinnerNumberModel(new Double(1), new Double(1), null, new Double(1)));
+		precioCPU.setModel(new SpinnerNumberModel(100.0, 100.0, 599.0, 1.0));
 		precioCPU.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		precioCPU.setBounds(247, 294, 81, 27);
 		panelCPU.add(precioCPU);
 
 		JLabel label_28 = new JLabel("Precio base");
+		label_28.setForeground(Color.WHITE);
 		label_28.setFont(new Font("Tahoma", Font.BOLD, 17));
 		label_28.setBounds(10, 290, 120, 34);
 		panelCPU.add(label_28);
 
 		JLabel label_29 = new JLabel("Cantidad de unidades");
+		label_29.setForeground(Color.WHITE);
 		label_29.setFont(new Font("Tahoma", Font.BOLD, 17));
 		label_29.setBounds(10, 324, 196, 47);
 		panelCPU.add(label_29);
 
 		final JSpinner unitCPU = new JSpinner();
-		unitCPU.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		unitCPU.setModel(new SpinnerNumberModel(1, 1, 100, 1));
 		unitCPU.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		unitCPU.setBounds(247, 334, 81, 27);
 		panelCPU.add(unitCPU);
 
 		JLabel label_30 = new JLabel("Precio de la CPU");
+		label_30.setForeground(Color.WHITE);
 		label_30.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		label_30.setBounds(480, 289, 140, 34);
+		label_30.setBounds(457, 270, 140, 34);
 		panelCPU.add(label_30);
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setLayout(null);
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panel_3.setBounds(457, 334, 173, 49);
+		panel_3.setBounds(435, 304, 173, 49);
 		panelCPU.add(panel_3);
 
 		JLabel labelPrecioCPU = new JLabel("0.0000$");
@@ -381,8 +398,9 @@ public class editarDialog extends JDialog {
 		panel_3.add(labelPrecioCPU);
 
 		JLabel lblCambieLosDatos_1 = new JLabel("Cambie los datos de CPU que desee");
-		lblCambieLosDatos_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblCambieLosDatos_1.setBounds(182, 11, 282, 34);
+		lblCambieLosDatos_1.setForeground(Color.WHITE);
+		lblCambieLosDatos_1.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblCambieLosDatos_1.setBounds(156, 13, 380, 34);
 		panelCPU.add(lblCambieLosDatos_1);
 
 		JPanel panelRAM = new JPanel();
@@ -393,87 +411,84 @@ public class editarDialog extends JDialog {
 		marcaRAM.setLimit(15);
 		marcaRAM.setHorizontalAlignment(SwingConstants.CENTER);
 		marcaRAM.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		marcaRAM.setBounds(378, 111, 162, 27);
+		marcaRAM.setBounds(231, 91, 162, 27);
 		panelRAM.add(marcaRAM);
 
 		JLabel label_16 = new JLabel("Marca");
+		label_16.setForeground(Color.WHITE);
 		label_16.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_16.setBounds(160, 107, 81, 34);
+		label_16.setBounds(12, 87, 81, 34);
 		panelRAM.add(label_16);
 
 		JLabel label_17 = new JLabel("Cantidad de Memoria");
+		label_17.setForeground(Color.WHITE);
 		label_17.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_17.setBounds(160, 154, 205, 27);
+		label_17.setBounds(12, 134, 205, 27);
 		panelRAM.add(label_17);
 
 		final JSpinner memoriaRAM = new JSpinner();
 		memoriaRAM.setModel(new SpinnerNumberModel(1.0, 1.0, 128.0, 1.0));
 		memoriaRAM.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		memoriaRAM.setBounds(377, 154, 81, 27);
+		memoriaRAM.setBounds(231, 134, 81, 27);
 		panelRAM.add(memoriaRAM);
 
 		final JComboBox comboBoxRAM = new JComboBox();
 		comboBoxRAM.setModel(new DefaultComboBoxModel(new String[] {"", "DDR", "DDR2", "DDR3", "DDR4", "DDR5"}));
 		comboBoxRAM.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		comboBoxRAM.setBounds(377, 204, 163, 27);
+		comboBoxRAM.setBounds(231, 178, 163, 27);
 		panelRAM.add(comboBoxRAM);
 
 		JLabel label_19 = new JLabel("Tipo de memoria");
+		label_19.setForeground(Color.WHITE);
 		label_19.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_19.setBounds(160, 200, 153, 34);
+		label_19.setBounds(12, 174, 153, 34);
 		panelRAM.add(label_19);
 
 		JLabel label_20 = new JLabel("N\u00FAmero de Serie");
+		label_20.setForeground(Color.WHITE);
 		label_20.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_20.setBounds(160, 245, 162, 34);
+		label_20.setBounds(12, 221, 162, 34);
 		panelRAM.add(label_20);
 
 		JLabel label_21 = new JLabel("Precio base");
+		label_21.setForeground(Color.WHITE);
 		label_21.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_21.setBounds(160, 281, 129, 34);
+		label_21.setBounds(12, 294, 129, 34);
 		panelRAM.add(label_21);
 
 		JLabel label_22 = new JLabel("Cantidad de unidades");
+		label_22.setForeground(Color.WHITE);
 		label_22.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_22.setBounds(160, 313, 205, 49);
+		label_22.setBounds(12, 341, 205, 49);
 		panelRAM.add(label_22);
 
 		final JSpinner unitRAM = new JSpinner();
-		unitRAM.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		unitRAM.setModel(new SpinnerNumberModel(1, 1, 300, 1));
 		unitRAM.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		unitRAM.setBounds(377, 324, 81, 27);
+		unitRAM.setBounds(231, 352, 81, 27);
 		panelRAM.add(unitRAM);
 
 		final JSpinner precioRAM = new JSpinner();
-		precioRAM.setModel(new SpinnerNumberModel(new Double(1), new Double(1), null, new Double(1)));
+		precioRAM.setModel(new SpinnerNumberModel(100.0, 100.0, 600.0, 1.0));
 		precioRAM.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		precioRAM.setBounds(377, 285, 81, 27);
+		precioRAM.setBounds(231, 280, 81, 27);
 		panelRAM.add(precioRAM);
 
 		final JTextFieldLimitado IDRAM = new JTextFieldLimitado();
 		IDRAM.setLimit(10);
 		IDRAM.setHorizontalAlignment(SwingConstants.CENTER);
 		IDRAM.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		IDRAM.setBounds(377, 247, 162, 27);
+		IDRAM.setBounds(231, 228, 162, 27);
 		panelRAM.add(IDRAM);
 
-		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panel_5.setBounds(116, 84, 480, 321);
-		panelRAM.add(panel_5);
-				panel_5.setLayout(null);
-		
-				JLabel label_18 = new JLabel("GB");
-				label_18.setBounds(347, 73, 25, 25);
-				panel_5.add(label_18);
-				label_18.setFont(new Font("Tahoma", Font.PLAIN, 20));
-
 		JLabel lblCambieLosDatos = new JLabel("Cambie los datos de la RAM que desee");
-		lblCambieLosDatos.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCambieLosDatos.setBounds(205, 23, 282, 34);
+		lblCambieLosDatos.setForeground(Color.WHITE);
+		lblCambieLosDatos.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblCambieLosDatos.setBounds(150, 13, 387, 51);
 		panelRAM.add(lblCambieLosDatos);
 
 		JLabel lblPrecioDeLa = new JLabel("Precio de la RAM");
+		lblPrecioDeLa.setForeground(Color.WHITE);
 		lblPrecioDeLa.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblPrecioDeLa.setBounds(283, 416, 153, 34);
 		panelRAM.add(lblPrecioDeLa);
@@ -495,6 +510,7 @@ public class editarDialog extends JDialog {
 		panelHDD.setLayout(null);
 
 		JLabel label_32 = new JLabel("Marca");
+		label_32.setForeground(Color.WHITE);
 		label_32.setBounds(10, 82, 70, 34);
 		label_32.setFont(new Font("Tahoma", Font.BOLD, 17));
 		panelHDD.add(label_32);
@@ -514,11 +530,13 @@ public class editarDialog extends JDialog {
 		panelHDD.add(modeloHDD);
 
 		JLabel label_33 = new JLabel("Modelo");
+		label_33.setForeground(Color.WHITE);
 		label_33.setBounds(10, 129, 81, 34);
 		label_33.setFont(new Font("Tahoma", Font.BOLD, 17));
 		panelHDD.add(label_33);
 
 		JLabel label_34 = new JLabel("Tipo de conexi\u00F3n");
+		label_34.setForeground(Color.WHITE);
 		label_34.setBounds(10, 176, 173, 34);
 		label_34.setFont(new Font("Tahoma", Font.BOLD, 17));
 		panelHDD.add(label_34);
@@ -530,6 +548,7 @@ public class editarDialog extends JDialog {
 		panelHDD.add(conexionHDD);
 
 		JLabel label_35 = new JLabel("GB");
+		label_35.setForeground(Color.WHITE);
 		label_35.setBounds(318, 220, 51, 34);
 		label_35.setFont(new Font("Tahoma", Font.BOLD, 23));
 		panelHDD.add(label_35);
@@ -541,11 +560,13 @@ public class editarDialog extends JDialog {
 		panelHDD.add(memoriaHDD);
 
 		JLabel label_36 = new JLabel("Cantidad de Memoria");
+		label_36.setForeground(Color.WHITE);
 		label_36.setBounds(10, 227, 192, 27);
 		label_36.setFont(new Font("Tahoma", Font.BOLD, 17));
 		panelHDD.add(label_36);
 
 		JLabel label_37 = new JLabel("N\u00FAmero de Serie");
+		label_37.setForeground(Color.WHITE);
 		label_37.setBounds(10, 276, 162, 34);
 		label_37.setFont(new Font("Tahoma", Font.BOLD, 17));
 		panelHDD.add(label_37);
@@ -558,34 +579,37 @@ public class editarDialog extends JDialog {
 		panelHDD.add(IDHDD);
 
 		final JSpinner precioHDD = new JSpinner();
-		precioHDD.setModel(new SpinnerNumberModel(new Double(1), new Double(1), null, new Double(1)));
+		precioHDD.setModel(new SpinnerNumberModel(100.0, 100.0, 600.0, 100.0));
 		precioHDD.setBounds(233, 320, 81, 27);
 		precioHDD.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		panelHDD.add(precioHDD);
 
 		JLabel label_38 = new JLabel("Precio base");
+		label_38.setForeground(Color.WHITE);
 		label_38.setBounds(10, 323, 129, 27);
 		label_38.setFont(new Font("Tahoma", Font.BOLD, 17));
 		panelHDD.add(label_38);
 
 		JLabel label_39 = new JLabel("Cantidad de unidades");
+		label_39.setForeground(Color.WHITE);
 		label_39.setBounds(10, 363, 192, 37);
 		label_39.setFont(new Font("Tahoma", Font.BOLD, 17));
 		panelHDD.add(label_39);
 
 		final JSpinner unitsHDD = new JSpinner();
-		unitsHDD.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		unitsHDD.setModel(new SpinnerNumberModel(1, 1, 200, 1));
 		unitsHDD.setBounds(233, 363, 81, 27);
 		unitsHDD.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		panelHDD.add(unitsHDD);
 
 		JLabel label_40 = new JLabel("Precio del disco duro");
-		label_40.setBounds(478, 129, 185, 34);
+		label_40.setForeground(Color.WHITE);
+		label_40.setBounds(477, 222, 185, 34);
 		label_40.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panelHDD.add(label_40);
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(467, 160, 173, 49);
+		panel_4.setBounds(477, 261, 173, 49);
 		panel_4.setLayout(null);
 		panel_4.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panelHDD.add(panel_4);
@@ -614,11 +638,17 @@ public class editarDialog extends JDialog {
 		button_3.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		button_3.setBounds(534, 491, 129, 34);
 		panelHDD.add(button_3);
-		
+
 		JLabel lblCambieLosDatos_2 = new JLabel("Cambie los datos del disco duro que desee");
-		lblCambieLosDatos_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCambieLosDatos_2.setBounds(168, 28, 326, 34);
+		lblCambieLosDatos_2.setForeground(Color.WHITE);
+		lblCambieLosDatos_2.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblCambieLosDatos_2.setBounds(116, 27, 445, 34);
 		panelHDD.add(lblCambieLosDatos_2);
+		
+		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setIcon(new ImageIcon(editarDialog.class.getResource("/Resources/228489.jpg")));
+		lblNewLabel_5.setBounds(-250, -1117, 3410, 1918);
+		panelHDD.add(lblNewLabel_5);
 
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.setBounds(541, 491, 129, 34);
@@ -636,16 +666,18 @@ public class editarDialog extends JDialog {
 		});
 		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		panelTrabajador.add(btnEditar);
-		
-		JPanel panel_7 = new JPanel();
-		panel_7.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panel_7.setBounds(92, 121, 474, 329);
-		panelTrabajador.add(panel_7);
-		
+
 		JLabel lblCambieLosDatos_4 = new JLabel("Cambie los datos de este trabajador que desee");
-		lblCambieLosDatos_4.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCambieLosDatos_4.setBounds(162, 76, 352, 34);
+		lblCambieLosDatos_4.setForeground(Color.WHITE);
+		lblCambieLosDatos_4.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblCambieLosDatos_4.setBounds(121, 74, 477, 34);
 		panelTrabajador.add(lblCambieLosDatos_4);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBackground(Color.WHITE);
+		lblNewLabel.setBounds(-769, -542, 1920, 1275);
+		panelTrabajador.add(lblNewLabel);
+		lblNewLabel.setIcon(new ImageIcon(editarDialog.class.getResource("/Resources/228367.jpg")));
 
 		// Rellenar campos y mostrar paneles según entrada
 		if(t != null){
@@ -743,6 +775,11 @@ public class editarDialog extends JDialog {
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		button_1.setBounds(541, 491, 129, 34);
 		panelRAM.add(button_1);
+		
+		JLabel lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setIcon(new ImageIcon(editarDialog.class.getResource("/Resources/559467.jpg")));
+		lblNewLabel_4.setBounds(-904, -118, 1920, 1080);
+		panelRAM.add(lblNewLabel_4);
 		// Boton de editar CPU
 		JButton button_2 = new JButton("Editar");
 		button_2.addActionListener(new ActionListener() {
@@ -762,6 +799,11 @@ public class editarDialog extends JDialog {
 		button_2.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		button_2.setBounds(541, 491, 129, 34);
 		panelCPU.add(button_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setIcon(new ImageIcon(editarDialog.class.getResource("/Resources/228546.jpg")));
+		lblNewLabel_3.setBounds(-1151, -1006, 2560, 1920);
+		panelCPU.add(lblNewLabel_3);
 
 		// editar Motherboard
 		JButton button = new JButton("Editar");
@@ -797,11 +839,22 @@ public class editarDialog extends JDialog {
 		button.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		button.setBounds(541, 491, 129, 34);
 		panelMotherboard.add(button);
-		
+
 		JLabel lblCambieLosDatos_3 = new JLabel("Cambie los datos de la Motherboard que desee");
-		lblCambieLosDatos_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCambieLosDatos_3.setBounds(150, 0, 350, 34);
+		lblCambieLosDatos_3.setForeground(Color.WHITE);
+		lblCambieLosDatos_3.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblCambieLosDatos_3.setBounds(86, 13, 500, 40);
 		panelMotherboard.add(lblCambieLosDatos_3);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(-104, -49, 2560, 1600);
+		panelMotherboard.add(lblNewLabel_1);
+		lblNewLabel_1.setIcon(new ImageIcon(editarDialog.class.getResource("/Resources/228261.jpg")));
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setBounds(58, -121, 2560, 1600);
+		panelMotherboard.add(lblNewLabel_2);
+		lblNewLabel_2.setIcon(new ImageIcon(editarDialog.class.getResource("/Resources/228261.jpg")));
 
 
 
