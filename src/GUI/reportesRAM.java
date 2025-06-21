@@ -28,6 +28,8 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class reportesRAM extends JDialog {
 
@@ -50,7 +52,7 @@ public class reportesRAM extends JDialog {
 		contentPanel.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 74, 660, 398);
+		scrollPane.setBounds(10, 74, 658, 373);
 		contentPanel.add(scrollPane);
 
 		table = new JTable();
@@ -89,11 +91,13 @@ public class reportesRAM extends JDialog {
 		contentPanel.add(comboBox);
 
 		JLabel lblTipoDeMemoria = new JLabel("Tipo de Memoria");
+		lblTipoDeMemoria.setForeground(Color.WHITE);
 		lblTipoDeMemoria.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblTipoDeMemoria.setBounds(37, 11, 200, 34);
 		contentPanel.add(lblTipoDeMemoria);
 
 		JLabel lblCantidadDeMemoria = new JLabel("Cantidad de memoria");
+		lblCantidadDeMemoria.setForeground(Color.WHITE);
 		lblCantidadDeMemoria.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblCantidadDeMemoria.setBounds(367, 11, 246, 34);
 		contentPanel.add(lblCantidadDeMemoria);
@@ -105,6 +109,7 @@ public class reportesRAM extends JDialog {
 		contentPanel.add(spinner);
 
 		JLabel lblGb = new JLabel("GB");
+		lblGb.setForeground(Color.WHITE);
 		lblGb.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblGb.setBounds(537, 37, 34, 34);
 		contentPanel.add(lblGb);
@@ -135,7 +140,7 @@ public class reportesRAM extends JDialog {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		button.setBounds(562, 482, 108, 41);
+		button.setBounds(560, 464, 108, 41);
 		contentPanel.add(button);
 
 		JButton button_1 = new JButton("?");
@@ -145,7 +150,12 @@ public class reportesRAM extends JDialog {
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 21));
-		button_1.setBounds(623, 9, 47, 41);
+		button_1.setBounds(625, 27, 47, 41);
 		contentPanel.add(button_1);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(reportesRAM.class.getResource("/Resources/228516.jpg")));
+		lblNewLabel.setBounds(0, 0, 680, 523);
+		contentPanel.add(lblNewLabel);
 	}
 }
