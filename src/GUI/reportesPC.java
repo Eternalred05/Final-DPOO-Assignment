@@ -29,6 +29,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class reportesPC extends JDialog {
 
@@ -43,6 +44,7 @@ public class reportesPC extends JDialog {
 		setTitle("Reporte de Computadoras seg\u00FAn el precio.");
 		setResizable(false);
 		setBounds(100, 100, 686, 565);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -50,6 +52,7 @@ public class reportesPC extends JDialog {
 
 		tienda = tiendaPC;
 		JLabel label = new JLabel("Precio");
+		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		label.setBounds(283, 14, 89, 34);
 		contentPanel.add(label);
@@ -67,7 +70,7 @@ public class reportesPC extends JDialog {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		button.setBounds(623, 11, 47, 41);
+		button.setBounds(621, 33, 47, 41);
 		contentPanel.add(button);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -126,5 +129,10 @@ public class reportesPC extends JDialog {
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		button_1.setBounds(557, 491, 113, 34);
 		contentPanel.add(button_1);
+
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(reportesPC.class.getResource("/Resources/228516.jpg")));
+		lblNewLabel.setBounds(0, 0, 680, 540);
+		contentPanel.add(lblNewLabel);
 	}
 }
