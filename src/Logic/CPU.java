@@ -53,14 +53,6 @@ public class CPU extends Componente {
 		double aporteVelocidad = velocidad * 50; 
 		return precioBase + aporteVelocidad;
 	}
-	
-	public void editarCPU(int cantidadDisponible,String marca, String modelo, String socket, double velocidad, double precioBase){
-		setCantidadDisponible(cantidadDisponible);
-		setMarca(marca);
-		setModelo(modelo);
-		setSocket(socket);
-		setVelocidad(velocidad);
-		setPrecioBase(precioBase);
-	}
+
 }
 
