@@ -36,13 +36,5 @@ public class RAM extends Componente {
 		return precioBase + aporteMemoria + aporteTipo;
 	} 
 	
-	
-	public void editarRAM(int cantidadDisponible, String marca, double memoria , String tipo, double precioBase){
-		setCantidadDisponible(cantidadDisponible);
-		setMarca(marca);
-		setMemoria(memoria);
-		setTipo(tipo);
-		setPrecioBase(precioBase);
-	}
 
 }
