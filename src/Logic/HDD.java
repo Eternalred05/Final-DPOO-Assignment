@@ -51,14 +51,6 @@ public class HDD extends Componente {
 		return precioBase + aporteCapacidad + aporteConexion;
 	}
 
-	public void editarHDD(int cantidadDisponible, String marca, String modelo,double capacidad, String tipoConexion,double precioBase){
-		setCantidadDisponible(cantidadDisponible);
-		setMarca(marca);
-		setModelo(modelo);
-		setCapacidad(capacidad);
-		setTipoConexion(tipoConexion);
-		setPrecioBase(precioBase);
-	}
 }
 
 
