@@ -136,15 +136,5 @@ public class Trabajador {
 		return numeroTrabajador;
 	}
 
-	public Trabajador(String nombre, String apellidos, String id, int numeroTrabajador,
-			double salario, String nivelEscolar, String cargo) {
-		setNombre(nombre);
-		setApellidos(apellidos);
-		setId(id);
-		this.numeroTrabajador = numeroTrabajador;
-		setSalario(salario);
-		setNivelEscolar(nivelEscolar);
-		setCargo(cargo);
-	}
 }
 
