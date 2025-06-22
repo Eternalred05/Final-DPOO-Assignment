@@ -9,7 +9,6 @@ public class Tienda {
 	private ArrayList<Trabajador> trabajadores;
 	private ArrayList<PC> computadoras;
 	private ArrayList<Componente> componentes;
-	
 	public Tienda(String nombre, String id, String direccion, String telefono, Gerente gerente) {
 		setNombre(nombre);
 		setId(id);
@@ -378,6 +377,65 @@ public class Tienda {
 			}
 		}
 	} 
+	public void editarTrabajador(Trabajador t, String nombre, String apellidos,double salario,String cargo, String escolaridad){
+		@SuppressWarnings("unused")
+		Trabajador nuevo = new Trabajador(nombre, apellidos, t.getId(),t.getNumeroTrabajador(), salario,escolaridad, cargo);
+
+		t.setNombre(nombre);
+		t.setApellidos(apellidos);
+		t.setCargo(cargo);
+		t.setNivelEscolar(escolaridad);
+		t.setSalario(salario);
+	}
+
+	public void editarRAM(RAM r,int cantidadDisponible, String marca, double memoria , String tipo, double precioBase){
+		@SuppressWarnings("unused")
+		RAM nuevo = new RAM (cantidadDisponible,r.getNumeroSerie(),marca,memoria,tipo,precioBase);
+
+		r.setCantidadDisponible(cantidadDisponible);
+		r.setMarca(marca);
+		r.setMemoria(memoria);
+		r.setTipo(tipo);
+		r.setPrecioBase(precioBase);
+	}
+
+	public void editarCPU(CPU c,int cantidadDisponible,String marca, String modelo, String socket, double velocidad, double precioBase){
+		@SuppressWarnings("unused")
+		CPU nuevo = new CPU(cantidadDisponible, c.getNumeroSerie(), marca, modelo, socket, velocidad, precioBase);
+
+		c.setCantidadDisponible(cantidadDisponible);
+		c.setMarca(marca);
+		c.setModelo(modelo);
+		c.setSocket(socket);
+		c.setVelocidad(velocidad);
+		c.setPrecioBase(precioBase);
+	}
+
+	public void editarMotherboard(Motherboard m,int cantidadDisponible,String marca, String modelo,String tipoConector, String tipoMemoriaRAM, ArrayList<String> conexiones,double precioBase) {
+		@SuppressWarnings("unused")
+		Motherboard nuevo = new Motherboard(cantidadDisponible, m.getNumeroSerie(), marca, modelo, tipoConector, tipoMemoriaRAM, conexiones, precioBase);
+
+		m.setCantidadDisponible(cantidadDisponible);
+		m.setMarca(marca);
+		m.setModelo(modelo);
+		m.setTipoConector(tipoConector);
+		m.setTipoMemoriaRAM(tipoMemoriaRAM);
+		m.setPrecioBase(precioBase);
+		m.getConexionesDiscos().clear();
+		m.addConexionesDiscos(conexiones);
+	}
+
+	public void editarHDD(HDD h, int cantidadDisponible, String marca, String modelo,double capacidad, String tipoConexion,double precioBase){
+		@SuppressWarnings("unused")
+		HDD nuevo = new HDD(cantidadDisponible, h.getNumeroSerie(), marca, modelo, capacidad, tipoConexion, precioBase);
+
+		h.setCantidadDisponible(cantidadDisponible);
+		h.setMarca(marca);
+		h.setModelo(modelo);
+		h.setCapacidad(capacidad);
+		h.setTipoConexion(tipoConexion);
+		h.setPrecioBase(precioBase);
+	}
 
 	// Inicializar datos
 	public static Tienda inicializarTienda(){
