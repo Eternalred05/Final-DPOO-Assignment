@@ -36,8 +36,9 @@ import javax.swing.ImageIcon;
 public class editarDialog extends JDialog {
 	Trabajador t;
 	Componente c;
+	Tienda tienda;
 
-	public editarDialog(MenuTienda parent, final Tienda tienda,int pos, Trabajador param, Componente param2 ) {
+	public editarDialog(MenuTienda parent,Tienda tiendaPC,int pos, Trabajador param, Componente param2 ) {
 		super(parent,true);
 		setTitle("Editar");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(crearPC.class.getResource("/com/sun/java/swing/plaf/windows/icons/DetailsView.gif")));
@@ -47,6 +48,7 @@ public class editarDialog extends JDialog {
 		getContentPane().setLayout(new CardLayout(0, 0));
 		t = param;
 		c = param2;
+		tienda = tiendaPC;
 
 		JPanel panelTrabajador = new JPanel();
 		getContentPane().add(panelTrabajador, "name_378915643378600");
@@ -103,14 +105,14 @@ public class editarDialog extends JDialog {
 		panelTrabajador.add(label_5);
 
 		final JTextFieldLimitado nombreTrabajador = new JTextFieldLimitado();
-		nombreTrabajador.setBounds(281, 179, 235, 20);
+		nombreTrabajador.setBounds(281, 132, 235, 20);
 		nombreTrabajador.setLimit(25);
 		nombreTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
 		nombreTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panelTrabajador.add(nombreTrabajador);
 
 		final JTextFieldLimitado apellidosTrabajador = new JTextFieldLimitado();
-		apellidosTrabajador.setBounds(281, 132, 235, 20);
+		apellidosTrabajador.setBounds(281, 179, 235, 20);
 		apellidosTrabajador.setLimit(25);
 		apellidosTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
 		apellidosTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -281,12 +283,12 @@ public class editarDialog extends JDialog {
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panel_2.setBounds(68, 406, 173, 49);
 		panelMotherboard.add(panel_2);
-		
-				JLabel labelPrecioMother = new JLabel("0.0000$");
-				labelPrecioMother.setBounds(12, 13, 153, 27);
-				panel_2.add(labelPrecioMother);
-				labelPrecioMother.setHorizontalAlignment(SwingConstants.CENTER);
-				labelPrecioMother.setFont(new Font("Tahoma", Font.PLAIN, 22));
+
+		JLabel labelPrecioMother = new JLabel("0.0000$");
+		labelPrecioMother.setBounds(12, 13, 153, 27);
+		panel_2.add(labelPrecioMother);
+		labelPrecioMother.setHorizontalAlignment(SwingConstants.CENTER);
+		labelPrecioMother.setFont(new Font("Tahoma", Font.PLAIN, 22));
 
 		JPanel panelCPU = new JPanel();
 		getContentPane().add(panelCPU, "name_378939534683800");
@@ -625,7 +627,7 @@ public class editarDialog extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				HDD h = (HDD)c;
 				try{
-					h.editarHDD((int)unitsHDD.getValue(),marcaHDD.getText(),modeloHDD.getText(),(double)memoriaHDD.getValue(),(String)conexionHDD.getSelectedItem(),(double)precioHDD.getValue());
+					tienda.editarHDD(h,(int)unitsHDD.getValue(),marcaHDD.getText(),modeloHDD.getText(),(double)memoriaHDD.getValue(),(String)conexionHDD.getSelectedItem(),(double)precioHDD.getValue());
 					JOptionPane.showMessageDialog(null,"Se han guardado los cambios","Cambios realizados",JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 				}
@@ -644,7 +646,7 @@ public class editarDialog extends JDialog {
 		lblCambieLosDatos_2.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblCambieLosDatos_2.setBounds(116, 27, 445, 34);
 		panelHDD.add(lblCambieLosDatos_2);
-		
+
 		JLabel lblNewLabel_5 = new JLabel("");
 		lblNewLabel_5.setIcon(new ImageIcon(editarDialog.class.getResource("/Resources/228489.jpg")));
 		lblNewLabel_5.setBounds(-250, -1117, 3410, 1918);
@@ -655,7 +657,7 @@ public class editarDialog extends JDialog {
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
-					t.editarTrabajador(nombreTrabajador.getText(),apellidosTrabajador.getText(),(double)salarioTrabajador.getValue(),(String)comboBoxCargo.getSelectedItem(),(String)comboBoxEscolar.getSelectedItem());
+					tienda.editarTrabajador(t,nombreTrabajador.getText(),apellidosTrabajador.getText(),(double)salarioTrabajador.getValue(),(String)comboBoxCargo.getSelectedItem(),(String)comboBoxEscolar.getSelectedItem());
 					JOptionPane.showMessageDialog(null,"Se han guardado los cambios","Cambios realizados",JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 				}
@@ -672,7 +674,7 @@ public class editarDialog extends JDialog {
 		lblCambieLosDatos_4.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblCambieLosDatos_4.setBounds(121, 74, 477, 34);
 		panelTrabajador.add(lblCambieLosDatos_4);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBackground(Color.WHITE);
 		lblNewLabel.setBounds(-769, -542, 1920, 1275);
@@ -761,7 +763,7 @@ public class editarDialog extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				RAM r = (RAM)c;
 				try{
-					r.editarRAM((int)unitRAM.getValue(),marcaRAM.getText(),(double)memoriaRAM.getValue(),(String)comboBoxRAM.getSelectedItem(),(double)precioRAM.getValue());
+					tienda.editarRAM(r,(int)unitRAM.getValue(),marcaRAM.getText(),(double)memoriaRAM.getValue(),(String)comboBoxRAM.getSelectedItem(),(double)precioRAM.getValue());
 					JOptionPane.showMessageDialog(null,"Se han guardado los cambios","Cambios realizados",JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 				}
@@ -775,7 +777,7 @@ public class editarDialog extends JDialog {
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		button_1.setBounds(541, 491, 129, 34);
 		panelRAM.add(button_1);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setIcon(new ImageIcon(editarDialog.class.getResource("/Resources/559467.jpg")));
 		lblNewLabel_4.setBounds(-904, -118, 1920, 1080);
@@ -786,7 +788,7 @@ public class editarDialog extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				CPU r = (CPU)c;
 				try{
-					r.editarCPU((int)unitCPU.getValue(),marcaCPU.getText(),modeloCPU.getText(),(String)comboBoxSocket.getSelectedItem(),(double)velocidadCPU.getValue(),(double)precioCPU.getValue());
+					tienda.editarCPU(r,(int)unitCPU.getValue(),marcaCPU.getText(),modeloCPU.getText(),(String)comboBoxSocket.getSelectedItem(),(double)velocidadCPU.getValue(),(double)precioCPU.getValue());
 					JOptionPane.showMessageDialog(null,"Se han guardado los cambios","Cambios realizados",JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 				}
@@ -799,7 +801,7 @@ public class editarDialog extends JDialog {
 		button_2.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		button_2.setBounds(541, 491, 129, 34);
 		panelCPU.add(button_2);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setIcon(new ImageIcon(editarDialog.class.getResource("/Resources/228546.jpg")));
 		lblNewLabel_3.setBounds(-1151, -1006, 2560, 1920);
@@ -822,7 +824,7 @@ public class editarDialog extends JDialog {
 						conexiones.add("IDE");
 					Motherboard m = (Motherboard)c;
 					try{
-						m.editarMotherboard((int)unitMother.getValue(),marcaMother.getText(),modeloMother.getText(),(String)comboBoxSocketMother.getSelectedItem(),(String)comboBoxRAMMother.getSelectedItem() , conexiones,(double) precioMother.getValue());
+						tienda.editarMotherboard(m,(int)unitMother.getValue(),marcaMother.getText(),modeloMother.getText(),(String)comboBoxSocketMother.getSelectedItem(),(String)comboBoxRAMMother.getSelectedItem() , conexiones,(double) precioMother.getValue());
 						JOptionPane.showMessageDialog(null,"Se han guardado los cambios","Cambios realizados",JOptionPane.INFORMATION_MESSAGE);
 						dispose();
 					}
@@ -845,12 +847,12 @@ public class editarDialog extends JDialog {
 		lblCambieLosDatos_3.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblCambieLosDatos_3.setBounds(86, 13, 500, 40);
 		panelMotherboard.add(lblCambieLosDatos_3);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(-104, -49, 2560, 1600);
 		panelMotherboard.add(lblNewLabel_1);
 		lblNewLabel_1.setIcon(new ImageIcon(editarDialog.class.getResource("/Resources/228261.jpg")));
-		
+
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setBounds(58, -121, 2560, 1600);
 		panelMotherboard.add(lblNewLabel_2);
