@@ -19,7 +19,7 @@ import javax.swing.JTable;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
-import Componentes.JTextFieldLimitado;
+import Components.JTextFieldLimitado;
 
 import javax.swing.SwingConstants;
 import javax.swing.DefaultComboBoxModel;
@@ -29,7 +29,9 @@ import javax.swing.SpinnerNumberModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
+
 import java.awt.Color;
 
 public class reporteTrabajador extends JDialog {
@@ -91,7 +93,7 @@ public class reporteTrabajador extends JDialog {
 		scrollPane.setViewportView(tableTrabajador);
 
 		final JComboBox comboBoxCargo = new JComboBox();
-		comboBoxCargo.setModel(new DefaultComboBoxModel(new String[] {"", "Gestor de Venta", "Encargado de inventario", "Asesor de ventas", "Especialista en productos", "Encargado de servicio", "Especialista en software", "Cajero", "Gerente"}));
+		comboBoxCargo.setModel(new DefaultComboBoxModel(new String[] {"", "Gestor de ventas", "Encargado de inventario", "Asesor de ventas", "Especialista en productos", "Encargado de servicio", "Especialista en software", "Cajero", "Gerente"}));
 		comboBoxCargo.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		comboBoxCargo.setBounds(10, 77, 196, 20);
 		contentPanel.add(comboBoxCargo);
