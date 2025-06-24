@@ -1,7 +1,6 @@
 package GUI;
 
 import Logic.*;
-import Resources.*;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
