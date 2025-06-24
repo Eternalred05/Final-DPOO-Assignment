@@ -4,7 +4,6 @@
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <!-- Identificación de tu proyecto -->
   <groupId>com.alexandro</groupId>
   <artifactId>final-dpoo</artifactId>
   <version>1.0.0</version>
@@ -15,17 +14,14 @@
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
-  <!-- Para desplegar en GitHub Packages -->
   <distributionManagement>
     <repository>
       <id>github</id>
-      <name>GitHub Packages</name>
       <url>https://maven.pkg.github.com/Eternalred05/Final-DPOO-Assignment</url>
     </repository>
   </distributionManagement>
 
   <dependencies>
-    <!-- tus dependencias de pruebas -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
@@ -35,47 +31,35 @@
   </dependencies>
 
   <build>
+    <!-- Declaramos los recursos (tus imágenes) -->
+    <resources>
+      <resource>
+        <directory>${project.basedir}/src/Resources</directory>
+        <filtering>false</filtering>
+        <includes>
+          <include>**/*.png</include>
+          <include>**/*.jpg</include>
+          <include>**/*.gif</include>
+        </includes>
+      </resource>
+    </resources>
+
     <plugins>
-
-      <!-- 1) Build Helper: añade src/ como carpeta de fuentes -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>3.3.0</version>
-        <executions>
-          <execution>
-            <id>add-extra-sources</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>add-source</goal>
-            </goals>
-            <configuration>
-              <sources>
-                <source>${project.basedir}/src</source>
-              </sources>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-      <!-- 2) Compilador Java -->
+      <!-- Compilador Java -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.11.0</version>
-        <configuration>
-          <!-- ya vienen de properties -->
-        </configuration>
       </plugin>
 
-      <!-- 3) Ejecutar tests -->
+      <!-- Tests -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.2.5</version>
       </plugin>
 
-      <!-- 4) Crear JAR ejecutable -->
+      <!-- JAR ejecutable -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -83,13 +67,11 @@
         <configuration>
           <archive>
             <manifest>
-              <!-- tu clase Main en package Runner -->
               <mainClass>Runner.Main</mainClass>
             </manifest>
           </archive>
         </configuration>
       </plugin>
-
     </plugins>
   </build>
 </project>
