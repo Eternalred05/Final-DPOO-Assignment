@@ -16,7 +16,7 @@ import java.awt.Color;
 
 import javax.swing.JComboBox;
 
-import Componentes.JTextFieldLimitado;
+import Components.JTextFieldLimitado;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
