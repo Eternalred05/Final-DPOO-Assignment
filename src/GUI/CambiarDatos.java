@@ -18,7 +18,7 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 
-import Componentes.JTextFieldLimitado;
+import Components.JTextFieldLimitado;
 
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -27,7 +27,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.time.DateTimeException;
 import java.awt.Window.Type;
+
 import javax.swing.ImageIcon;
+
 import java.awt.Color;
 
 public class CambiarDatos extends JDialog {
@@ -265,7 +267,7 @@ public class CambiarDatos extends JDialog {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(CambiarDatos.class.getResource("/Resources/591598.jpg")));
-		lblNewLabel.setBounds(-913, -276, 1629, 1234);
+		lblNewLabel.setBounds(-913, -276, 1599, 1234);
 		panelGerente.add(lblNewLabel);
 
 		JButton button_2 = new JButton("Ingresar Tienda");
@@ -303,7 +305,7 @@ public class CambiarDatos extends JDialog {
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(CambiarDatos.class.getResource("/Resources/591598.jpg")));
-		lblNewLabel_1.setBounds(-902, -168, 1920, 1080);
+		lblNewLabel_1.setBounds(-902, -168, 1658, 742);
 		panelTienda.add(lblNewLabel_1);
 	}
 }
