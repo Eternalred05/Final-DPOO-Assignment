@@ -22,7 +22,7 @@ public class Motherboard extends Componente {
 		setTipoConector(tipoConector);
 		setTipoMemoriaRAM(tipoMemoriaRAM);
 		conexionesDiscos = new ArrayList<>();
-		setConexionesDiscos(conexiones);
+		addConexionesDiscos(conexiones);
 	}
 
 	public String getModelo() {
@@ -48,7 +48,7 @@ public class Motherboard extends Componente {
 		return conexionesDiscos;
 	}
 
-	public void setConexionesDiscos(ArrayList<String> conexiones) {
+	public void addConexionesDiscos(ArrayList<String> conexiones) {
 		if(conexiones != null && conexiones.size()!=0){
 			for(String s : conexiones)
 				conexionesDiscos.add(s);
@@ -61,8 +61,11 @@ public class Motherboard extends Componente {
 	public double calcularPrecio() {
 		double aporteSocket = "LGA".equals(tipoSocket) ? 40 : "PGA".equals(tipoSocket) ? 30 : "BGA".equals(tipoSocket) ? 20 : 10 ;
 		double aporteMemoria = "DDR5".equalsIgnoreCase(tipoMemoriaRAM) ? 60 : "DDR4".equalsIgnoreCase(tipoMemoriaRAM) ? 45 : "DDR3".equalsIgnoreCase(tipoMemoriaRAM) ? 30 :"DDR2".equalsIgnoreCase(tipoMemoriaRAM) ? 20 : 15;
-		return precioBase + aporteSocket + aporteMemoria;
+		double aporteConexiones = 0;
+		for(String s : conexionesDiscos)
+			aporteConexiones += "SATA".equals(s) ? 4.5 : "SATA-2".equals(s) ? 5.0 : "SATA-3".equals(s) ? 10 : 3.5 ; ;
+			return precioBase + aporteSocket + aporteMemoria+aporteConexiones;
 	}
-	
+
 }
 
