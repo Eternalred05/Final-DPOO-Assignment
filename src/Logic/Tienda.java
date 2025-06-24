@@ -201,30 +201,30 @@ public class Tienda {
 					listado.add(c);
 		return listado;
 	}
-
-	public int buscarRAMS(){ // funcion para el reporte de las RAMS 
+	// metodos para buscar cantidades de componentes existentes
+	public int buscarRAMS(){
 		int cantidad = 0;
 		for(Componente c : componentes)
 			if(c instanceof RAM)
 				cantidad++;
 		return cantidad;
 	}
-	// funcion para buscar componentes
-	public int buscarMotherboards(){ // funcion para el reporte de las RAMS 
+
+	public int buscarMotherboards(){ 
 		int cantidad = 0;
 		for(Componente c : componentes)
 			if(c instanceof Motherboard)
 				cantidad++;
 		return cantidad;
 	}
-	public int buscarCPUS(){ // funcion para el reporte de las RAMS 
+	public int buscarCPUS(){ 
 		int cantidad = 0;
 		for(Componente c : componentes)
 			if(c instanceof CPU)
 				cantidad++;
 		return cantidad;
 	}
-	public int buscarHDDS(){ // funcion para el reporte de las RAMS 
+	public int buscarHDDS(){ 
 		int cantidad = 0;
 		for(Componente c : componentes)
 			if(c instanceof HDD)
@@ -370,13 +370,13 @@ public class Tienda {
 		}	
 	}
 	public void eliminarComponentesFueraStock() {
-		for (int i = 0; i<componentes.size() ; i++) {
-			Componente c = componentes.get(i);
-			if (c.getCantidadDisponible() == 0) {
+		for (int i = componentes.size()-1; i >= 0; i--) {
+			if (componentes.get(i).getCantidadDisponible() == 0) {
 				componentes.remove(i);
 			}
 		}
-	} 
+	}
+
 	public void editarTrabajador(Trabajador t, String nombre, String apellidos,double salario,String cargo, String escolaridad){
 		@SuppressWarnings("unused")
 		Trabajador nuevo = new Trabajador(nombre, apellidos, t.getId(),t.getNumeroTrabajador(), salario,escolaridad, cargo);
