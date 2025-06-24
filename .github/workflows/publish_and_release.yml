@@ -17,33 +17,33 @@ jobs:
       - name: Setup Java 17 (Temurin) + cache Maven
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: temurin
+          java-version: 17
           cache: maven
 
       - name: Build & package JAR
         run: mvn clean package -B
 
       - name: Upload JAR artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: final-dpoo-jar
           path: target/*.jar
 
       - name: (Opcional) Generar .exe con jpackage
-        if: always()   # quita el if si quieres evitar errores en runners sin jpackage
+        if: always()
         run: |
           jpackage \
             --input target/ \
             --name FinalDPOO \
             --main-jar final-dpoo-1.0.0.jar \
-            --main-class com.alexandro.Main \
+            --main-class Runner.Main \
             --type exe \
             --verbose
 
   publish:
-    if: github.event_name == 'release'
     needs: build
+    if: github.event_name == 'release'
     runs-on: windows-latest
     permissions:
       contents: read
@@ -56,12 +56,27 @@ jobs:
       - name: Setup Java 17 for deploy
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
-          server-id: github           # coincide con <id> en distributionManagement de tu pom.xml
+          distribution: temurin
+          java-version: 17
+          server-id: github
           settings-path: ${{ github.workspace }}
 
       - name: Deploy to GitHub Packages
         run: mvn deploy -B
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download JAR artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: final-dpoo-jar
+          path: .
+
+      - name: Attach JAR to GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.event.release.tag_name }}
+          name: final-dpoo-${{ github.event.release.tag_name }}.jar
+          asset_path: ./final-dpoo-1.0.0.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
