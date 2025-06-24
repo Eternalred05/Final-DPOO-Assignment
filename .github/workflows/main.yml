@@ -17,5 +17,4 @@ jobs:
         with:
           distribution: 'oracle'
           java-version: '17'
-          accept-terms: 'true'    # obligatorio para Oracle en Windows también
           cache: 'maven'
