@@ -31,15 +31,16 @@ jobs:
           path: target/*.jar
 
       - name: (Opcional) Generar .exe con jpackage
-        if: always()
-        run: |
-          jpackage \
-            --input target/ \
-            --name FinalDPOO \
-            --main-jar final-dpoo-1.0.0.jar \
-            --main-class Runner.Main \
-            --type exe \
-            --verbose
+  if: always()
+  shell: pwsh
+  run: |
+    jpackage `
+      --input target/ `
+      --name FinalDPOO `
+      --main-jar final-dpoo-1.0.0.jar `
+      --main-class Runner.Main `
+      --type exe `
+      --verbose
 
   publish:
     needs: build
