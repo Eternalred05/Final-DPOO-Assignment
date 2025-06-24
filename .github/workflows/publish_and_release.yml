@@ -1,0 +1,67 @@
+name: Windows Build & Publish
+
+on:
+  push:
+    branches: [ main ]
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Java 17 (Temurin) + cache Maven
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: maven
+
+      - name: Build & package JAR
+        run: mvn clean package -B
+
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: final-dpoo-jar
+          path: target/*.jar
+
+      - name: (Opcional) Generar .exe con jpackage
+        if: always()   # quita el if si quieres evitar errores en runners sin jpackage
+        run: |
+          jpackage \
+            --input target/ \
+            --name FinalDPOO \
+            --main-jar final-dpoo-1.0.0.jar \
+            --main-class com.alexandro.Main \
+            --type exe \
+            --verbose
+
+  publish:
+    if: github.event_name == 'release'
+    needs: build
+    runs-on: windows-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Java 17 for deploy
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          server-id: github           # coincide con <id> en distributionManagement de tu pom.xml
+          settings-path: ${{ github.workspace }}
+
+      - name: Deploy to GitHub Packages
+        run: mvn deploy -B
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
