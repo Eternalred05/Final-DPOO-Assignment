@@ -81,15 +81,10 @@ public class Trabajador {
 			catch (DateTimeException e){
 				throw new IllegalArgumentException ("La fecha del carnet es incorrecta");
 			}
-			if(siglo >= 0 && siglo <=5){
-				edad = 1900+anio;
-				if((anioActual - edad)>(anioActual-1900))
-					throw new IllegalArgumentException("El siglo de su carnet no coincide o es imposible que sea ese");	
-			}
-
+			
 			if(siglo >= 6 && siglo <=8){
 				edad = 2000+anio;
-				if(edad > anioActual)
+				if(edad > anioActual || edad==2000) // el año 2000 en si no pertenece al siglo XXI
 					throw new IllegalArgumentException("El siglo de su carnet no coincide con su edad o es imposible que sea ese");	
 			}
 
@@ -104,10 +99,10 @@ public class Trabajador {
 	}
 
 	public void setSalario(double salario) {
-		if(salario>2000 && salario <=15000)
+		if(salario>=2000 && salario <=15000)
 			this.salario = salario;
 		else
-			throw new IllegalArgumentException ("El salario debe ser mayor que 2000 y menor o igual que 15000");
+			throw new IllegalArgumentException ("El salario debe estar entre 2000 y 15000");
 	}
 
 	public String getNivelEscolar() {
@@ -134,6 +129,17 @@ public class Trabajador {
 
 	public int getNumeroTrabajador() {
 		return numeroTrabajador;
+	}
+
+	public Trabajador(String nombre, String apellidos, String id, int numeroTrabajador,
+			double salario, String nivelEscolar, String cargo) {
+		setNombre(nombre);
+		setApellidos(apellidos);
+		setId(id);
+		this.numeroTrabajador = numeroTrabajador;
+		setSalario(salario);
+		setNivelEscolar(nivelEscolar);
+		setCargo(cargo);
 	}
 
 }
