@@ -4,7 +4,7 @@
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <!-- Puedes cambiar a com.github.eternalred05 si prefieres -->
+  <!-- Identificación de tu proyecto -->
   <groupId>com.alexandro</groupId>
   <artifactId>final-dpoo</artifactId>
   <version>1.0.0</version>
@@ -15,6 +15,7 @@
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
+  <!-- Para desplegar en GitHub Packages -->
   <distributionManagement>
     <repository>
       <id>github</id>
@@ -24,6 +25,7 @@
   </distributionManagement>
 
   <dependencies>
+    <!-- tus dependencias de pruebas -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
@@ -33,25 +35,47 @@
   </dependencies>
 
   <build>
-    <!-- Apunta el source root a src/ para leer Runner, Logic y GUI -->
-    <sourceDirectory>${project.basedir}/src</sourceDirectory>
-
     <plugins>
-      <!-- Compilador -->
+
+      <!-- 1) Build Helper: añade src/ como carpeta de fuentes -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <id>add-extra-sources</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>${project.basedir}/src</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- 2) Compilador Java -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.11.0</version>
+        <configuration>
+          <!-- ya vienen de properties -->
+        </configuration>
       </plugin>
 
-      <!-- Tests -->
+      <!-- 3) Ejecutar tests -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.2.5</version>
       </plugin>
 
-      <!-- JAR ejecutable -->
+      <!-- 4) Crear JAR ejecutable -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -59,12 +83,13 @@
         <configuration>
           <archive>
             <manifest>
-              <!-- Tu Main está en package Runner; clase Runner.Main -->
+              <!-- tu clase Main en package Runner -->
               <mainClass>Runner.Main</mainClass>
             </manifest>
           </archive>
         </configuration>
       </plugin>
+
     </plugins>
   </build>
 </project>
