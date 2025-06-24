@@ -7,7 +7,6 @@ import javax.swing.JDialog;
 
 import java.awt.Toolkit;
 
-import Componentes.JTextFieldLimitado;
 import Logic.Tienda;
 
 import java.awt.BorderLayout;
@@ -24,10 +23,13 @@ import javax.swing.text.html.parser.ContentModel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.SwingConstants;
 import javax.swing.JCheckBox;
 import javax.swing.JPasswordField;
-import Componentes.JPasswordFieldLimitado;
+
+import Components.JPasswordFieldLimitado;
+import Components.JTextFieldLimitado;
 
 public class Login extends JDialog {
 	private Tienda tienda;
