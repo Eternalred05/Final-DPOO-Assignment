@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Java 17 (Temurin) + cache Maven
+      - name: Setup Java 17 + cache Maven
         uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -24,7 +24,7 @@ jobs:
         run: mvn clean package -B
 
       - name: Upload JAR artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4       # <<< actualizado a v4
         with:
           name: final-dpoo-jar
           path: target/*.jar
@@ -42,8 +42,8 @@ jobs:
             --verbose
 
   publish:
-    if: github.event_name == 'release'
     needs: build
+    if: github.event_name == 'release'
     runs-on: windows-latest
     permissions:
       contents: read
@@ -62,12 +62,12 @@ jobs:
           settings-path: ${{ github.workspace }}
 
       - name: Deploy to GitHub Packages
-        run: mvn deploy -B
+        run: mvn clean deploy -B
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Download JAR artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3   # download-artifact@v3 sigue OK
         with:
           name: final-dpoo-jar
           path: .
