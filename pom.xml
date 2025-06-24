@@ -1,7 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="
+           http://maven.apache.org/POM/4.0.0
+           http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.alexandro</groupId>
@@ -14,7 +15,6 @@
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
-  <!-- Para publicar en GitHub Packages -->
   <distributionManagement>
     <repository>
       <id>github</id>
@@ -24,7 +24,6 @@
   </distributionManagement>
 
   <dependencies>
-    <!-- tus dependencias de test -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
@@ -34,7 +33,7 @@
   </dependencies>
 
   <build>
-    <!-- Recursos estáticos (imágenes) -->
+    <!-- 1) Copiar imágenes sueltas como recursos -->
     <resources>
       <resource>
         <directory>${project.basedir}/src/Resources</directory>
@@ -48,42 +47,45 @@
     </resources>
 
     <plugins>
-      <!-- 1) Añadir src/ como source root -->
+      <!-- 2) Añadir sólo carpetas con .java a las fuentes -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
         <version>3.3.0</version>
         <executions>
           <execution>
-            <id>add-source</id>
+            <id>add-source-folders</id>
             <phase>generate-sources</phase>
             <goals>
               <goal>add-source</goal>
             </goals>
             <configuration>
               <sources>
-                <source>${project.basedir}/src</source>
+                <source>${project.basedir}/src/Runner</source>
+                <source>${project.basedir}/src/Logic</source>
+                <source>${project.basedir}/src/GUI</source>
+                <source>${project.basedir}/src/Components</source>
               </sources>
             </configuration>
           </execution>
         </executions>
       </plugin>
 
-      <!-- 2) Compilador Java -->
+      <!-- 3) Compilador Java -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.11.0</version>
       </plugin>
 
-      <!-- 3) Ejecutar tests -->
+      <!-- 4) Ejecutar tests -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.2.5</version>
       </plugin>
 
-      <!-- 4) Empaquetar “uber-jar” con dependencias -->
+      <!-- 5) Empaquetar uber-jar con dependencias -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
