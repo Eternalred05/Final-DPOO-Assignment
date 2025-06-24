@@ -22,11 +22,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import java.awt.Font;
+
 import javax.swing.ListSelectionModel;
-import Componentes.JTextFieldLimitado;
+
+import Components.JTextFieldLimitado;
+
 import javax.swing.DropMode;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
+
 import java.awt.Color;
 
 public class crearPC extends JDialog {
@@ -67,7 +71,7 @@ public class crearPC extends JDialog {
 		h = new ArrayList<>();
 
 		setTitle("Crear una PC");
-		setBounds(100, 100, 686, 565);
+		setBounds(100, 100, 822, 565);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -82,7 +86,7 @@ public class crearPC extends JDialog {
 		panelRAM.setLayout(null);
 
 		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(10, 99, 650, 358);
+		scrollPane_2.setBounds(10, 99, 776, 358);
 		panelRAM.add(scrollPane_2);
 
 		tableRAM = new JTable();
@@ -115,7 +119,7 @@ public class crearPC extends JDialog {
 		JLabel lblEscojaHasta = new JLabel("Escoja Hasta 4 RAMS compatibles con la Motherboard escogida de la lista:");
 		lblEscojaHasta.setForeground(Color.WHITE);
 		lblEscojaHasta.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblEscojaHasta.setBounds(20, 45, 640, 41);
+		lblEscojaHasta.setBounds(90, 45, 640, 41);
 		panelRAM.add(lblEscojaHasta);
 
 		final JPanel panelHDD = new JPanel();
@@ -125,11 +129,11 @@ public class crearPC extends JDialog {
 		JLabel lblEscojaHasta_1 = new JLabel("Escoja hasta 4 Discos Duros  compatible con la Motherboard escogida de la lista");
 		lblEscojaHasta_1.setForeground(Color.WHITE);
 		lblEscojaHasta_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblEscojaHasta_1.setBounds(36, 45, 608, 31);
+		lblEscojaHasta_1.setBounds(111, 47, 608, 31);
 		panelHDD.add(lblEscojaHasta_1);
 
 		JScrollPane scrollPane_3 = new JScrollPane();
-		scrollPane_3.setBounds(10, 89, 650, 338);
+		scrollPane_3.setBounds(10, 89, 776, 338);
 		panelHDD.add(scrollPane_3);
 
 		tableHDD = new JTable();
@@ -169,11 +173,11 @@ public class crearPC extends JDialog {
 		JLabel lblLosComponentesDe = new JLabel("Los componentes de su pc ser\u00EDan los siguientes");
 		lblLosComponentesDe.setForeground(Color.WHITE);
 		lblLosComponentesDe.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblLosComponentesDe.setBounds(169, 2, 339, 20);
+		lblLosComponentesDe.setBounds(203, 3, 339, 20);
 		panelCrearPC.add(lblLosComponentesDe);
 
 		JScrollPane scrollPane_4 = new JScrollPane();
-		scrollPane_4.setBounds(64, 33, 563, 99);
+		scrollPane_4.setBounds(111, 34, 563, 99);
 		panelCrearPC.add(scrollPane_4);
 
 		table = new JTable();
@@ -197,7 +201,7 @@ public class crearPC extends JDialog {
 		scrollPane_4.setViewportView(table);
 
 		JScrollPane scrollPane_5 = new JScrollPane();
-		scrollPane_5.setBounds(64, 155, 563, 137);
+		scrollPane_5.setBounds(111, 161, 563, 137);
 		panelCrearPC.add(scrollPane_5);
 
 		table_1 = new JTable();
@@ -225,7 +229,7 @@ public class crearPC extends JDialog {
 		scrollPane_5.setViewportView(table_1);
 
 		JScrollPane scrollPane_6 = new JScrollPane();
-		scrollPane_6.setBounds(64, 315, 563, 137);
+		scrollPane_6.setBounds(111, 315, 563, 137);
 		panelCrearPC.add(scrollPane_6);
 
 		table_2 = new JTable();
@@ -253,32 +257,32 @@ public class crearPC extends JDialog {
 
 		JLabel lblRams = new JLabel("RAMS");
 		lblRams.setForeground(Color.WHITE);
-		lblRams.setFont(new Font("Sans Serif Collection", Font.PLAIN, 14));
-		lblRams.setBounds(301, 130, 58, 20);
+		lblRams.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblRams.setBounds(354, 140, 58, 20);
 		panelCrearPC.add(lblRams);
 
 		JLabel lblDiscosDuros = new JLabel("Discos Duros");
 		lblDiscosDuros.setForeground(Color.WHITE);
-		lblDiscosDuros.setFont(new Font("Sans Serif Collection", Font.PLAIN, 14));
-		lblDiscosDuros.setBounds(283, 296, 109, 20);
+		lblDiscosDuros.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblDiscosDuros.setBounds(339, 295, 109, 20);
 		panelCrearPC.add(lblDiscosDuros);
 
 		final JTextFieldLimitado idPC = new JTextFieldLimitado();
 		idPC.setHorizontalAlignment(SwingConstants.CENTER);
 		idPC.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		idPC.setLimit(10);
-		idPC.setBounds(88, 481, 119, 20);
+		idPC.setBounds(280, 481, 119, 20);
 		panelCrearPC.add(idPC);
 
 		JLabel lblIdentificadorDeLa = new JLabel("Identificador de la PC");
 		lblIdentificadorDeLa.setForeground(Color.WHITE);
-		lblIdentificadorDeLa.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblIdentificadorDeLa.setBounds(88, 463, 160, 14);
+		lblIdentificadorDeLa.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblIdentificadorDeLa.setBounds(270, 463, 160, 14);
 		panelCrearPC.add(lblIdentificadorDeLa);
 
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 76, 650, 357);
+		scrollPane.setBounds(10, 76, 776, 357);
 		panelMother.add(scrollPane);
 
 		tableMotherBoard = new JTable();
@@ -313,7 +317,7 @@ public class crearPC extends JDialog {
 		tableMotherBoard.getTableHeader().setReorderingAllowed(false);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 98, 650, 367);
+		scrollPane_1.setBounds(10, 98, 786, 367);
 
 
 		tableCPU = new JTable();
@@ -359,7 +363,7 @@ public class crearPC extends JDialog {
 		JLabel lblEscojaUnaMotherboard = new JLabel("Escoja una Motherboard de la lista");
 		lblEscojaUnaMotherboard.setForeground(Color.WHITE);
 		lblEscojaUnaMotherboard.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblEscojaUnaMotherboard.setBounds(148, 29, 363, 32);
+		lblEscojaUnaMotherboard.setBounds(231, 33, 363, 32);
 		panelMother.add(lblEscojaUnaMotherboard);
 
 		final JPanel panelCPU = new JPanel();
@@ -369,7 +373,7 @@ public class crearPC extends JDialog {
 		JLabel lblEscojaUnaCpu = new JLabel("Escoja una CPU compatible con la motherboard escogida de la lista");
 		lblEscojaUnaCpu.setForeground(Color.WHITE);
 		lblEscojaUnaCpu.setFont(new Font("Tahoma", Font.BOLD, 19));
-		lblEscojaUnaCpu.setBounds(10, 47, 650, 38);
+		lblEscojaUnaCpu.setBounds(85, 49, 650, 38);
 		panelCPU.add(lblEscojaUnaCpu);
 		panelCPU.add(scrollPane_1);
 
@@ -400,16 +404,16 @@ public class crearPC extends JDialog {
 					JOptionPane.showMessageDialog(null,"Seleccione solo una Motherboard","Selección incorrecta",JOptionPane.ERROR_MESSAGE);	
 			}
 		});
-		btnEscoger.setBounds(557, 483, 103, 32);
+		btnEscoger.setBounds(683, 484, 103, 32);
 		panelMother.add(btnEscoger);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(0, 0, 56, 16);
 		panelMother.add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(crearPC.class.getResource("/Resources/228261.jpg")));
-		lblNewLabel_1.setBounds(0, 0, 670, 532);
+		lblNewLabel_1.setBounds(0, 0, 796, 532);
 		panelMother.add(lblNewLabel_1);
 
 
@@ -439,7 +443,7 @@ public class crearPC extends JDialog {
 					JOptionPane.showMessageDialog(null,"Seleccione solo una CPU","Selección incorrecta",JOptionPane.ERROR_MESSAGE);	
 			}	
 		});
-		button.setBounds(557, 483, 103, 32);
+		button.setBounds(693, 483, 103, 32);
 		panelCPU.add(button);
 
 		JButton button_7 = new JButton("Regresar");
@@ -453,11 +457,11 @@ public class crearPC extends JDialog {
 		button_7.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		button_7.setBounds(10, 11, 89, 23);
 		panelCPU.add(button_7);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setBounds(0, 0, 56, 16);
 		panelCPU.add(lblNewLabel_4);
-		
+
 		JLabel lblNewLabel_5 = new JLabel("");
 		lblNewLabel_5.setIcon(new ImageIcon(crearPC.class.getResource("/Resources/228546.jpg")));
 		lblNewLabel_5.setBounds(-1025, -788, 2560, 1920);
@@ -514,7 +518,7 @@ public class crearPC extends JDialog {
 					JOptionPane.showMessageDialog(null,"Seleccione al menos una RAM de la lista","Selección incorrecta",JOptionPane.ERROR_MESSAGE);	
 			}
 		});
-		btnContinuar.setBounds(557, 483, 103, 32);
+		btnContinuar.setBounds(683, 483, 103, 32);
 		panelRAM.add(btnContinuar);
 
 		JButton button_4 = new JButton("Regresar");
@@ -550,9 +554,9 @@ public class crearPC extends JDialog {
 					JOptionPane.showMessageDialog(null,"No se puede deshacer si no se ha escogido alguna RAM.","Sin selecciones",JOptionPane.ERROR_MESSAGE);
 			}
 		});
-		btnDeshacerUltimaEleccion.setBounds(463, 11, 197, 23);
+		btnDeshacerUltimaEleccion.setBounds(589, 11, 197, 23);
 		panelRAM.add(btnDeshacerUltimaEleccion);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setIcon(new ImageIcon(crearPC.class.getResource("/Resources/559467.jpg")));
 		lblNewLabel_2.setBounds(-766, -57, 2560, 1440);
@@ -615,7 +619,7 @@ public class crearPC extends JDialog {
 
 			}
 		});
-		button_3.setBounds(557, 466, 103, 32);
+		button_3.setBounds(683, 466, 103, 32);
 		panelHDD.add(button_3);
 
 		JButton button_5 = new JButton("Regresar");
@@ -660,9 +664,9 @@ public class crearPC extends JDialog {
 			}
 		});
 		button_8.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		button_8.setBounds(470, 10, 190, 23);
+		button_8.setBounds(596, 11, 190, 23);
 		panelHDD.add(button_8);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setIcon(new ImageIcon(crearPC.class.getResource("/Resources/228489.jpg")));
 		lblNewLabel_3.setBounds(-260, -21, 3410, 1918);
@@ -689,7 +693,7 @@ public class crearPC extends JDialog {
 
 			}
 		});
-		btnCrearPc.setBounds(524, 465, 103, 34);
+		btnCrearPc.setBounds(683, 474, 103, 34);
 		panelCrearPC.add(btnCrearPc);
 
 		JButton button_6 = new JButton("Regresar");
@@ -708,12 +712,12 @@ public class crearPC extends JDialog {
 			}
 		});
 		button_6.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		button_6.setBounds(10, 2, 89, 23);
+		button_6.setBounds(10, 11, 89, 23);
 		panelCrearPC.add(button_6);
-		
+
 		JLabel lblNewLabel_6 = new JLabel("");
 		lblNewLabel_6.setIcon(new ImageIcon(crearPC.class.getResource("/Resources/428909.jpg")));
-		lblNewLabel_6.setBounds(0, -13, 1920, 1280);
+		lblNewLabel_6.setBounds(0, -13, 1106, 663);
 		panelCrearPC.add(lblNewLabel_6);
 	}
 }
