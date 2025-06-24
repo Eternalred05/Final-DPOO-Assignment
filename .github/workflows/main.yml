@@ -16,6 +16,6 @@ jobs:
         uses: actions/setup-java@v4.7.1
         with:
           distribution: 'oracle'
-          java-version: '8'
+          java-version: '17'
           accept-terms: 'true'    # obligatorio para Oracle en Windows también
           cache: 'maven'
