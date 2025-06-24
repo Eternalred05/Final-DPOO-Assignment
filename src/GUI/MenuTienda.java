@@ -1,7 +1,6 @@
 package GUI;
 
 import Logic.*;
-import Componentes.*;
 import Resources.*;
 
 import java.awt.BorderLayout;
@@ -49,7 +48,7 @@ import javax.swing.UIManager;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-import Componentes.JTextFieldLimitado;
+import Components.*;
 
 import javax.swing.JCheckBox;
 import javax.swing.JProgressBar;
@@ -311,6 +310,12 @@ public class MenuTienda extends JFrame {
 		lblNewLabel_5.setIcon(new ImageIcon(MenuTienda.class.getResource("/Resources/228261.jpg")));
 		paneIngresarTrabajador.setLayout(null);
 
+		final JSpinner salarioTrabajador = new JSpinner();
+		salarioTrabajador.setBounds(595, 422, 78, 20);
+		paneIngresarTrabajador.add(salarioTrabajador);
+		salarioTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		salarioTrabajador.setModel(new SpinnerNumberModel(2000.0, 2000.0, 15000.0, 100.0));
+
 		JLabel lblNumeroDeId = new JLabel("N\u00FAmero de ID actual");
 		lblNumeroDeId.setForeground(Color.BLACK);
 		lblNumeroDeId.setBounds(1051, 49, 203, 25);
@@ -431,18 +436,6 @@ public class MenuTienda extends JFrame {
 
 		paneIngresarTrabajador.add(lblNewLabel_1);
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panel_1.setBounds(595, 434, 81, 25);
-		paneIngresarTrabajador.add(panel_1);
-		panel_1.setLayout(null);
-
-		final JSpinner salarioTrabajador = new JSpinner();
-		salarioTrabajador.setBounds(0, 0, 78, 20);
-		panel_1.add(salarioTrabajador);
-		salarioTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		salarioTrabajador.setModel(new SpinnerNumberModel(2000.0, 2000.0, 15000.0, 100.0));
-
 
 		final JPanel panelListaTrabajadores = new JPanel();
 		panel.add(panelListaTrabajadores, "ListaTrabajador");
@@ -551,7 +544,7 @@ public class MenuTienda extends JFrame {
 		panel_3.add(spinnerCapacidadRAM);
 
 		final JSpinner spinnerPrecioBaseRAM = new JSpinner();
-		spinnerPrecioBaseRAM.setModel(new SpinnerNumberModel(100.0, 100.0, 599.0, 1.0));
+		spinnerPrecioBaseRAM.setModel(new SpinnerNumberModel(100.0, 100.0, 600.0, 1.0));
 		spinnerPrecioBaseRAM.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		spinnerPrecioBaseRAM.setBounds(237, 201, 81, 27);
 		panel_3.add(spinnerPrecioBaseRAM);
@@ -1079,7 +1072,7 @@ public class MenuTienda extends JFrame {
 				comboBoxRAMMother.setSelectedItem("");
 				comboBoxSocketMother.setSelectedItem("");
 				idMotherboard.setText("");
-				spinnerPrecioBaseMotherboard.setValue(1.00);
+				spinnerPrecioBaseMotherboard.setValue(100.00);
 				spinnerUnitsMotherboard.setValue(1);
 				chckbxIde.setSelected(false);
 				chckbxSata.setSelected(false);
@@ -1110,7 +1103,7 @@ public class MenuTienda extends JFrame {
 				textNumeroSerie.setText("");
 				comboBoxTipoRAM.setSelectedItem("");
 				spinnerCapacidadRAM.setValue(1.00);
-				spinnerPrecioBaseRAM.setValue(0.00);
+				spinnerPrecioBaseRAM.setValue(100.00);
 				spinnerRAMUnit.setValue(1);
 				lblPrecioRAM.setText(String.valueOf(0.00)+"$");
 
@@ -1136,7 +1129,7 @@ public class MenuTienda extends JFrame {
 				modeloHDD.setText("");
 				comboBoxConexionHDD.setSelectedItem("");
 				spinnerMemoriaHDD.setValue(128.00);
-				spinnerPrecioHdd.setValue(1.00);
+				spinnerPrecioHdd.setValue(100.00);
 				unitsHDD.setValue(1);
 				numeroSerieHDD.setText("");
 				labelPrecioHDD.setText(String.valueOf(0.00)+"$");
@@ -1164,6 +1157,10 @@ public class MenuTienda extends JFrame {
 		mntmCrearPc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(tiendaPC.buscarRAMS()!= 0 && tiendaPC.buscarHDDS()!= 0 && tiendaPC.buscarCPUS() != 0 && tiendaPC.buscarMotherboards() != 0 ) {
+					if(panelListadoComponentes.isShowing()){
+						panelInicio.setVisible(true);
+						panelListadoComponentes.setVisible(false);
+					}
 					try {
 						crearPC dialog = new crearPC(tiendaPC ,MenuTienda.this);
 						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
