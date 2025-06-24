@@ -9,7 +9,6 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -18,7 +17,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 17
+          java-version: '17'
           cache: maven
 
       - name: Build & package JAR
@@ -31,20 +30,20 @@ jobs:
           path: target/*.jar
 
       - name: (Opcional) Generar .exe con jpackage
-  if: always()
-  shell: pwsh
-  run: |
-    jpackage `
-      --input target/ `
-      --name FinalDPOO `
-      --main-jar final-dpoo-1.0.0.jar `
-      --main-class Runner.Main `
-      --type exe `
-      --verbose
+        if: always()
+        shell: bash
+        run: |
+          jpackage \
+            --input target/ \
+            --name FinalDPOO \
+            --main-jar final-dpoo-1.0.0.jar \
+            --main-class Runner.Main \
+            --type exe \
+            --verbose
 
   publish:
-    needs: build
     if: github.event_name == 'release'
+    needs: build
     runs-on: windows-latest
     permissions:
       contents: read
@@ -58,7 +57,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 17
+          java-version: '17'
           server-id: github
           settings-path: ${{ github.workspace }}
 
