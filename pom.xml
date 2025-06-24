@@ -16,15 +16,13 @@
 
   <distributionManagement>
     <repository>
-
       <id>github</id>
       <name>GitHub Packages</name>
-      <url>https://maven.pkg.github.com/TU_USUARIO/TU_REPO</url>
+      <url>https://maven.pkg.github.com/Eternalred05/Final-DPOO-Assignment</url>
     </repository>
   </distributionManagement>
 
   <dependencies>
-
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
@@ -35,13 +33,11 @@
 
   <build>
     <plugins>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.11.0</version>
       </plugin>
-
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -56,11 +52,13 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.alexandro.Main</mainClass>
+              <mainClass>Runner.Main</mainClass>
             </manifest>
           </archive>
         </configuration>
       </plugin>
     </plugins>
+
+    <sourceDirectory>${basedir}/src/Runner</sourceDirectory>
   </build>
 </project>
