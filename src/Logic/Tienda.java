@@ -449,9 +449,15 @@ public class Tienda {
 		addTrabajador("Jorge Luis", "Valdés Piñeda", "97070758088", 2 ,15000, "Universitario", "Especialista en software");
 		addTrabajador("Javier", "Soto Villanueva", "05090160882",3,7000, "Universitario", "Asesor de ventas");
 		addTrabajador("Ronal", "Sálazar Hernández", "05101568066",4,6500, "Universitario", "Especialista en software");
-		addTrabajador("Aylin", "Vázquez Alvarez", "06061367412",5,4000, "Obrero Calificado", "Encargado de inventario");
+		addTrabajador("Aylin", "Vázquez Alvarez", "06061368091",5,4000, "Obrero Calificado", "Encargado de inventario");
 		addTrabajador("Rodolfo", "Remesar Martín","72081843200", 6, 9900,"Universitario", "Especialista en software");
 		addTrabajador("Cristiano", "Ronaldo Aveiro","87020501669", 7, 12000,"Universitario", "Especialista en software");
+		addTrabajador("Mayte", "Piñeda Fernandez","72081847633", 8, 14000,"Universitario", "Especialista en software");
+		addTrabajador("Enrique Alejandro", "Artigas Nuñez","05090466078", 9, 5000,"Primario", "Cajero");
+		addTrabajador("Danilo", "Clausell Sánchez","05062188058", 10, 6000,"Secundario", "Gestor de ventas");
+		addTrabajador("Claudia", "Sálazar Martínez","06101960313",11,4800,"Técnico Medio", "Encargado de servicio");
+		addTrabajador("Amaury", "Pérez Dieguez","05051882060", 12, 7600,"Universitario", "Especialista en software");
+		
 	}
 	public void inicializarComponentes(){
 		ArrayList<String> conexiones = new ArrayList<String>();
