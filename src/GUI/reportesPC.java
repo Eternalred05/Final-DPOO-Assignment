@@ -66,7 +66,7 @@ public class reportesPC extends JDialog {
 		JButton button = new JButton("?");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"Este reporte buscará computadoras con un precio menor a uno especificado.", "Información del reporte", JOptionPane.INFORMATION_MESSAGE);	
+				JOptionPane.showMessageDialog(null,"Este reporte buscará computadoras con un precio menor o igual a uno especificado.", "Información del reporte", JOptionPane.INFORMATION_MESSAGE);	
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.PLAIN, 22));
