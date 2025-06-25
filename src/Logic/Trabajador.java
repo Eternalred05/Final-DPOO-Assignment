@@ -81,11 +81,13 @@ public class Trabajador {
 			catch (DateTimeException e){
 				throw new IllegalArgumentException ("La fecha del carnet es incorrecta");
 			}
-			
+
 			if(siglo >= 6 && siglo <=8){
 				edad = 2000+anio;
 				if(edad > anioActual || edad==2000) // el año 2000 en si no pertenece al siglo XXI
 					throw new IllegalArgumentException("El siglo de su carnet no coincide con su edad o es imposible que sea ese");	
+				if((anioActual-edad)<18) // comprobar que sea mayor de edad
+					throw new IllegalArgumentException("El carnet es válido pero se esta ingresando a un menor de edad");	
 			}
 
 			this.id = id;
