@@ -153,7 +153,7 @@ public class reporteComponentes extends JDialog {
 		JButton button_1 = new JButton("?");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"Este reporte buscará componentes con una marca especifica con un precio menor al especifícado.", "Información del reporte", JOptionPane.INFORMATION_MESSAGE);	
+				JOptionPane.showMessageDialog(null,"Este reporte buscará componentes con una marca especifica con un precio menor o igual al especifícado.", "Información del reporte", JOptionPane.INFORMATION_MESSAGE);	
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
