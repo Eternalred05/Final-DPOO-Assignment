@@ -146,7 +146,7 @@ public class reportesRAM extends JDialog {
 		JButton button_1 = new JButton("?");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"Este reporte buscará memorias ram con un tipo de memoria específico y una cantidad de memoria en gigabytes mayor a la que se especifica.", "Información del reporte", JOptionPane.INFORMATION_MESSAGE);	
+				JOptionPane.showMessageDialog(null,"Este reporte buscará memorias ram con un tipo de memoria específico y una cantidad de memoria en gigabytes mayor o igual a la que se especifica.", "Información del reporte", JOptionPane.INFORMATION_MESSAGE);	
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 21));
