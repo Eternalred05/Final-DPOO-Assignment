@@ -19,8 +19,6 @@ import javax.swing.JTable;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
-import Components.JTextFieldLimitado;
-
 import javax.swing.SwingConstants;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JSpinner;
@@ -164,7 +162,7 @@ public class reporteTrabajador extends JDialog {
 		JButton button = new JButton("?");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"Este reporte buscará trabajadores con un cargo y un nivel escolar específico además de también con un salario mayor del que se específique.", "Información del reporte", JOptionPane.INFORMATION_MESSAGE);		
+				JOptionPane.showMessageDialog(null,"Este reporte buscará trabajadores con un cargo y un nivel escolar específico además de también con un salario mayor o igual del que se específique.", "Información del reporte", JOptionPane.INFORMATION_MESSAGE);		
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.PLAIN, 22));
