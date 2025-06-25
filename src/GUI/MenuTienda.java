@@ -1372,7 +1372,7 @@ public class MenuTienda extends JFrame {
 		});
 		mnInformacin.add(mntmDatosDeLa);
 
-		JMenuItem mntmInformacionDeLos = new JMenuItem("Informacion de los Desarrolladores");
+		JMenuItem mntmInformacionDeLos = new JMenuItem("Informaci\u00F3n de los Desarrolladores");
 		mntmInformacionDeLos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JOptionPane.showMessageDialog(null,"Desarrollado por Alexandro Valdés Piñeda y Gloria Santos Rosado, Grupo 12 Facultad de Ingeniería Informática","Info Desarrollo",JOptionPane.INFORMATION_MESSAGE);
