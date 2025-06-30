@@ -55,6 +55,8 @@ import javax.swing.ImageIcon;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class MenuTienda extends JFrame {
 
@@ -360,6 +362,15 @@ public class MenuTienda extends JFrame {
 		paneIngresarTrabajador.add(apellidosTrabajador);
 
 		final JTextFieldLimitado idTrabajador = new JTextFieldLimitado();
+		idTrabajador.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
+		});
 		idTrabajador.setLimit(11);
 		idTrabajador.setHorizontalAlignment(SwingConstants.CENTER);
 		idTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -1438,11 +1449,15 @@ public class MenuTienda extends JFrame {
 				if(tableTrabajador.getSelectedRows().length == 1){
 					int fila = tableTrabajador.getSelectedRow();
 					if(fila != 0){
-						String id = (String)tableTrabajador.getValueAt(fila , 4);
-						int pos = tiendaPC.posTrabajadorPorID(id);
-						JOptionPane.showMessageDialog(null,"Se ha borrado el trabajador " +tiendaPC.getTrabajadores().get(pos).getNombre()+" correctamente","Trabajador eliminado", JOptionPane.INFORMATION_MESSAGE);
-						tiendaPC.getTrabajadores().remove(pos);
-						mntmMostrarListado.doClick();
+						Object[] opciones = { "Eliminar", "Cancelar" };
+						int res = JOptionPane.showOptionDialog(null,"¿Borrar el registro seleccionado?","Atención",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE,null,opciones,opciones[1]);                   
+						if (res == JOptionPane.YES_OPTION) {
+							String id = (String)tableTrabajador.getValueAt(fila , 4);
+							int pos = tiendaPC.posTrabajadorPorID(id);
+							JOptionPane.showMessageDialog(null,"Se ha borrado el trabajador " +tiendaPC.getTrabajadores().get(pos).getNombre()+" correctamente","Trabajador eliminado", JOptionPane.INFORMATION_MESSAGE);
+							tiendaPC.getTrabajadores().remove(pos);
+							mntmMostrarListado.doClick();
+						}
 					}
 					else
 						JOptionPane.showMessageDialog(null,"No se puede eliminar el gerente","Error", JOptionPane.ERROR_MESSAGE);
@@ -1461,25 +1476,28 @@ public class MenuTienda extends JFrame {
 		btnBorrar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(tableComponentes.getSelectedRows().length == 1){
-					int fila = tableComponentes.getSelectedRow();
-					String tipo = (String)tableComponentes.getValueAt(fila , 0);
-					String id = (String)tableComponentes.getValueAt(fila , 2);
-					int pos = -1;
-					if(tipo.equals("RAM"))
-						pos = tiendaPC.posRAMPorID(id);
-					if(tipo.equals("CPU"))
-						pos = tiendaPC.posCPUPorID(id);
-					if(tipo.equals("HDD"))
-						pos = tiendaPC.posHDDPorID(id);
-					if(tipo.equals("Motherboard"))
-						pos = tiendaPC.posMotherboardPorID(id);
-					JOptionPane.showMessageDialog(null,"Se ha eliminado el componente " +tiendaPC.getComponentes().get(pos).getNumeroSerie()+" correctamente","Componente eliminado", JOptionPane.INFORMATION_MESSAGE);
-					tiendaPC.getComponentes().remove(pos);
-					if(tableComponentes.getRowCount()==1)
-						mntmInicio.doClick();
-					else
-						mntmMostrarListadoDe.doClick();
-
+					Object[] opciones = { "Eliminar", "Cancelar" };
+					int res = JOptionPane.showOptionDialog(null,"¿Borrar el registro seleccionado?","Atención",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE,null,opciones,opciones[1]);                   
+					if (res == JOptionPane.YES_OPTION) {
+						int fila = tableComponentes.getSelectedRow();
+						String tipo = (String)tableComponentes.getValueAt(fila , 0);
+						String id = (String)tableComponentes.getValueAt(fila , 2);
+						int pos = -1;
+						if(tipo.equals("RAM"))
+							pos = tiendaPC.posRAMPorID(id);
+						if(tipo.equals("CPU"))
+							pos = tiendaPC.posCPUPorID(id);
+						if(tipo.equals("HDD"))
+							pos = tiendaPC.posHDDPorID(id);
+						if(tipo.equals("Motherboard"))
+							pos = tiendaPC.posMotherboardPorID(id);
+						JOptionPane.showMessageDialog(null,"Se ha eliminado el componente " +tiendaPC.getComponentes().get(pos).getNumeroSerie()+" correctamente","Componente eliminado", JOptionPane.INFORMATION_MESSAGE);
+						tiendaPC.getComponentes().remove(pos);
+						if(tableComponentes.getRowCount()==1)
+							mntmInicio.doClick();
+						else
+							mntmMostrarListadoDe.doClick();
+					}
 				}
 				else
 					JOptionPane.showMessageDialog(null,"Seleccione un Componente de la lista","No selecciono ninguno", JOptionPane.ERROR_MESSAGE);
@@ -1492,21 +1510,24 @@ public class MenuTienda extends JFrame {
 		JButton btnNewButton_1 = new JButton("Borrar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(tablePC.getSelectedRows().length == 1){
-					int fila = tablePC.getSelectedRow();
-					String id = (String)tablePC.getValueAt(fila , 0);
-					int pos = tiendaPC.posPCPorID(id);
-					JOptionPane.showMessageDialog(null,"Se ha eliminado la computadora con id: " +tiendaPC.getComputadoras().get(pos).getId()+" correctamente","PC eliminada", JOptionPane.INFORMATION_MESSAGE);
-					tiendaPC.getComputadoras().remove(pos);
-					if(tablePC.getRowCount()==1)
-						mntmInicio.doClick();
-					else
-						mntmMostrarListadoDe_1.doClick();
 
+				if(tablePC.getSelectedRows().length == 1){
+					Object[] opciones = { "Eliminar", "Cancelar" };
+					int res = JOptionPane.showOptionDialog(null,"¿Borrar el registro seleccionado?","Atención",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE,null,opciones,opciones[1]);                   
+					if (res == JOptionPane.YES_OPTION) {
+						int fila = tablePC.getSelectedRow();
+						String id = (String)tablePC.getValueAt(fila , 0);
+						int pos = tiendaPC.posPCPorID(id);
+						JOptionPane.showMessageDialog(null,"Se ha eliminado la computadora con id: " +tiendaPC.getComputadoras().get(pos).getId()+" correctamente","PC eliminada", JOptionPane.INFORMATION_MESSAGE);
+						tiendaPC.getComputadoras().remove(pos);
+						if(tablePC.getRowCount()==1)
+							mntmInicio.doClick();
+						else
+							mntmMostrarListadoDe_1.doClick();
+					}
 				}
 				else
 					JOptionPane.showMessageDialog(null,"Seleccione una computadora de la lista","No selecciono ninguno", JOptionPane.ERROR_MESSAGE);
-
 			}
 		});
 		btnNewButton_1.setBounds(10, 619, 89, 23);
