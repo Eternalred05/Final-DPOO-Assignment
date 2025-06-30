@@ -1413,18 +1413,22 @@ public class MenuTienda extends JFrame {
 		JMenuItem mntmCerrarSesin = new JMenuItem("Cerrar Sesi\u00F3n");
 		mntmCerrarSesin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							Login dialog = new Login(tiendaPC);
-							dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-							dialog.setVisible(true);
-							dispose();
-						} catch (Exception e) {
-							e.printStackTrace();
+				Object[] opciones = { "Confirmar", "Cancelar" };
+				int res = JOptionPane.showOptionDialog(null,"¿Desea cerrar la sesión actual?","Atención",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE,null,opciones,opciones[1]);                   
+				if (res == JOptionPane.YES_OPTION) {
+					EventQueue.invokeLater(new Runnable() {
+						public void run() {
+							try {
+								Login dialog = new Login(tiendaPC);
+								dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+								dialog.setVisible(true);
+								dispose();
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
 						}
-					}
-				});
+					});
+				}
 			}
 		});
 		mnInformacin.add(mntmCerrarSesin);
